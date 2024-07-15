@@ -1,13 +1,11 @@
 import {
-  Comment,
-  Favorite,
-  FavoriteBorder,
   Flag,
+  FlagCircle,
+  Link,
   MoreVert,
   PersonAdd,
   RemoveRedEye,
   RemoveRedEyeOutlined,
-  Share,
 } from "@mui/icons-material";
 import {
   Box,
@@ -19,7 +17,7 @@ import {
   Typography,
   CardActions,
   Checkbox,
-  Badge,
+  Tooltip,
 } from "@mui/material";
 import React from "react";
 import devImage from "../../images/dev.jpeg";
@@ -31,31 +29,40 @@ const CardFeed = () => {
       <Card className="w-100 mb-3 shadow rounded ">
         <CardHeader
           avatar={
-            <IconButton>
-              <Avatar
-                sx={{
-                  bgcolor: "steelblue",
-                }}
-                aria-label="avatar"
-              >
-                R
-              </Avatar>
-            </IconButton>
+            <Tooltip title="profile" arrow>
+              <IconButton>
+                <Avatar
+                  sx={{
+                    bgcolor: "steelblue",
+                  }}
+                  aria-label="avatar"
+                >
+                  S
+                </Avatar>
+              </IconButton>
+            </Tooltip>
           }
           action={
             <Box className="d-flex flex-row ">
-              <IconButton>
+              <IconButton disableRipple>
                 <Typography variant="body2">
                   {" "}
                   <small>2 days ago</small>
                 </Typography>
               </IconButton>
-              <IconButton>
-                <PersonAdd style={{ color: "steelblue" }} />
-              </IconButton>
-              <IconButton aria-label="more">
-                <MoreVert />
-              </IconButton>
+
+              <Tooltip title="follow" arrow>
+                <Checkbox
+                  icon={<PersonAdd />}
+                  checkedIcon={<PersonAdd style={{ color: "steelblue" }} />}
+                />
+              </Tooltip>
+
+              <Tooltip title="more" arrow>
+                <IconButton aria-label="more">
+                  <MoreVert />
+                </IconButton>
+              </Tooltip>
             </Box>
           }
           title="Shimmitah"
@@ -80,23 +87,32 @@ const CardFeed = () => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing className=" border-top ">
-          <IconButton aria-label="add to favorites">
+          <Tooltip title="seen" arrow>
             <Checkbox
               icon={<RemoveRedEyeOutlined />}
               checkedIcon={<RemoveRedEye style={{ color: "steelblue" }} />}
             />
             <small style={{ fontSize: "small" }}>200K</small>
-          </IconButton>
-          &nbsp; | &nbsp;
-          <IconButton aria-label="flag">
-            <Flag />
+          </Tooltip>
+
+          {/* &nbsp; | &nbsp; */}
+          <Tooltip title="scam" arrow>
+            <Checkbox
+              icon={<Flag />}
+              checkedIcon={<FlagCircle style={{ color: "steelblue" }} />}
+            />
             <small style={{ fontSize: "small" }}>5</small>
-          </IconButton>
-          &nbsp; |
-          <IconButton aria-label="share">
-            <Share />
+          </Tooltip>
+          {/* &nbsp; | */}
+
+          <Tooltip title="share" arrow>
+            <Checkbox
+              icon={<Link />}
+              checkedIcon={<Link />}
+              style={{ color: "grey" }}
+            />
             <small style={{ fontSize: "small" }}>20</small>
-          </IconButton>
+          </Tooltip>
         </CardActions>
       </Card>
     </Box>

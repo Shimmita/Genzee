@@ -57,30 +57,33 @@ const Navbar = () => {
   return (
     <AppBar position="sticky">
       <NocturnalToolBar>
-        <LogoContent>
+        <LogoContent
+          sx={{ display: { xs: "none", sm: "block", fontWeight: "bold" } }}
+        >
           <IconButton style={{ color: "white" }}>
+            <Typography variant="h6">GENZEE</Typography>
             <Mic
               sx={{
-                display: { xs: "none", sm: "block" },
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 marginRight: "1rem",
               }}
             />
-            <Typography
-              variant="h6"
-              sx={{ display: { xs: "none", sm: "block", fontWeight: "bold" } }}
-            >
-              GENZEE
-            </Typography>
           </IconButton>
         </LogoContent>
 
-        <IconButton style={{ color: "white" }}>
-          <Mic
-            sx={{ display: { xs: "block", sm: "none" }, width: 40, height: 40 }}
-          />
-        </IconButton>
+        <LogoContent
+          sx={{
+            display: { xs: "block", sm: "none" },
+          }}
+        >
+          <IconButton style={{ color: "white" }}>
+            <Typography>
+              <small>GENZEE</small>
+            </Typography>
+            <Mic />
+          </IconButton>
+        </LogoContent>
 
         <SearchBar>
           <InputBase
