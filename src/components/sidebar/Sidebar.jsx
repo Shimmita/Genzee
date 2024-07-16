@@ -35,6 +35,7 @@ import devImage from "../../images/dev.jpeg";
 import { Table } from "react-bootstrap";
 
 const Sidebar = () => {
+
   const [openAccountMore, setOpenAccountMore] = useState(false);
   const [openMobileApp, setOpenMobileApp] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);

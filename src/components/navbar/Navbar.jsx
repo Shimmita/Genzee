@@ -1,9 +1,10 @@
-import { Mail, Mic, MoreVert, Search } from "@mui/icons-material";
+import { Mail, MenuRounded, Mic, MoreVert } from "@mui/icons-material";
 import {
   AppBar,
   Avatar,
   Badge,
   Box,
+  Drawer,
   IconButton,
   InputBase,
   ListItemButton,
@@ -11,6 +12,7 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  Stack,
   styled,
   Switch,
   Toolbar,
@@ -22,19 +24,19 @@ import devImage from "../../images/dev.jpeg";
 
 const Navbar = () => {
   const [openMore, setOpenMore] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
-  const NocturnalToolBar = styled(Toolbar)({
+  const GenzeeToolBar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
   });
 
   const SearchBar = styled("div")(({ theme }) => ({
     backgroundColor: "white",
-    padding: "0 10px",
-    marginLeft: "1rem",
+    padding: "0 15px",
     marginRight: ".5rem",
     borderRadius: theme.shape.borderRadius,
-    width: window.screen.availWidth <= 500 ? "50%" : "30%",
+    width: window.screen.availWidth <= 500 ? "25%" : "30%",
   }));
 
   const IconsContainer = styled(Box)(({ theme }) => ({
@@ -56,7 +58,7 @@ const Navbar = () => {
 
   return (
     <AppBar position="sticky">
-      <NocturnalToolBar>
+      <GenzeeToolBar>
         <LogoContent
           sx={{ display: { xs: "none", sm: "block", fontWeight: "bold" } }}
         >
@@ -73,13 +75,17 @@ const Navbar = () => {
         </LogoContent>
 
         <LogoContent
+          display={"flex"}
           sx={{
             display: { xs: "block", sm: "none" },
           }}
         >
+          <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
+            <MenuRounded style={{ color: "white" }} />
+          </IconButton>
           <IconButton style={{ color: "white" }}>
             <Typography>
-              <small>GENZEE</small>
+              <small className="fw-bold">GENZEE</small>
             </Typography>
             <Mic />
           </IconButton>
@@ -104,7 +110,7 @@ const Navbar = () => {
             <MoreVert style={{ color: "white" }} />
           </IconButton>
         </IconsContainer>
-      </NocturnalToolBar>
+      </GenzeeToolBar>
       <Menu
         id="more-menu"
         aria-labelledby="more-menu"
@@ -130,6 +136,15 @@ const Navbar = () => {
         <MenuItem>About</MenuItem>
         <MenuItem>Logout</MenuItem>
       </Menu>
+
+      {/* drawer samall screen */}
+      <Drawer open={openDrawer} onClose={(e) => setOpenDrawer(false)}>
+        <Stack>
+          <Box p={2}>
+            <Avatar src={devImage} sx={{ width: 50, height: 50 }} />
+          </Box>
+        </Stack>
+      </Drawer>
     </AppBar>
   );
 };

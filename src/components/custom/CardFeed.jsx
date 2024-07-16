@@ -1,11 +1,13 @@
 import {
-  Flag,
+  ArchiveOutlined,
+  ArchiveRounded,
+  Favorite,
+  FavoriteBorder,
   FlagCircle,
-  Link,
+  FlagOutlined,
   MoreVert,
-  PersonAdd,
-  RemoveRedEye,
-  RemoveRedEyeOutlined,
+  PersonAddOutlined,
+  PersonRounded,
 } from "@mui/icons-material";
 import {
   Box,
@@ -53,8 +55,16 @@ const CardFeed = () => {
 
               <Tooltip title="follow" arrow>
                 <Checkbox
-                  icon={<PersonAdd />}
-                  checkedIcon={<PersonAdd style={{ color: "steelblue" }} />}
+                  icon={
+                    <PersonAddOutlined
+                      sx={{ color: "steelblue", width: 20, height: 20 }}
+                    />
+                  }
+                  checkedIcon={
+                    <PersonRounded
+                      style={{ color: "steelblue", width: 20, height: 20 }}
+                    />
+                  }
                 />
               </Tooltip>
 
@@ -87,31 +97,45 @@ const CardFeed = () => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing className=" border-top ">
-          <Tooltip title="seen" arrow>
+          <Tooltip title="like" arrow>
             <Checkbox
-              icon={<RemoveRedEyeOutlined />}
-              checkedIcon={<RemoveRedEye style={{ color: "steelblue" }} />}
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite />}
+              style={{ color: "steelblue" }}
             />
-            <small style={{ fontSize: "small" }}>200K</small>
+            <small
+              className="text-body-secondary"
+              style={{ fontSize: "small" }}
+            >
+              25K
+            </small>
           </Tooltip>
 
           {/* &nbsp; | &nbsp; */}
           <Tooltip title="scam" arrow>
             <Checkbox
-              icon={<Flag />}
+              icon={<FlagOutlined style={{ color: "steelblue" }} />}
               checkedIcon={<FlagCircle style={{ color: "steelblue" }} />}
             />
-            <small style={{ fontSize: "small" }}>5</small>
+            <small
+              className="text-body-secondary"
+              style={{ fontSize: "small" }}
+            >
+              5
+            </small>
           </Tooltip>
-          {/* &nbsp; | */}
 
-          <Tooltip title="share" arrow>
+          <Tooltip title="archive" arrow>
             <Checkbox
-              icon={<Link />}
-              checkedIcon={<Link />}
-              style={{ color: "grey" }}
+              icon={<ArchiveOutlined style={{ color: "steelblue" }} />}
+              checkedIcon={<ArchiveRounded style={{ color: "steelblue" }} />}
             />
-            <small style={{ fontSize: "small" }}>20</small>
+            <small
+              className="text-body-secondary"
+              style={{ fontSize: "small" }}
+            >
+              5
+            </small>
           </Tooltip>
         </CardActions>
       </Card>
