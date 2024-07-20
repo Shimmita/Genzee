@@ -3,17 +3,8 @@ import React from "react";
 
 const Righbar = () => {
   return (
-    <Box
-      flex={2}
-      p={2}
-      className='shadow '
-      sx={{ display: { xs: "none", sm: "block" } }}
-    >
-      <Box position={'fixed'}>
-        
-        Righbar
-        
-        </Box>
+    <Box  className='shadow' flex={2} p={2} sx={{ display: { xs: "none", sm: "none", md:'block'} }}>
+      <Box position={"fixed"}>rightbar</Box>
     </Box>
   );
 };

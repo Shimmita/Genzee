@@ -1,5 +1,6 @@
 import {
   AccountBox,
+  AllInclusive,
   BarChart,
   ContactPage,
   DarkMode,
@@ -12,7 +13,6 @@ import {
   Lightbulb,
   PostAdd,
   QuestionMark,
-  ReportGmailerrorred,
   Settings,
   Smartphone,
   Support,
@@ -28,14 +28,11 @@ import {
   styled,
   Switch,
   Typography,
-  Button,
 } from "@mui/material";
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
-import { Table } from "react-bootstrap";
 
-const Sidebar = () => {
-
+const Sidebar = ({ setMode, mode }) => {
   const [openAccountMore, setOpenAccountMore] = useState(false);
   const [openMobileApp, setOpenMobileApp] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
@@ -50,10 +47,10 @@ const Sidebar = () => {
 
   return (
     <Box
-      className="shadow"
       flex={2}
-      p={1}
-      sx={{ display: { xs: "none", sm: "block" } }}
+      p={2}
+      className='shadow'
+      sx={{ display: { xs: "none", sm: "none", md: "block",} }}
     >
       <Box position={"fixed"}>
         <BoxAvatarContent>
@@ -64,31 +61,19 @@ const Sidebar = () => {
             flexDirection={"column"}
             gap={2}
           >
-            <Avatar src={devImage} sx={{ width: 70, height: 70 }} />
-            <Typography color={"steelblue"} variant="body2" fontWeight={"bold"}>
+            <Avatar src={devImage} sx={{ width: 80, height: 80 }} />
+
+            <Typography
+              fontWeight={"bold"}
+              style={{ color: mode === "light" ? "steelblue" : "white" }}
+            >
               SHIMITA DOUGLAS
             </Typography>
           </Box>
-          <Table className="  text-center ">
-            <thead>
-              <tr>
-                <th>
-                  <Button style={{ fontSize: "small" }}>Following</Button>
-                </th>
 
-                <th>
-                  <Button style={{ fontSize: "small" }}>Followers</Button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>10K</td>
-                <td>100K</td>
-              </tr>
-            </tbody>
-          </Table>
+          <Typography>shimitadouglas@gmail.com</Typography>
         </BoxAvatarContent>
+
         <List>
           <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
@@ -106,11 +91,7 @@ const Sidebar = () => {
               <AccountBox />
             </ListItemIcon>
             <ListItemText primary="Account" />{" "}
-            {openAccountMore ? (
-              <ExpandLess className="bg-body-secondary" />
-            ) : (
-              <ExpandMore />
-            )}
+            {openAccountMore ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
 
           <Collapse
@@ -120,18 +101,13 @@ const Sidebar = () => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                <ListItemIcon>
-                  <PostAdd />
-                </ListItemIcon>
-                <ListItemText primary="My Post" />
-              </ListItemButton>
 
               <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
                 <ListItemIcon>
-                  <GroupAdd />
+                  <AllInclusive />
                 </ListItemIcon>
-                <ListItemText primary="Groups" />
+                <ListItemText  primary='View All'
+                  /> 
               </ListItemButton>
 
               <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
@@ -150,13 +126,6 @@ const Sidebar = () => {
             </List>
           </Collapse>
 
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <ReportGmailerrorred />
-            </ListItemIcon>
-            <ListItemText primary="Report" />
-          </ListItemButton>
-
           <ListItemButton
             LinkComponent={"a"}
             href="#home"
@@ -166,11 +135,7 @@ const Sidebar = () => {
               <Support />
             </ListItemIcon>
             <ListItemText primary="Need Help" />
-            {openHelp ? (
-              <ExpandLess className="bg-body-secondary" />
-            ) : (
-              <ExpandMore />
-            )}
+            {openHelp ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
 
           <Collapse
@@ -219,11 +184,7 @@ const Sidebar = () => {
               <Smartphone />
             </ListItemIcon>
             <ListItemText primary="Mobile App" />
-            {openMobileApp ? (
-              <ExpandLess className="bg-body-secondary" />
-            ) : (
-              <ExpandMore />
-            )}
+            {openMobileApp ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
 
           <Collapse
@@ -247,7 +208,9 @@ const Sidebar = () => {
               <DarkMode />
             </ListItemIcon>
             <ListItemText primary="Dark Mode" />
-            <Switch />
+            <Switch
+              onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+            />
           </ListItemButton>
         </List>
       </Box>
