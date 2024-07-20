@@ -19,12 +19,14 @@ import {
   SearchRounded,
   Mic,
   AllInclusive,
+  Close,
 } from "@mui/icons-material";
 import {
   AppBar,
   Avatar,
   Badge,
   Box,
+  Button,
   Collapse,
   Drawer,
   IconButton,
@@ -58,17 +60,25 @@ const Navbar = ({ setMode, mode }) => {
   const [openMobileApp, setOpenMobileApp] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
 
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const handleShowMobileSearch = () => {
+    setShowMobileSearch((prev) => !prev);
+  };
+
   const GenzeeToolBar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
   });
 
   const SearchBar = styled("div")(({ theme }) => ({
-    backgroundColor: "white",
+    backgroundColor: "#f2f2f2",
     padding: "0 15px",
-    marginRight: ".5rem",
+    width: "40%",
     borderRadius: theme.shape.borderRadius,
-    width: "35%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   }));
 
   const IconsContainer = styled(Box)(({ theme }) => ({
@@ -99,6 +109,7 @@ const Navbar = ({ setMode, mode }) => {
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
+        {/* lg screen toolbar */}
         <LogoContent
           sx={{
             display: {
@@ -116,51 +127,95 @@ const Navbar = ({ setMode, mode }) => {
           </IconButton>
         </LogoContent>
 
-        <LogoContent
-          display={"flex"}
-          sx={{
-            display: { xs: "block", sm: "block", md: "none", lg: "none" },
-          }}
-        >
-          <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
-            <MenuRounded style={{ color: "white" }} />
-          </IconButton>
-          <IconButton style={{ color: "white" }}>
-            <small style={{ fontSize: "small" }} className="fw-bold">
-              GENZEE
-            </small>
-          </IconButton>
-          {window.screen.availWidth > 380 && <Mic />}{" "}
-        </LogoContent>
+        {/* show logo content on the small devices searchIcon  not clicked */}
+        {!showMobileSearch && (
+          <LogoContent
+            display={"flex"}
+            sx={{
+              display: { xs: "block", sm: "block", md: "none", lg: "none" },
+            }}
+          >
+            <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
+              <MenuRounded style={{ color: "white" }} />
+            </IconButton>
+            <IconButton style={{ color: "white" }}>
+              <small style={{ fontSize: "small" }} className="fw-bold">
+                GENZEE
+              </small>
+            </IconButton>
+            {window.screen.availWidth > 380 && <Mic />}{" "}
+          </LogoContent>
+        )}
 
+        {/* visible on lg screens always */}
         {window.screen.availWidth > 500 && (
           <SearchBar>
-            <InputBase
-              placeholder="search..."
-              sx={{
-                color: "grey",
-                fontSize: "medium",
-              }}
-            />
+            <Box display={"flex"} alignItems={"center"} justifyContent={'space-between'}>
+              <InputBase
+                placeholder="search..."
+                sx={{
+                  color: "grey",
+                }}
+              />
+              <Button>
+                <Typography variant="body2" sx={{ textTransform: "lowercase" }}>
+                  search
+                </Typography>
+              </Button>
+            </Box>
+          </SearchBar>
+        )}
+
+        {/* show search bar on small devices when necessary */}
+        {showMobileSearch && (
+          <SearchBar>
+            <Box display={"flex"} alignItems={"center"} justifyContent={'space-between'}>
+              <InputBase
+                placeholder="search..."
+                sx={{
+                  color: "grey",
+                }}
+              />
+              <Button>
+                <Typography variant="body1" sx={{ textTransform: "lowercase" }}>
+                  search
+                </Typography>
+              </Button>
+
+              <IconButton onClick={handleShowMobileSearch}>
+                <Close color="primary"/>
+              </IconButton>
+            </Box>
           </SearchBar>
         )}
 
         <IconsContainer>
           {window.screen.availWidth < 500 && (
-            <IconButton>
-              <SearchRounded style={{ color: "white" }} />
-            </IconButton>
+            <Box>
+              {/* display when search not clicked */}
+              {!showMobileSearch && (
+                <IconButton onClick={handleShowMobileSearch}>
+                  <SearchRounded style={{ color: "white" }} />
+                </IconButton>
+              )}
+            </Box>
           )}
-          <Badge badgeContent={1} color="error">
-            <Mail sx={{ width: 25, height: 25 }} />
-          </Badge>
-          &nbsp;
-          <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
-          <IconButton onClick={(e) => setOpenMore(true)}>
-            <MoreVert style={{ color: "white" }} />
-          </IconButton>
+          {/* display when search not clicked */}
+          {!showMobileSearch && (
+            <>
+              <Badge badgeContent={1} color="error">
+                <Mail sx={{ width: 25, height: 25 }} />
+              </Badge>
+              &nbsp;
+              <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
+              <IconButton onClick={(e) => setOpenMore(true)}>
+                <MoreVert style={{ color: "white" }} />
+              </IconButton>
+            </>
+          )}
         </IconsContainer>
       </GenzeeToolBar>
+
       <Menu
         id="more-menu"
         aria-labelledby="more-menu"

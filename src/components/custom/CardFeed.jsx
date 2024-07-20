@@ -96,12 +96,16 @@ const CardFeed = () => {
                 window.screen.availWidth > 700 &&
                 window.screen.availWidth < 1000
                   ? 550
+                  : window.screen.availWidth > 1000
+                  ? 460
                   : 300,
-              minWidth:
-                window.screen.availWidth > 700 &&
-                window.screen.availWidth < 1000
-                  ? 550
-                  : 300,
+                  minHeight:
+                  window.screen.availWidth > 700 &&
+                  window.screen.availWidth < 1000
+                    ? 550
+                    : window.screen.availWidth > 1000
+                    ? 460
+                    : 300,
             }}
           />
         </Box>
