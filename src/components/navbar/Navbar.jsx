@@ -24,6 +24,7 @@ import {
 import {
   AppBar,
   Avatar,
+  Backdrop,
   Badge,
   Box,
   Button,
@@ -150,7 +151,11 @@ const Navbar = ({ setMode, mode }) => {
         {/* visible on lg screens always */}
         {window.screen.availWidth > 500 && (
           <SearchBar>
-            <Box display={"flex"} alignItems={"center"} justifyContent={'space-between'}>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
               <InputBase
                 placeholder="search..."
                 sx={{
@@ -169,7 +174,11 @@ const Navbar = ({ setMode, mode }) => {
         {/* show search bar on small devices when necessary */}
         {showMobileSearch && (
           <SearchBar>
-            <Box display={"flex"} alignItems={"center"} justifyContent={'space-between'}>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
               <InputBase
                 placeholder="search..."
                 sx={{
@@ -183,7 +192,7 @@ const Navbar = ({ setMode, mode }) => {
               </Button>
 
               <IconButton onClick={handleShowMobileSearch}>
-                <Close color="primary"/>
+                <Close color="primary" />
               </IconButton>
             </Box>
           </SearchBar>
@@ -216,10 +225,13 @@ const Navbar = ({ setMode, mode }) => {
         </IconsContainer>
       </GenzeeToolBar>
 
+      {/* show backdrop when morevert icon is aclicked */}
+      <Backdrop open={openMore} />
       <Menu
         id="more-menu"
         aria-labelledby="more-menu"
         open={openMore}
+        className="mt-4"
         onClose={(e) => setOpenMore(false)}
         anchorOrigin={{
           vertical: "top",
@@ -235,11 +247,16 @@ const Navbar = ({ setMode, mode }) => {
             <ListItemIcon>
               <Switch />
             </ListItemIcon>
-            <ListItemText primary="Logout" />
+            <ListItemText primary={<small>logout</small>} />
           </ListItemButton>
         </MenuItem>
-        <MenuItem>About</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <hr />
+        <MenuItem>
+          <small>privacy policy</small>
+        </MenuItem>
+        <MenuItem>
+          <small>terms of service</small>
+        </MenuItem>
       </Menu>
 
       {/* drawer  tablet and samall screen */}

@@ -2,10 +2,13 @@ import {
   AddCommentOutlined,
   ArchiveOutlined,
   ArchiveRounded,
+  Block,
+  DownloadOutlined,
   Favorite,
   FavoriteBorder,
   FlagCircle,
   FlagOutlined,
+  Link,
   MoreVert,
   PersonAddOutlined,
   PersonRounded,
@@ -22,6 +25,11 @@ import {
   Checkbox,
   Tooltip,
   Button,
+  Menu,
+  MenuItem,
+  ListItemButton,
+  ListItemText,
+  Backdrop,
 } from "@mui/material";
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
@@ -31,10 +39,20 @@ import AccordionComment from "./AccordionComment";
 
 const CardFeed = () => {
   const [showComment, setShowComment] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMoreVertPost = Boolean(anchorEl);
 
   const handleShowReply = () => {
     setShowComment((prev) => !prev);
   };
+
+  const handleClickMoreVertPost = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box>
       <Card elevation={0} className="w-100 mb-3 p-1 border rounded">
@@ -78,15 +96,86 @@ const CardFeed = () => {
               </Tooltip>
 
               <Tooltip title="more" arrow>
-                <IconButton aria-label="more">
+                <IconButton
+                  aria-label="more"
+                  id="more-button"
+                  aria-controls={openMoreVertPost ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openMoreVertPost ? "true" : undefined}
+                  onClick={handleClickMoreVertPost}
+                >
                   <MoreVert />
                 </IconButton>
               </Tooltip>
+
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={openMoreVertPost}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "more-button",
+                }}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+              >
+                <MenuItem>
+                  <ListItemButton LinkComponent={"a"} href="#home">
+                    <ListItemText>
+                      <FlagOutlined className="mx-2" />
+                    </ListItemText>
+                    <ListItemText primary={<small>report this post</small>} />
+                  </ListItemButton>
+                </MenuItem>
+
+                <MenuItem>
+                  <ListItemButton LinkComponent={"a"} href="#home">
+                    <ListItemText>
+                      <Link className="mx-2" />
+                    </ListItemText>
+                    <ListItemText primary={<small>copy this link</small>} />
+                  </ListItemButton>
+                </MenuItem>
+
+                <MenuItem>
+                  <ListItemButton LinkComponent={"a"} href="#home">
+                    <ListItemText>
+                      <DownloadOutlined className="mx-2" />
+                    </ListItemText>
+                    <ListItemText primary={<small>save this post</small>} />
+                  </ListItemButton>
+                </MenuItem>
+
+                <MenuItem>
+                  <ListItemButton LinkComponent={"a"} href="#home">
+                    <ListItemText>
+                      <PersonAddOutlined className="mx-2" />
+                    </ListItemText>
+                    <ListItemText primary={<small>follow devshim</small>} />
+                  </ListItemButton>
+                </MenuItem>
+
+                <MenuItem>
+                  <ListItemButton LinkComponent={"a"} href="#home">
+                    <ListItemText>
+                      <Block className="mx-2" />
+                    </ListItemText>
+                    <ListItemText primary={<small>block devshim</small>} />
+                  </ListItemButton>
+                </MenuItem>
+              </Menu>
             </Box>
           }
           title="Shimmitah"
           subheader="@devshim"
         />
+
         <Box className="d-flex justify-content-center align-items-center">
           <Image
             className="rounded mb-1 w-100 shadow-sm"
@@ -99,13 +188,13 @@ const CardFeed = () => {
                   : window.screen.availWidth > 1000
                   ? 460
                   : 300,
-                  minHeight:
-                  window.screen.availWidth > 700 &&
-                  window.screen.availWidth < 1000
-                    ? 550
-                    : window.screen.availWidth > 1000
-                    ? 460
-                    : 300,
+              minHeight:
+                window.screen.availWidth > 700 &&
+                window.screen.availWidth < 1000
+                  ? 550
+                  : window.screen.availWidth > 1000
+                  ? 460
+                  : 300,
             }}
           />
         </Box>
@@ -148,7 +237,7 @@ const CardFeed = () => {
           </Tooltip>
           {/* &nbsp; | */}
 
-          <Box className="ms-1">
+          <Box className="ms-2">
             <Tooltip title="comment">
               <Button
                 color="inherit"
@@ -183,6 +272,8 @@ const CardFeed = () => {
         {/* show reply here when comment clicked */}
         {showComment && <AccordionComment />}
       </Card>
+      {/* show backdrop when more icon of the post is clicked */}
+      <Backdrop open={openMoreVertPost} />
     </Box>
   );
 };

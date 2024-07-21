@@ -1,7 +1,6 @@
 import {
   Archive,
-  LocationOn,
-  Restore,
+  Home,
   Waves,
   Work
 } from "@mui/icons-material";
@@ -28,16 +27,15 @@ const BottomNav = () => {
           "-ms-overflow-style": "none",
           "scrollbar-width": "none",
 
-          paddingLeft: window.screen.availWidth<370 && '20%'
+          // paddingLeft: window.screen.availWidth<370 && '20%'
         }}
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Recents" icon={<Restore />} />
+        <BottomNavigationAction label="Home" icon={<Home />} />
         <BottomNavigationAction label="Viral" icon={<Waves />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOn />} />
         <BottomNavigationAction label="Jobs" icon={<Work />} />
         <BottomNavigationAction label="Archive" icon={<Archive />} />
       </BottomNavigation>

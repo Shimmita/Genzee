@@ -4,10 +4,11 @@ import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 
-import { Add, People } from "@mui/icons-material";
+import { Add, People, Videocam } from "@mui/icons-material";
 const actions = [
-  { icon: <People sx={{ width: 20, height: 20 }} />, name: "connect" },
-  { icon: <Add sx={{ width: 20, height: 20 }} />, name: "posting" },
+  { icon: <People sx={{ width: 20, height: 20 }} />, name: "Connect" },
+  { icon: <Videocam sx={{ width: 20, height: 20 }} />, name: "GoLive" },
+  { icon: <Add sx={{ width: 20, height: 20 }} />, name: "Post" },
 ];
 
 export default function BasicSpeedDial({ setOpenBackdrop }) {
