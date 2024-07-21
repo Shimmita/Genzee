@@ -41,6 +41,7 @@ import {
   Stack,
   styled,
   Switch,
+  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -51,7 +52,6 @@ import {
 import React, { useState } from "react";
 
 import devImage from "../../images/dev.jpeg";
-import { Table } from "react-bootstrap";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -314,6 +314,7 @@ const Navbar = ({ setMode, mode }) => {
               </Table>
             </Box>
           </BoxAvatarContent>
+
           <List>
             <ListItemButton LinkComponent={"a"} href="#home">
               <ListItemIcon>

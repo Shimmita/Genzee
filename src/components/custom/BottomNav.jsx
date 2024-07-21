@@ -1,9 +1,4 @@
-import {
-  Archive,
-  Home,
-  Waves,
-  Work
-} from "@mui/icons-material";
+import { Archive, Home, Waves, Work } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import React from "react";
 
