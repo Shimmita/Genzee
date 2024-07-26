@@ -203,14 +203,16 @@ const CardFeed = () => {
           <CardContent>
             <Typography variant="body2" color="text.secondary">
               This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests. Add 1 cup of frozen peas along
-              with the mussels, if you like.This impressive paella is a perfect
-              party dish and a fun meal to cook.
+              cook together with your guests.Add 1 cup of frozen peas along
+              with the mussels,if you like.This impressive paella is a perfect
+              party dish and a fun meal to cook.This impressive paella is a
+              perfect party dish and a fun meal to cook together with your
+              guests.
             </Typography>
           </CardContent>
         )}
 
-        <CardActions disableSpacing className=" border-top rounded ">
+        <CardActions disableSpacing className=" border-top rounded  ">
           <Tooltip title="like" arrow>
             <Checkbox
               icon={<FavoriteBorder />}

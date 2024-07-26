@@ -34,6 +34,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
+import AccountLevelStep from "../level/AccountLevel";
 
 const Sidebar = ({ setMode, mode }) => {
   const [openAccountMore, setOpenAccountMore] = useState(false);
@@ -55,7 +56,7 @@ const Sidebar = ({ setMode, mode }) => {
       className="shadow"
       sx={{ display: { xs: "none", sm: "none", md: "block" } }}
     >
-      <Box position={"fixed"} >
+      <Box position={"fixed"}>
         <BoxAvatarContent>
           <Box
             display={"flex"}
@@ -99,170 +100,171 @@ const Sidebar = ({ setMode, mode }) => {
           </TableBody>
         </Table>
 
-       <List>
-            <ListItemButton LinkComponent={"a"} href="#home">
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Homepage</Typography>}
-              />
-            </ListItemButton>
+        <List>
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <Home />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Homepage</Typography>}
+            />
+          </ListItemButton>
 
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={(e) => setOpenAccountMore(!openAccountMore)}
-            >
-              <ListItemIcon>
-                <AccountBox />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Account</Typography>}
-              />
-              {openAccountMore ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+          <ListItemButton
+            LinkComponent={"a"}
+            href="#home"
+            onClick={(e) => setOpenAccountMore(!openAccountMore)}
+          >
+            <ListItemIcon>
+              <AccountBox />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Account</Typography>}
+            />
+            {openAccountMore ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-            <Collapse
-              className=" border-top"
-              in={openAccountMore}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <AllInclusive />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">View All</Typography>}
-                  />
-                </ListItemButton>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <BarChart />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Typography variant="body2">Statistics</Typography>
-                    }
-                  />
-                </ListItemButton>
+          <Collapse
+            className=" border-top"
+            in={openAccountMore}
+            timeout="auto"
+            unmountOnExit
+          >
+            <List component="div" disablePadding>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <AllInclusive />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">View All</Typography>}
+                />
+              </ListItemButton>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <BarChart />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Statistics</Typography>}
+                />
+              </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <Settings />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Settings</Typography>}
-                  />
-                </ListItemButton>
-              </List>
-            </Collapse>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <Settings />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Settings</Typography>}
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
 
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={(e) => setOpenHelp(!openHelp)}
-            >
-              <ListItemIcon>
-                <Support />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Need Help</Typography>}
-              />
-              {openHelp ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+          <ListItemButton
+            LinkComponent={"a"}
+            href="#home"
+            onClick={(e) => setOpenHelp(!openHelp)}
+          >
+            <ListItemIcon>
+              <Support />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Need Help</Typography>}
+            />
+            {openHelp ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-            <Collapse
-              className=" border-top"
-              in={openHelp}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <Email />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Email</Typography>}
-                  />
-                </ListItemButton>
+          <Collapse
+            className=" border-top"
+            in={openHelp}
+            timeout="auto"
+            unmountOnExit
+          >
+            <List component="div" disablePadding>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <Email />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Email</Typography>}
+                />
+              </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <QuestionMark />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Q & A</Typography>}
-                  />
-                </ListItemButton>
-              </List>
-            </Collapse>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <QuestionMark />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Q & A</Typography>}
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
-              <ListItemIcon>
-                <Lightbulb />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">About</Typography>}
-              />
-            </ListItemButton>
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <Lightbulb />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">About</Typography>}
+            />
+          </ListItemButton>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
-              <ListItemIcon>
-                <ContactPage />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Contacts</Typography>}
-              />
-            </ListItemButton>
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <ContactPage />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Contacts</Typography>}
+            />
+          </ListItemButton>
 
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={(e) => setOpenMobileApp(!openMobileApp)}
-            >
-              <ListItemIcon>
-                <Smartphone />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Mobile App</Typography>}
-              />
-              {openMobileApp ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+          <ListItemButton
+            LinkComponent={"a"}
+            href="#home"
+            onClick={(e) => setOpenMobileApp(!openMobileApp)}
+          >
+            <ListItemIcon>
+              <Smartphone />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Mobile App</Typography>}
+            />
+            {openMobileApp ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-            <Collapse
-              className=" border-top"
-              in={openMobileApp}
-              timeout="auto"
-              unmountOnExit
-            >
-              <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                  <ListItemIcon>
-                    <Download />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Download</Typography>}
-                  />
-                </ListItemButton>
-              </List>
-            </Collapse>
+          <Collapse
+            className=" border-top"
+            in={openMobileApp}
+            timeout="auto"
+            unmountOnExit
+          >
+            <List component="div" disablePadding>
+              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemIcon>
+                  <Download />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Download</Typography>}
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
-              <ListItemIcon>
-                <DarkMode />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Dark Mode</Typography>}
-              />
-              <Switch
-                onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
-              />
-            </ListItemButton>
-          </List>
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <DarkMode />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">Dark Mode</Typography>}
+            />
+            <Switch
+              onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+            />
+          </ListItemButton>
+
+          {/* show account level status */}
+          <AccountLevelStep />
+        </List>
       </Box>
     </Box>
   );

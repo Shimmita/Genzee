@@ -20,6 +20,8 @@ import {
   Mic,
   AllInclusive,
   Close,
+  Logout,
+  ArrowForwardOutlined,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -52,6 +54,8 @@ import {
 import React, { useState } from "react";
 
 import devImage from "../../images/dev.jpeg";
+import AccountLevelStep from "../level/AccountLevel";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -62,6 +66,8 @@ const Navbar = ({ setMode, mode }) => {
   const [openHelp, setOpenHelp] = useState(false);
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const navigateLogout = useNavigate();
 
   const handleShowMobileSearch = () => {
     setShowMobileSearch((prev) => !prev);
@@ -121,7 +127,7 @@ const Navbar = ({ setMode, mode }) => {
           }}
         >
           <IconButton style={{ color: "white" }}>
-            <Typography variant="h6" className="fw-bold">
+            <Typography variant="body1" className="fw-bold">
               GENZEE
             </Typography>
             <Mic />
@@ -243,19 +249,25 @@ const Navbar = ({ setMode, mode }) => {
         }}
       >
         <MenuItem>
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <Switch />
-            </ListItemIcon>
-            <ListItemText primary={<small>logout</small>} />
-          </ListItemButton>
+          <Button
+            endIcon={<Logout sx={{ width: 20, height: 20 }} />}
+            type="small"
+          >
+            <Typography variant="caption">logout</Typography>
+          </Button>
         </MenuItem>
         <hr />
         <MenuItem>
-          <small>privacy policy</small>
+          <small>
+            privacy policy
+            <ArrowForwardOutlined sx={{ width: 12, height: 12 }} />
+          </small>
         </MenuItem>
         <MenuItem>
-          <small>terms of service</small>
+          <small>
+            terms of service{" "}
+            <ArrowForwardOutlined sx={{ width: 12, height: 12 }} />
+          </small>
         </MenuItem>
       </Menu>
 
@@ -268,10 +280,15 @@ const Navbar = ({ setMode, mode }) => {
           color={"text.primary"}
         >
           <AppBar position="sticky" elevation={0} className="mb-2">
-            <Toolbar>
-              <Stack direction={"row"} justifyContent={"space-between"}>
-                <Typography variant="body2">SHIMITA DOUGLAS</Typography>
-              </Stack>
+            <Toolbar
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignContent: "center",
+              }}
+            >
+              <Typography variant="body2">SHIMITA DOUGLAS</Typography>|
+              <Typography variant="caption">7 Days</Typography>
             </Toolbar>
           </AppBar>
 
@@ -478,6 +495,9 @@ const Navbar = ({ setMode, mode }) => {
                 onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
               />
             </ListItemButton>
+
+            {/* show account level status */}
+            <AccountLevelStep />
           </List>
         </Stack>
       </Drawer>

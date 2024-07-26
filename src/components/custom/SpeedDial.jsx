@@ -5,6 +5,7 @@ import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 
 import { Add, People, Videocam } from "@mui/icons-material";
+import PostModal from "../modal/PostModal";
 const actions = [
   { icon: <People sx={{ width: 20, height: 20 }} />, name: "Connect" },
   { icon: <Videocam sx={{ width: 20, height: 20 }} />, name: "GoLive" },
@@ -21,6 +22,10 @@ export default function BasicSpeedDial({ setOpenBackdrop }) {
     setOpen(false);
     setOpenBackdrop(false);
   };
+
+  // control showing opening of the post modal
+  const [openPostModal, setOpenPostModal] = React.useState(false);
+
   return (
     <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
@@ -35,6 +40,12 @@ export default function BasicSpeedDial({ setOpenBackdrop }) {
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
+            onClick={(e) => {
+              // show modal
+              if (action.name.toLowerCase() === "post") {
+                setOpenPostModal(true);
+              }
+            }}
             tooltipTitle={
               <small style={{ fontSize: "small" }}>{action.name}</small>
             }
@@ -42,6 +53,10 @@ export default function BasicSpeedDial({ setOpenBackdrop }) {
           />
         ))}
       </SpeedDial>
+      <PostModal
+        openPostModal={openPostModal}
+        setOpenPostModal={setOpenPostModal}
+      />
     </Box>
   );
 }
