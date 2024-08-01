@@ -18,6 +18,7 @@ const NabvBarAuth = ({ isLogin }) => {
   });
 
   return (
+    <>
     <AppBar position="sticky" elevation={0}>
       <AuthToolbar>
         <Box display={"flex"} alignItems={"center"}>
@@ -44,6 +45,7 @@ const NabvBarAuth = ({ isLogin }) => {
         )}
       </AuthToolbar>
     </AppBar>
+    </>
   );
 };
 

@@ -19,10 +19,8 @@ const BottomNav = () => {
             display: "none",
           },
           // Hide scrollbar for IE, Edge and Firefox
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
-
-          // paddingLeft: window.screen.availWidth<370 && '20%'
+          msOverflowStyle:'none',
+          scrollbarWidth:'none'
         }}
         value={value}
         onChange={(event, newValue) => {

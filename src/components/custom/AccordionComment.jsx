@@ -46,16 +46,16 @@ export default function AccordionComment({ mode }) {
           </small>
         </AccordionSummary>
         <AccordionDetails
-          sx={{
-            maxHeight: 300,
-            overflowY: "auto",
+           sx={{
+            maxHeight:300,
+            overflowX: "auto",
             // Hide scrollbar for Chrome, Safari and Opera
             "&::-webkit-scrollbar": {
               display: "none",
             },
             // Hide scrollbar for IE, Edge and Firefox
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none",
+            msOverflowStyle:'none',
+            scrollbarWidth:'none'
           }}
         >
           <small style={{ fontSize: "small" }}>

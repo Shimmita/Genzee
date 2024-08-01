@@ -25,8 +25,8 @@ const RecoverAuth = () => {
             display: "none",
           },
           // Hide scrollbar for IE, Edge and Firefox
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
+          msOverflowStyle:'none',
+          scrollbarWidth:'none'
         }}
       >
         <form

@@ -1,10 +1,10 @@
 const PostAbout = [
-    "Artistic",
-    "Justice",
-    "Corruption",
-    "Police Brutality",
-    "Bad Governance",
-  ];
-  
-  export default PostAbout;
-  
+  "Artistic",
+  "Justice",
+  "Corruption",
+  "Police Brutality",
+  "Bad Governance",
+  "Other (NO EXPLICIT CONTENT!)",
+];
+
+export default PostAbout;

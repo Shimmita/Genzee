@@ -40,15 +40,15 @@ export default function AccordionReply({ mode }) {
         </AccordionSummary>
         <AccordionDetails
           sx={{
-            height: 250,
-            overflowY: "auto",
+            height:250,
+            overflowX: "auto",
             // Hide scrollbar for Chrome, Safari and Opera
             "&::-webkit-scrollbar": {
               display: "none",
             },
             // Hide scrollbar for IE, Edge and Firefox
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none",
+            msOverflowStyle:'none',
+            scrollbarWidth:'none'
           }}
         >
           <small style={{ fontSize: "small" }}>

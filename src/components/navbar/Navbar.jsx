@@ -55,7 +55,6 @@ import React, { useState } from "react";
 
 import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
-import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -67,7 +66,6 @@ const Navbar = ({ setMode, mode }) => {
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-  const navigateLogout = useNavigate();
 
   const handleShowMobileSearch = () => {
     setShowMobileSearch((prev) => !prev);
@@ -112,6 +110,12 @@ const Navbar = ({ setMode, mode }) => {
     alignItems: "center",
     gap: "1rem",
   });
+
+  // close the drawer
+  const handleCloseDrawer=(e) => {
+
+    setOpenDrawer(false);
+  }
 
   return (
     <AppBar position="sticky">
@@ -288,7 +292,7 @@ const Navbar = ({ setMode, mode }) => {
               }}
             >
               <Typography variant="body2">SHIMITA DOUGLAS</Typography>|
-              <Typography variant="caption">7 Days</Typography>
+              <Typography variant="caption">7 Days Trial</Typography>
             </Toolbar>
           </AppBar>
 
@@ -302,7 +306,7 @@ const Navbar = ({ setMode, mode }) => {
             >
               <Avatar src={devImage} sx={{ width: 70, height: 70 }} />
             </Box>
-            <Typography variant="body2">0757450727</Typography>
+            <Typography variant="body2">+254757450727</Typography>
 
             <Typography variant="body2">shimitadouglas@gmail.com</Typography>
 
@@ -363,7 +367,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <AllInclusive />
                   </ListItemIcon>
@@ -371,7 +375,8 @@ const Navbar = ({ setMode, mode }) => {
                     primary={<Typography variant="body2">View All</Typography>}
                   />
                 </ListItemButton>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <BarChart />
                   </ListItemIcon>
@@ -382,7 +387,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
@@ -414,7 +419,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <Email />
                   </ListItemIcon>
@@ -423,7 +428,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <QuestionMark />
                   </ListItemIcon>
@@ -434,7 +439,7 @@ const Navbar = ({ setMode, mode }) => {
               </List>
             </Collapse>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemButton LinkComponent={"a"} href="#home" onClick={handleCloseDrawer}>
               <ListItemIcon>
                 <Lightbulb />
               </ListItemIcon>
@@ -443,7 +448,7 @@ const Navbar = ({ setMode, mode }) => {
               />
             </ListItemButton>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemButton LinkComponent={"a"} href="#home" onClick={handleCloseDrawer}>
               <ListItemIcon>
                 <ContactPage />
               </ListItemIcon>
@@ -473,7 +478,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
                   <ListItemIcon>
                     <Download />
                   </ListItemIcon>

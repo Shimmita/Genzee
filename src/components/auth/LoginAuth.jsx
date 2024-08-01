@@ -44,8 +44,8 @@ const LoginAuth = () => {
             display: "none",
           },
           // Hide scrollbar for IE, Edge and Firefox
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
+          msOverflowStyle:'none',
+          scrollbarWidth:'none'
         }}
       >
         <form
@@ -109,7 +109,7 @@ const LoginAuth = () => {
           <hr />
           <div className="d-flex justify-content-center">
             <Button onClick={(e)=>{
-              navigate('/genzee/auth/homepage')
+              navigate('/')
             }} type="small">Login</Button>
           </div>
         </form>
