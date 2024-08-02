@@ -1,11 +1,19 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import CardFeed from "../custom/CardFeed";
 import BasicSpeedDial from "../custom/SpeedDial";
 import { Backdrop } from "@mui/material";
+import { useSelector } from "react-redux";
+import FeedDefaultContent from "./FeedDefaultContent";
+import AccountViewAllTabs from "../more/AccountViewAll";
+import AccountStatisticsTabs from "../more/AccountStatistics";
+// import AccountViewAllTabs from "../more/AccountViewAll";
 
 const Feed = () => {
+  // backdrop state
   const [openBackdrop, setOpenBackdrop] = useState(false);
+  const { isAccountViewAll, isAccountStatistics } = useSelector(
+    (state) => state.appUI
+  );
 
   return (
     <Box
@@ -22,17 +30,29 @@ const Feed = () => {
         scrollbarWidth: "none",
       }}
     >
-      {/* content of the feed */}
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
+      {/* show default card and contents */}
+      {!isAccountStatistics && (
+        <div>
+          <FeedDefaultContent />
+        </div>
+      )}
 
-      {/* fab button positioned botom-right */}
-      {/* show backdrop when fab|speed dial clicked */}
+      {/* show the view all accounts of the drawer and sidebar */}
+      {isAccountViewAll && (
+        <Box>
+          <AccountViewAllTabs />
+        </Box>
+      )}
+
+      {/* show the statistics of the drawer and sidebar */}
+
+      {isAccountStatistics && (
+        <Box>
+          <AccountStatisticsTabs />
+        </Box>
+      )}
+
+      {/* backdrop + speed dial  */}
       <Backdrop open={openBackdrop} />
       <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
         <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />

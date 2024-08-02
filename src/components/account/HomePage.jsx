@@ -28,8 +28,10 @@ function Homepage() {
               <Righbar />
             </Stack>
           </Stack>
-          <hr />
-          <hr />
+
+          {/* <hr />
+          <hr /> */}
+          
           {/* bottom nav */}
           <Box flex={1}>
             <BottomNav />

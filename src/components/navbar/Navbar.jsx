@@ -55,6 +55,8 @@ import React, { useState } from "react";
 
 import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
+import { useDispatch } from "react-redux";
+import { showAccountStatistics, showAccountViewAll } from "../../redux/AppUI";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -66,10 +68,11 @@ const Navbar = ({ setMode, mode }) => {
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-
   const handleShowMobileSearch = () => {
     setShowMobileSearch((prev) => !prev);
   };
+
+  const dispatch = useDispatch();
 
   const GenzeeToolBar = styled(Toolbar)({
     display: "flex",
@@ -112,11 +115,23 @@ const Navbar = ({ setMode, mode }) => {
   });
 
   // close the drawer
-  const handleCloseDrawer=(e) => {
-
+  const handleCloseDrawer = (e) => {
     setOpenDrawer(false);
-  }
+  };
 
+  // trigger the shoing of accounts tab
+  const handleShowViewAll = (e) => {
+    dispatch(showAccountViewAll());
+    // close the drawer
+    handleCloseDrawer();
+  };
+
+  // trigger the showing of statistics tab
+  const handleShowStatistics = (e) => {
+    dispatch(showAccountStatistics());
+    // close the drawer
+    handleCloseDrawer();
+  };
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
@@ -337,7 +352,11 @@ const Navbar = ({ setMode, mode }) => {
           </BoxAvatarContent>
 
           <List>
-            <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemButton
+              LinkComponent={"a"}
+              href="#home"
+              onClick={handleCloseDrawer}
+            >
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
@@ -367,7 +386,12 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleShowViewAll}
+                >
                   <ListItemIcon>
                     <AllInclusive />
                   </ListItemIcon>
@@ -376,7 +400,12 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleShowStatistics}
+                >
                   <ListItemIcon>
                     <BarChart />
                   </ListItemIcon>
@@ -387,7 +416,12 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleCloseDrawer}
+                >
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
@@ -419,7 +453,12 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleCloseDrawer}
+                >
                   <ListItemIcon>
                     <Email />
                   </ListItemIcon>
@@ -428,7 +467,12 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleCloseDrawer}
+                >
                   <ListItemIcon>
                     <QuestionMark />
                   </ListItemIcon>
@@ -439,7 +483,11 @@ const Navbar = ({ setMode, mode }) => {
               </List>
             </Collapse>
 
-            <ListItemButton LinkComponent={"a"} href="#home" onClick={handleCloseDrawer}>
+            <ListItemButton
+              LinkComponent={"a"}
+              href="#home"
+              onClick={handleCloseDrawer}
+            >
               <ListItemIcon>
                 <Lightbulb />
               </ListItemIcon>
@@ -448,7 +496,11 @@ const Navbar = ({ setMode, mode }) => {
               />
             </ListItemButton>
 
-            <ListItemButton LinkComponent={"a"} href="#home" onClick={handleCloseDrawer}>
+            <ListItemButton
+              LinkComponent={"a"}
+              href="#home"
+              onClick={handleCloseDrawer}
+            >
               <ListItemIcon>
                 <ContactPage />
               </ListItemIcon>
@@ -478,7 +530,12 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }} onClick={handleCloseDrawer}>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleCloseDrawer}
+                >
                   <ListItemIcon>
                     <Download />
                   </ListItemIcon>
