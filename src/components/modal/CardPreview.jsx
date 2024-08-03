@@ -167,17 +167,17 @@ const CardPreview = ({ description, imagePath }) => {
               maxHeight:
                 window.screen.availWidth > 700 &&
                 window.screen.availWidth < 1000
-                  ? 250
+                  ? 550
                   : window.screen.availWidth > 1000
-                  ? 200
-                  : 200,
+                  ? 460
+                  : 350,
               minHeight:
                 window.screen.availWidth > 700 &&
                 window.screen.availWidth < 1000
-                  ? 250
+                  ? 550
                   : window.screen.availWidth > 1000
-                  ? 200
-                  : 200,
+                  ? 460
+                  : 350,
             }}
           />
         </Box>

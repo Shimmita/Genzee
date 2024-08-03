@@ -28,31 +28,31 @@ export default function BasicSpeedDial({ setOpenBackdrop }) {
 
   return (
     <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
-      <SpeedDial
-        ariaLabel="SpeedDial"
-        sx={{ position: "absolute", bottom: 16, right: 16 }}
-        icon={<SpeedDialIcon />}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={open}
-      >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            onClick={(e) => {
-              // show modal
-              if (action.name.toLowerCase() === "post") {
-                setOpenPostModal(true);
+        <SpeedDial
+          ariaLabel="SpeedDial"
+          sx={{ position: "absolute", bottom: 16, right: 16 }}
+          icon={<SpeedDialIcon  />}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              onClick={(e) => {
+                // show modal
+                if (action.name.toLowerCase() === "post") {
+                  setOpenPostModal(true);
+                }
+              }}
+              tooltipTitle={
+                <small style={{ fontSize: "small" }}>{action.name}</small>
               }
-            }}
-            tooltipTitle={
-              <small style={{ fontSize: "small" }}>{action.name}</small>
-            }
-            tooltipOpen
-          />
-        ))}
-      </SpeedDial>
+              tooltipOpen
+            />
+          ))}
+        </SpeedDial>
       <PostModal
         openPostModal={openPostModal}
         setOpenPostModal={setOpenPostModal}

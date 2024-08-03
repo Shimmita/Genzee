@@ -4,7 +4,6 @@ import {
   MoreVert,
   AccountBox,
   BarChart,
-  ContactPage,
   DarkMode,
   Download,
   Email,
@@ -22,6 +21,7 @@ import {
   Close,
   Logout,
   ArrowForwardOutlined,
+  Report,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -31,6 +31,7 @@ import {
   Box,
   Button,
   Collapse,
+  Divider,
   Drawer,
   IconButton,
   InputBase,
@@ -55,8 +56,19 @@ import React, { useState } from "react";
 
 import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
-import { useDispatch } from "react-redux";
-import { showAccountStatistics, showAccountViewAll } from "../../redux/AppUI";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  showAccountStatistics,
+  showAccountViewAll,
+  showAccountSettings,
+  resetAll,
+  resetDarkMode,
+  showHelpQuiz,
+  showReportUser,
+  showAssistEmail,
+  showAbout,
+  showDownloadPage,
+} from "../../redux/AppUI";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -72,6 +84,9 @@ const Navbar = ({ setMode, mode }) => {
     setShowMobileSearch((prev) => !prev);
   };
 
+  // redux states
+  const { isDarkMode } = useSelector((state) => state.appUI);
+
   const dispatch = useDispatch();
 
   const GenzeeToolBar = styled(Toolbar)({
@@ -80,8 +95,10 @@ const Navbar = ({ setMode, mode }) => {
   });
 
   const SearchBar = styled("div")(({ theme }) => ({
-    backgroundColor: "#f2f2f2",
-    padding: "0 15px",
+    backgroundColor: "white",
+    paddingBottom: "2px",
+    paddingTop: "2px",
+    paddingLeft: "8px",
     width: "40%",
     borderRadius: theme.shape.borderRadius,
     [theme.breakpoints.down("sm")]: {
@@ -119,8 +136,10 @@ const Navbar = ({ setMode, mode }) => {
     setOpenDrawer(false);
   };
 
-  // trigger the shoing of accounts tab
+  // trigger the showing of accounts status tab
   const handleShowViewAll = (e) => {
+    // reset everything to default
+    dispatch(resetAll());
     dispatch(showAccountViewAll());
     // close the drawer
     handleCloseDrawer();
@@ -128,10 +147,74 @@ const Navbar = ({ setMode, mode }) => {
 
   // trigger the showing of statistics tab
   const handleShowStatistics = (e) => {
+    // reset everything to default
+    dispatch(resetAll());
+
     dispatch(showAccountStatistics());
     // close the drawer
     handleCloseDrawer();
   };
+
+  // return home
+  const handleReturnHome = () => {
+    // reset everything to default
+    dispatch(resetAll());
+
+    // close the drawer
+    handleCloseDrawer();
+  };
+
+  // show settings
+  const handleShowSettings = () => {
+    // reset everything to default
+    dispatch(resetAll());
+
+    dispatch(showAccountSettings());
+    // close the drawer
+    handleCloseDrawer();
+  };
+
+  // UI theme dark light teaking effect
+  const handleShowDarkMode = () => {
+    // alter the light/ dark mode
+    dispatch(resetDarkMode());
+  };
+
+  // show frequent questions
+  const handleShowQuestions = () => {
+    dispatch(resetAll());
+    dispatch(showHelpQuiz());
+    handleCloseDrawer();
+  };
+
+  // handle show report user
+  const handleShowReportUser = () => {
+    dispatch(resetAll());
+    dispatch(showReportUser());
+    handleCloseDrawer();
+  };
+
+  // handle show assistance email
+  const handleShowEmailAssist = () => {
+    dispatch(resetAll());
+    dispatch(showAssistEmail());
+    handleCloseDrawer();
+  };
+
+  // handle show about page
+  const handleShowAboutPage = () => {
+    dispatch(resetAll());
+    dispatch(showAbout());
+    handleCloseDrawer();
+  };
+
+  // handle show download page
+  const handleShowDownloadPage = () => {
+    dispatch(resetAll());
+    dispatch(showDownloadPage());
+    handleCloseDrawer();
+  };
+
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
@@ -176,48 +259,66 @@ const Navbar = ({ setMode, mode }) => {
         {/* visible on lg screens always */}
         {window.screen.availWidth > 500 && (
           <SearchBar>
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
-            >
-              <InputBase
-                placeholder="search..."
-                sx={{
-                  color: "grey",
-                }}
-              />
-              <Button>
-                <Typography variant="body2" sx={{ textTransform: "lowercase" }}>
-                  search
-                </Typography>
-              </Button>
-            </Box>
-          </SearchBar>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <InputBase
+              placeholder="search text ..."
+              sx={{
+                color: "grey",
+              }}
+            />
+
+            <Divider
+              variant="inset"
+              orientation="vertical"
+              component={"div"}
+              flexItem
+            />
+            <IconButton>
+              <SearchRounded color="primary" sx={{ width: 20, height: 20 }} />
+            </IconButton>
+
+            <IconButton onClick={handleShowMobileSearch}>
+              <Close sx={{ width: 20, height: 20 }} color="primary" />
+            </IconButton>
+          </Box>
+        </SearchBar>
         )}
 
         {/* show search bar on small devices when necessary */}
         {showMobileSearch && (
           <SearchBar>
             <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
               <InputBase
-                placeholder="search..."
+                placeholder="search text ..."
                 sx={{
                   color: "grey",
                 }}
               />
-              <Button>
-                <Typography variant="body1" sx={{ textTransform: "lowercase" }}>
-                  search
-                </Typography>
-              </Button>
+
+              <Divider
+                variant="inset"
+                orientation="vertical"
+                component={"div"}
+                flexItem
+              />
+              <IconButton>
+                <SearchRounded color="primary" sx={{ width: 18, height: 18 }} />
+              </IconButton>
 
               <IconButton onClick={handleShowMobileSearch}>
-                <Close color="primary" />
+                <Close sx={{ width: 18, height: 18 }} color="primary" />
               </IconButton>
             </Box>
           </SearchBar>
@@ -355,7 +456,7 @@ const Navbar = ({ setMode, mode }) => {
             <ListItemButton
               LinkComponent={"a"}
               href="#home"
-              onClick={handleCloseDrawer}
+              onClick={handleReturnHome}
             >
               <ListItemIcon>
                 <Home />
@@ -396,7 +497,7 @@ const Navbar = ({ setMode, mode }) => {
                     <AllInclusive />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">View All</Typography>}
+                    primary={<Typography variant="body2">Status</Typography>}
                   />
                 </ListItemButton>
 
@@ -420,7 +521,7 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
+                  onClick={handleShowSettings}
                 >
                   <ListItemIcon>
                     <Settings />
@@ -441,7 +542,7 @@ const Navbar = ({ setMode, mode }) => {
                 <Support />
               </ListItemIcon>
               <ListItemText
-                primary={<Typography variant="body2">Need Help</Typography>}
+                primary={<Typography variant="body2">Help Center</Typography>}
               />
               {openHelp ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -457,13 +558,15 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
+                  onClick={handleShowReportUser}
                 >
                   <ListItemIcon>
-                    <Email />
+                    <Report />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">Email</Typography>}
+                    primary={
+                      <Typography variant="body2">Report User </Typography>
+                    }
                   />
                 </ListItemButton>
 
@@ -471,13 +574,31 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
+                  onClick={handleShowQuestions}
                 >
                   <ListItemIcon>
                     <QuestionMark />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">Q & A</Typography>}
+                    primary={
+                      <Typography variant="body2">Frequent Quizes</Typography>
+                    }
+                  />
+                </ListItemButton>
+
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleShowEmailAssist}
+                >
+                  <ListItemIcon>
+                    <Email />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <Typography variant="body2">Assistance Email</Typography>
+                    }
                   />
                 </ListItemButton>
               </List>
@@ -486,26 +607,13 @@ const Navbar = ({ setMode, mode }) => {
             <ListItemButton
               LinkComponent={"a"}
               href="#home"
-              onClick={handleCloseDrawer}
+              onClick={handleShowAboutPage}
             >
               <ListItemIcon>
                 <Lightbulb />
               </ListItemIcon>
               <ListItemText
                 primary={<Typography variant="body2">About</Typography>}
-              />
-            </ListItemButton>
-
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={handleCloseDrawer}
-            >
-              <ListItemIcon>
-                <ContactPage />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">Contacts</Typography>}
               />
             </ListItemButton>
 
@@ -534,7 +642,7 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
+                  onClick={handleShowDownloadPage}
                 >
                   <ListItemIcon>
                     <Download />
@@ -546,7 +654,11 @@ const Navbar = ({ setMode, mode }) => {
               </List>
             </Collapse>
 
-            <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemButton
+              LinkComponent={"a"}
+              href="#home"
+              onClick={handleShowDarkMode}
+            >
               <ListItemIcon>
                 <DarkMode />
               </ListItemIcon>
@@ -554,6 +666,7 @@ const Navbar = ({ setMode, mode }) => {
                 primary={<Typography variant="body2">Dark Mode</Typography>}
               />
               <Switch
+                checked={isDarkMode}
                 onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
               />
             </ListItemButton>

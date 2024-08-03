@@ -4,16 +4,40 @@ import BasicSpeedDial from "../custom/SpeedDial";
 import { Backdrop } from "@mui/material";
 import { useSelector } from "react-redux";
 import FeedDefaultContent from "./FeedDefaultContent";
-import AccountViewAllTabs from "../more/AccountViewAll";
-import AccountStatisticsTabs from "../more/AccountStatistics";
-// import AccountViewAllTabs from "../more/AccountViewAll";
+import AccountStatusTabs from "../more/account/AccountStatus";
+import AccountStatisticsTabs from "../more/account/AccountStatistics";
+import AccountSettingsTabs from "../more/account/AccountSettings";
+import HelpFrequentQuiz from "../more/help/HelpFrequentQuiz";
+import HelpReportUserTab from "../more/help/HelpReportUser";
+import HelpAssistanceEmail from "../more/help/HelpAssistEmail";
+import AboutPage from "../more/about/About";
+import useScrolledDown from "../hooks/useScrolledDown";
+import DownloadPageTabs from "../more/download/Download";
+import BottomViral from "../more/bottom/BottomViral";
+import BottomJobs from "../more/bottom/BottomJobs";
+import BottomArchive from "../more/bottom/BottomArchive";
 
 const Feed = () => {
   // backdrop state
   const [openBackdrop, setOpenBackdrop] = useState(false);
-  const { isAccountViewAll, isAccountStatistics } = useSelector(
-    (state) => state.appUI
-  );
+  const {
+    isAccountViewAll,
+    isAccountStatistics,
+    isAccountSettings,
+    isHelpQuiz,
+    isReportUser,
+    isAssistEmail,
+    isAbout,
+    defaultState,
+    isScrolledDown,
+    isDownloadPage,
+    isViralPage,
+    isJobsPage,
+    isArchivePage,
+  } = useSelector((state) => state.appUI);
+
+  // run the listening component hook
+  useScrolledDown();
 
   return (
     <Box
@@ -31,32 +55,39 @@ const Feed = () => {
       }}
     >
       {/* show default card and contents */}
-      {!isAccountStatistics && (
-        <div>
-          <FeedDefaultContent />
-        </div>
+      {defaultState && <FeedDefaultContent />}
+      {/* show the view all accounts of the drawer or sidebar */}
+      {isAccountViewAll && <AccountStatusTabs />}
+      {/* show the statistics of the drawer or sidebar */}
+      {isAccountStatistics && <AccountStatisticsTabs />}
+      {/* show setting of the drawer or sidebar */}
+      {isAccountSettings && <AccountSettingsTabs />}
+      {/* show helpQuiz */}
+      {isHelpQuiz && <HelpFrequentQuiz />}
+      {/* show report user */}
+      {isReportUser && <HelpReportUserTab />}
+      {/* show assistance email window */}
+      {isAssistEmail && <HelpAssistanceEmail />}
+      {/* show about page */}
+      {isAbout && <AboutPage />}
+      {/* app download page */}
+      {isDownloadPage && <DownloadPageTabs />}
+      {/* show viral page of the bottom nav */}
+      {isViralPage && <BottomViral />}
+      {/* show jobs page of the bottom nav */}
+      {isJobsPage && <BottomJobs />}
+      {/* show Archives of the bottom nav */}
+      {isArchivePage && <BottomArchive />}
+
+      {/* show speed dial if not scrolling down */}
+      {!isScrolledDown && (
+        <>
+          <Backdrop open={openBackdrop} />
+          <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+            <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
+          </Box>
+        </>
       )}
-
-      {/* show the view all accounts of the drawer and sidebar */}
-      {isAccountViewAll && (
-        <Box>
-          <AccountViewAllTabs />
-        </Box>
-      )}
-
-      {/* show the statistics of the drawer and sidebar */}
-
-      {isAccountStatistics && (
-        <Box>
-          <AccountStatisticsTabs />
-        </Box>
-      )}
-
-      {/* backdrop + speed dial  */}
-      <Backdrop open={openBackdrop} />
-      <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-        <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
-      </Box>
     </Box>
   );
 };

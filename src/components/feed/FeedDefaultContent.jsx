@@ -5,13 +5,13 @@ import CardFeed from "../custom/CardFeed";
 const FeedDefaultContent = () => {
   return (
     <Box>
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
+        <CardFeed />
+        <CardFeed />
+        <CardFeed />
+        <CardFeed />
+        <CardFeed />
+        <CardFeed />
+        <CardFeed />
     </Box>
   );
 };

@@ -53,7 +53,6 @@ const Sidebar = ({ setMode, mode }) => {
     <Box
       flex={2}
       p={2}
-      className="shadow"
       sx={{ display: { xs: "none", sm: "none", md: "block" } }}
     >
       <Box position={"fixed"}>
@@ -168,7 +167,7 @@ const Sidebar = ({ setMode, mode }) => {
               <Support />
             </ListItemIcon>
             <ListItemText
-              primary={<Typography variant="body2">Need Help</Typography>}
+              primary={<Typography variant="body2">Help Center</Typography>}
             />
             {openHelp ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>

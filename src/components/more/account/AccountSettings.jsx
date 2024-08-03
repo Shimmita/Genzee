@@ -3,10 +3,10 @@ import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { showAccountStatistics } from "../../redux/AppUI";
+import { resetAll } from "../../../redux/AppUI";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -43,7 +43,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-export default function AccountStatisticsTabs() {
+export default function AccountSettingsTabs() {
   const [value, setValue] = React.useState(0);
 
   const dispatch = useDispatch();
@@ -53,19 +53,25 @@ export default function AccountStatisticsTabs() {
   };
 
   const handleReturnHome = (event) => {
-    // invoke the dispatcher to default back to the home state
-    dispatch(showAccountStatistics());
+    // reset everything and default values
+    dispatch(resetAll());
   };
 
   return (
     <Box>
       <>
-        <div className="d-flex justify-content-end w-100">
+        <div className="d-flex justify-align-content-between w-100 align-items-center">
+          {/* title */}
+          <Typography
+            variant={"caption"}
+            className="w-100 fw-light text-center"
+          >
+            Account Settings
+          </Typography>
           {/* close the window */}
           <IconButton onClick={handleReturnHome}>
-            <Close color="primary" sx={{ width: 18, height: 18 }} />
+            <Close color="primary" sx={{ width: 15, height: 15 }} />
           </IconButton>
-          {/* styled tabs */}
         </div>
         {/* tabs */}
         <Box className="border-bottom p-0 d-flex justify-content-center align-items-center">
@@ -73,19 +79,28 @@ export default function AccountStatisticsTabs() {
             value={value}
             onChange={handleChange}
             aria-label="styled tabs"
+            className="fw-light"
+
           >
-            <StyledTab label="Post Statistics" />
-            <StyledTab label="Friends Statistics" />
+            <StyledTab
+              label={<Typography variant="body2">privacy</Typography>}
+            />
+            <StyledTab
+              label={<Typography variant="body2">streaming</Typography>}
+            />
+            <StyledTab
+              label={<Typography variant="body2">notification</Typography>}
+            />
           </StyledTabs>
         </Box>
       </>
 
       {/* content of each tab goes here */}
       <Box height={"70vh"}>
-        {value === 0 && <p>Post Statistics</p>}
-        {value === 1 && <p>Friends Statistics</p>}
+        {value === 0 && <p>Privacy</p>}
+        {value === 1 && <p>Data Saver</p>}
+        {value === 2 && <p>Sound Effect</p>}
       </Box>
-
     </Box>
   );
 }
