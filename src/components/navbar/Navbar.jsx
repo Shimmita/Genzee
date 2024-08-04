@@ -427,7 +427,7 @@ const Navbar = ({ setMode, mode }) => {
             <Typography variant="body2">shimitadouglas@gmail.com</Typography>
 
             <Box width={280}>
-              <Table aria-label="table" className="border">
+              <Table aria-label="table" >
                 <TableHead>
                   <TableRow>
                     <TableCell>

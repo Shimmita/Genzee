@@ -37,7 +37,7 @@ const CardPreview = ({ description, imagePath }) => {
   };
 
   return (
-    <Box>
+    <Box bgcolor={"background.default"} color={"text.primary"}>
       <Card elevation={0} className="w-100 mb-3 p-1 border rounded">
         <CardHeader
           avatar={

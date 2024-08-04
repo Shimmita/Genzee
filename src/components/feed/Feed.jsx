@@ -79,14 +79,19 @@ const Feed = () => {
       {/* show Archives of the bottom nav */}
       {isArchivePage && <BottomArchive />}
 
-      {/* show speed dial if not scrolling down */}
-      {!isScrolledDown && (
-        <>
-          <Backdrop open={openBackdrop} />
-          <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-            <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
-          </Box>
-        </>
+      {/* display speed dial in feed section only for mobile and no landscape */}
+      {window.screen.availWidth <= 900 && (
+        <Box>
+          {/* show speed dial if not scrolling down */}
+          {!isScrolledDown && (
+            <>
+              <Backdrop open={openBackdrop} />
+              <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+                <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
+              </Box>
+            </>
+          )}
+        </Box>
       )}
     </Box>
   );

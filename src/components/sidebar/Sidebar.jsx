@@ -76,7 +76,7 @@ const Sidebar = ({ setMode, mode }) => {
 
           <Typography variant="body2">shimitadouglas@gmail.com</Typography>
         </BoxAvatarContent>
-        <Table aria-label="table" className="border">
+        <Table aria-label="table" >
           <TableHead>
             <TableRow>
               <TableCell>
@@ -155,6 +155,7 @@ const Sidebar = ({ setMode, mode }) => {
                   primary={<Typography variant="body2">Settings</Typography>}
                 />
               </ListItemButton>
+              
             </List>
           </Collapse>
 

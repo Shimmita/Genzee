@@ -8,7 +8,7 @@ import { Add, People, Videocam } from "@mui/icons-material";
 import PostModal from "../modal/PostModal";
 const actions = [
   { icon: <People sx={{ width: 20, height: 20 }} />, name: "Connect" },
-  { icon: <Videocam sx={{ width: 20, height: 20 }} />, name: "GoLive" },
+  { icon: <Videocam sx={{ width: 20, height: 20 }} />, name: "Live" },
   { icon: <Add sx={{ width: 20, height: 20 }} />, name: "Post" },
 ];
 
@@ -28,31 +28,31 @@ export default function BasicSpeedDial({ setOpenBackdrop }) {
 
   return (
     <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
-        <SpeedDial
-          ariaLabel="SpeedDial"
-          sx={{ position: "absolute", bottom: 16, right: 16 }}
-          icon={<SpeedDialIcon  />}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          open={open}
-        >
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              onClick={(e) => {
-                // show modal
-                if (action.name.toLowerCase() === "post") {
-                  setOpenPostModal(true);
-                }
-              }}
-              tooltipTitle={
-                <small style={{ fontSize: "small" }}>{action.name}</small>
+      <SpeedDial
+        ariaLabel="SpeedDial"
+        sx={{ position: "absolute", bottom: 5, right: 10 }}
+        icon={<SpeedDialIcon />}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={open}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            onClick={(e) => {
+              // show modal
+              if (action.name.toLowerCase() === "post") {
+                setOpenPostModal(true);
               }
-              tooltipOpen
-            />
-          ))}
-        </SpeedDial>
+            }}
+            tooltipTitle={
+              <small style={{ fontSize: "small" }}>{action.name}</small>
+            }
+            tooltipOpen
+          />
+        ))}
+      </SpeedDial>
       <PostModal
         openPostModal={openPostModal}
         setOpenPostModal={setOpenPostModal}

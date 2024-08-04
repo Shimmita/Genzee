@@ -13,9 +13,9 @@ import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
 import PostPrivacy from "../data/PostPrivacy";
 import {
+  Add,
   Close,
   People,
-  PostAdd,
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
@@ -48,8 +48,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
     };
   };
 
-  console.log(imagePath)
-  
+  console.log(imagePath);
 
   return (
     <StyledModalPost
@@ -58,7 +57,13 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box width={400} bgcolor={"white"} p={1} borderRadius={2}>
+      <Box
+        width={400}
+        p={1}
+        borderRadius={2}
+        bgcolor={"background.default"}
+        color={"text.primary"}
+      >
         {/* toolbar like box */}
         <Box display={"flex"} alignItems={"center"} marginLeft={1}>
           <Avatar src={devImage} sx={{ width: 35, height: 35 }} />
@@ -76,7 +81,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
           {/*  button for posting */}
           <Tooltip title={"post"}>
             <IconButton>
-              <PostAdd color="primary" />
+              <Add color="primary" />
             </IconButton>
           </Tooltip>
 
