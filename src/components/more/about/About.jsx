@@ -58,7 +58,7 @@ export default function AboutPage() {
   };
 
   return (
-    <Box>
+    <Box bgcolor={"background.default"} color={"text.primary"}>
       <>
         <div className="d-flex justify-align-content-between w-100 align-items-center">
           {/* title */}
@@ -96,7 +96,7 @@ export default function AboutPage() {
       </>
 
       {/* content of each tab goes here */}
-      <Box height={"70vh"}>
+      <Box>
         {value === 0 && <p>Application</p>}
         {value === 1 && <p>Developer</p>}
         {value === 2 && <p>Mission</p>}

@@ -1,3 +1,6 @@
+import { Drawer, Stack } from "@mui/material";
+import React from "react";
+import RightbarAll from "./Righbar";
 import {
   Backdrop,
   Box,
@@ -8,7 +11,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React from "react";
 import TopDailyPosts from "./TopDailyPost";
 import FriendRequest from "./TopDailyRequest";
 import { Add, VideoCall } from "@mui/icons-material";
@@ -16,45 +18,38 @@ import { useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
 
-const RightbarAll = () => {
+const MobileRightbar = () => {
+  const [openDrawer, setOpenDrawer] = React.useState(true);
   // backdrop state
   const [openBackdrop, setOpenBackdrop] = React.useState(false);
   const { isScrolledDown } = useSelector((state) => state.appUI);
 
   // run the listening component hook
   useScrolledDown();
+
   return (
-    <Box
-      flex={2}
-      p={2}
-      sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+    <Drawer
+      anchor={"right"}
+      open={openDrawer}
+      onClose={(e) => setOpenDrawer(false)}
+      sx
     >
-      <Box
-        position={"fixed"}
+      <Stack
+        width={300}
         bgcolor={"background.default"}
         color={"text.primary"}
-        sx={{
-          overflowX: "auto",
-          // Hide scrollbar for Chrome, Safari and Opera
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          // Hide scrollbar for IE, Edge and Firefox
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-        }}
       >
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
             Follow Suggestions
           </Typography>
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
+        <Divider componendt={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
         <Box display={"flex"} justifyContent={"space-between"} p={1}>
           <FriendRequest />
           <IconButton>
-            <Add color="primary"  />
+            <Add color="primary" />
           </IconButton>
         </Box>
 
@@ -120,25 +115,23 @@ const RightbarAll = () => {
           </Typography>
         </Box>
 
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-      </Box>
-
-      {/* display speed dial in feed section only for mobile and no landscape */}
-      {window.screen.availWidth > 900 && (
-        <Box>
-          {/* show speed dial if not scrolling down */}
-          {!isScrolledDown && (
-            <>
-              <Backdrop open={openBackdrop} />
-              <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-                <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
-              </Box>
-            </>
-          )}
-        </Box>
-      )}
-    </Box>
+        {/* display speed dial in feed section only for mobile and no landscape */}
+        {window.screen.availWidth > 900 && (
+          <Box>
+            {/* show speed dial if not scrolling down */}
+            {!isScrolledDown && (
+              <>
+                <Backdrop open={openBackdrop} />
+                <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+                  <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
+                </Box>
+              </>
+            )}
+          </Box>
+        )}
+      </Stack>
+    </Drawer>
   );
 };
 
-export default RightbarAll;
+export default MobileRightbar;

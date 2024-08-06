@@ -69,6 +69,7 @@ import {
   showAbout,
   showDownloadPage,
 } from "../../redux/AppUI";
+import MobileRightbar from "../rightbar/MobileRightbar";
 
 const Navbar = ({ setMode, mode }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -391,6 +392,8 @@ const Navbar = ({ setMode, mode }) => {
         </MenuItem>
       </Menu>
 
+
+
       {/* drawer  tablet and samall screen */}
       <Drawer open={openDrawer} onClose={(e) => setOpenDrawer(false)}>
         <Stack
@@ -676,6 +679,9 @@ const Navbar = ({ setMode, mode }) => {
           </List>
         </Stack>
       </Drawer>
+
+      {/* drawer bottom small */}
+      <MobileRightbar/>
     </AppBar>
   );
 };
