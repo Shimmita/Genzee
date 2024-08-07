@@ -6,19 +6,18 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { Box, IconButton } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
+import { Box, Divider, IconButton } from "@mui/material";
+import { Expand } from "@mui/icons-material";
 
 export default function TopDailyPosts() {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-
+    <List sx={{ bgcolor: "background.paper" }}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <ListItem  alignItems="flex-start" >
+        <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="image" src={devImage} />
           </ListItemAvatar>
@@ -31,18 +30,17 @@ export default function TopDailyPosts() {
                   component="span"
                   variant="body2"
                   color="text.primary"
-                >
-                </Typography>
+                ></Typography>
                 {"I'll be in your neighborhood doing errands this…"}
               </React.Fragment>
             }
           />
         </ListItem>
-      
         <IconButton>
-          <ExpandMore color="primary" sx={{ rotate: "-90deg" }} />
+          <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
+      <Divider variant="inset" component="li" />
 
       <Box
         display={"flex"}
@@ -62,17 +60,17 @@ export default function TopDailyPosts() {
                   component="span"
                   variant="body2"
                   color="text.primary"
-                >
-                </Typography>
+                ></Typography>
                 {"Wish I could come, but I'm out of town…"}
               </React.Fragment>
             }
           />
         </ListItem>
         <IconButton>
-          <ExpandMore color="primary" sx={{ rotate: "-90deg" }} />
+          <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
+      <Divider variant="inset" component="li" />
 
       <Box
         display={"flex"}
@@ -92,18 +90,16 @@ export default function TopDailyPosts() {
                   component="span"
                   variant="body2"
                   color="text.primary"
-                >
-                </Typography>
+                ></Typography>
                 {"Do you have Paris recommendations? Have…"}
               </React.Fragment>
             }
           />
         </ListItem>
         <IconButton>
-          <ExpandMore color="primary" sx={{ rotate: "-90deg" }} />
+          <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
-
     </List>
   );
 }

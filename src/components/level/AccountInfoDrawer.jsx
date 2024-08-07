@@ -11,9 +11,14 @@ export default function DrawerAccountInfo({ showLevelInfo, setShowLevelInfo }) {
       onOpen={true}
       // onOpen={toggleDrawer(anchor, true)}
     >
-      <Box sx={{ width: "auto" }} role="presentation">
+      <Box
+        sx={{ width: "auto", height: "100%" }}
+        role="presentation"
+        bgcolor={"background.default"}
+        color={"text.primary"}
+      >
         {/* render the  */}
-        <AccountLevelInfo setShowLevelInfo={setShowLevelInfo}/>
+        <AccountLevelInfo setShowLevelInfo={setShowLevelInfo} />
       </Box>
     </Drawer>
   );

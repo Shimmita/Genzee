@@ -16,6 +16,7 @@ const initialState = {
   isViralPage: false,
   isJobsPage: false,
   isArchivePage: false,
+  isMobileRighBar: false,
 
   // theme
   isDarkMode: false,
@@ -141,6 +142,13 @@ const appUISliceReducerSlice = createSlice({
         isArchivePage: true,
       };
     },
+
+    showMobileRighBar: (state) => {
+    return{
+      ...state,
+      isMobileRighBar: !state.isMobileRighBar,
+    };
+    },
   },
 });
 
@@ -160,6 +168,7 @@ export const {
   showViralPage,
   showJobsPage,
   showArchivesPage,
+  showMobileRighBar,
 } = appUISliceReducerSlice.actions;
 
 // export the appUISliceReducer for universal purposes

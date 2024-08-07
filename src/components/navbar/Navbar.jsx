@@ -41,7 +41,6 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  Stack,
   styled,
   Switch,
   Table,
@@ -68,6 +67,7 @@ import {
   showAssistEmail,
   showAbout,
   showDownloadPage,
+  showMobileRighBar,
 } from "../../redux/AppUI";
 import MobileRightbar from "../rightbar/MobileRightbar";
 
@@ -216,6 +216,11 @@ const Navbar = ({ setMode, mode }) => {
     handleCloseDrawer();
   };
 
+  // handle showing of the rightbar for mobile non landscape mode
+  const handleShowingRightbar = () => {
+    console.log('clicked in nav')
+    dispatch(showMobileRighBar())
+  };
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
@@ -260,35 +265,35 @@ const Navbar = ({ setMode, mode }) => {
         {/* visible on lg screens always */}
         {window.screen.availWidth > 500 && (
           <SearchBar>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <InputBase
-              placeholder="search text ..."
+            <Box
               sx={{
-                color: "grey",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <InputBase
+                placeholder="search text ..."
+                sx={{
+                  color: "grey",
+                }}
+              />
 
-            <Divider
-              variant="inset"
-              orientation="vertical"
-              component={"div"}
-              flexItem
-            />
-            <IconButton>
-              <SearchRounded color="primary" sx={{ width: 20, height: 20 }} />
-            </IconButton>
+              <Divider
+                variant="inset"
+                orientation="vertical"
+                component={"div"}
+                flexItem
+              />
+              <IconButton>
+                <SearchRounded color="primary" sx={{ width: 20, height: 20 }} />
+              </IconButton>
 
-            <IconButton onClick={handleShowMobileSearch}>
-              <Close sx={{ width: 20, height: 20 }} color="primary" />
-            </IconButton>
-          </Box>
-        </SearchBar>
+              <IconButton onClick={handleShowMobileSearch}>
+                <Close sx={{ width: 20, height: 20 }} color="primary" />
+              </IconButton>
+            </Box>
+          </SearchBar>
         )}
 
         {/* show search bar on small devices when necessary */}
@@ -344,7 +349,7 @@ const Navbar = ({ setMode, mode }) => {
               </Badge>
               &nbsp;
               <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
-              <IconButton onClick={(e) => setOpenMore(true)}>
+              <IconButton onClick={handleShowingRightbar}>
                 <MoreVert style={{ color: "white" }} />
               </IconButton>
             </>
@@ -392,11 +397,9 @@ const Navbar = ({ setMode, mode }) => {
         </MenuItem>
       </Menu>
 
-
-
       {/* drawer  tablet and samall screen */}
       <Drawer open={openDrawer} onClose={(e) => setOpenDrawer(false)}>
-        <Stack
+        <Box
           width={300}
           height={"100%"}
           bgcolor={"background.default"}
@@ -430,7 +433,7 @@ const Navbar = ({ setMode, mode }) => {
             <Typography variant="body2">shimitadouglas@gmail.com</Typography>
 
             <Box width={280}>
-              <Table aria-label="table" >
+              <Table aria-label="table">
                 <TableHead>
                   <TableRow>
                     <TableCell>
@@ -677,11 +680,11 @@ const Navbar = ({ setMode, mode }) => {
             {/* show account level status */}
             <AccountLevelStep />
           </List>
-        </Stack>
+        </Box>
       </Drawer>
 
       {/* drawer bottom small */}
-      <MobileRightbar/>
+      <MobileRightbar />
     </AppBar>
   );
 };

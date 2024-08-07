@@ -48,8 +48,6 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
     };
   };
 
-  console.log(imagePath);
-
   return (
     <StyledModalPost
       open={openPostModal}

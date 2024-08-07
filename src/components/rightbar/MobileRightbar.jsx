@@ -1,6 +1,5 @@
-import { Drawer, Stack } from "@mui/material";
+import { Drawer } from "@mui/material";
 import React from "react";
-import RightbarAll from "./Righbar";
 import {
   Backdrop,
   Box,
@@ -13,56 +12,73 @@ import {
 } from "@mui/material";
 import TopDailyPosts from "./TopDailyPost";
 import FriendRequest from "./TopDailyRequest";
-import { Add, VideoCall } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { Add, Close, VideoCall } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
-
+import { showMobileRighBar } from "../../redux/AppUI";
 const MobileRightbar = () => {
-  const [openDrawer, setOpenDrawer] = React.useState(true);
   // backdrop state
-  const [openBackdrop, setOpenBackdrop] = React.useState(false);
-  const { isScrolledDown } = useSelector((state) => state.appUI);
+  const { isScrolledDown, isMobileRighBar } = useSelector(
+    (state) => state.appUI
+  );
+  // dispatch for handle callbacks
+  const dispatch = useDispatch();
 
-  // run the listening component hook
+  const [openBackdrop, setOpenBackdrop] = React.useState(false);
+
+  // run the listening component hook for scrolling
   useScrolledDown();
+
+  const handleCloseDrawer = () => {
+    dispatch(showMobileRighBar());
+  };
 
   return (
     <Drawer
-      anchor={"right"}
-      open={openDrawer}
-      onClose={(e) => setOpenDrawer(false)}
-      sx
+      anchor={"bottom"}
+      open={isMobileRighBar}
+      onClose={handleCloseDrawer}
     >
-      <Stack
-        width={300}
+      <Box
+        // width={window.screen.availWidth <= 500 ? 280 : 450}
+        // p={window.screen.availWidth >= 700 ? 2 : 0}
+        className="m-1 border-top border-start rounded"
         bgcolor={"background.default"}
         color={"text.primary"}
+        sx={{
+          height: "100%",
+        }}
       >
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
-            Follow Suggestions
-          </Typography>
-        </Box>
-        <Divider componendt={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
-        <Box display={"flex"} justifyContent={"space-between"} p={1}>
-          <FriendRequest />
-          <IconButton>
-            <Add color="primary" />
+        <Box display={"flex"} justifyContent={"end"}>
+          <IconButton onClick={handleCloseDrawer}>
+            <Close sx={{ width: 25, height: 25 }} color="primary" />
           </IconButton>
         </Box>
-
         <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
+
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
             Posts of the Day
           </Typography>
         </Box>
+
+        <Box>
+          <TopDailyPosts />
+        </Box>
         <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
         <Box display={"flex"} justifyContent={"center"}>
-          <TopDailyPosts />
+          <Typography className="fw-bold mb-2 mt-1" variant="caption">
+            Follow Suggestions
+          </Typography>
+        </Box>
+
+        <Box display={"flex"} justifyContent={"space-between"} className="ms-2">
+          <FriendRequest />
+          <IconButton>
+            <Add color="primary" />
+          </IconButton>
         </Box>
         <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
@@ -71,15 +87,13 @@ const MobileRightbar = () => {
             Explore Events
           </Typography>
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
         <Box
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
@@ -100,14 +114,12 @@ const MobileRightbar = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
             <ListItemText
-              primary={
-                <Typography variant="body2">Upcoming Live Events</Typography>
-              }
+              primary={<Typography variant="body2">Upcoming Events</Typography>}
             />
           </ListItemButton>
           <Typography className="fw-normal" variant="body2">
@@ -129,7 +141,7 @@ const MobileRightbar = () => {
             )}
           </Box>
         )}
-      </Stack>
+      </Box>
     </Drawer>
   );
 };

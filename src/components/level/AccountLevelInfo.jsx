@@ -50,7 +50,11 @@ export default function AccountLevelInfo({ setShowLevelInfo }) {
   };
 
   return (
-    <Box className="w-100">
+    <Box
+      className="w-100"
+      bgcolor={"background.default"}
+      color={"text.primary"}
+    >
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>
