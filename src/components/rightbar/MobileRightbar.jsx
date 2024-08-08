@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import TopDailyPosts from "./TopDailyPost";
 import FriendRequest from "./TopDailyRequest";
-import { Add, Close, VideoCall } from "@mui/icons-material";
+import { Add, Bookmark, Close, VideoCall } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
@@ -58,17 +58,6 @@ const MobileRightbar = () => {
         <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
         <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
-            Posts of the Day
-          </Typography>
-        </Box>
-
-        <Box>
-          <TopDailyPosts />
-        </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
-        <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold mb-2 mt-1" variant="caption">
             Follow Suggestions
           </Typography>
@@ -80,10 +69,22 @@ const MobileRightbar = () => {
             <Add color="primary" />
           </IconButton>
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
+        <Divider component={"div"} variant="fullWidth" className="mt-3 mb-2" />
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
+            Posts of the Day
+          </Typography>
+        </Box>
+
+        <Box>
+          <TopDailyPosts />
+        </Box>
+
+        <Divider component={"div"} variant="fullWidth" className="mt-3 mb-2" />
+
+        <Box display={"flex"} justifyContent={"center"}>
+          <Typography className="fw-bold mb-2" variant="caption">
             Explore Events
           </Typography>
         </Box>
@@ -125,6 +126,43 @@ const MobileRightbar = () => {
           <Typography className="fw-normal" variant="body2">
             35
           </Typography>
+        </Box>
+
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          className="pe-2"
+        >
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <Bookmark color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">My Event Viewer</Typography>}
+            />
+          </ListItemButton>
+          <Typography className="fw-normal" variant="body2">
+            2
+          </Typography>
+        </Box>
+
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          className="pe-2"
+        >
+          <ListItemButton LinkComponent={"a"} href="#home">
+            <ListItemIcon>
+              <Add color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography variant="body2">Add an Upcoming Event</Typography>
+              }
+            />
+          </ListItemButton>
         </Box>
 
         {/* display speed dial in feed section only for mobile and no landscape */}

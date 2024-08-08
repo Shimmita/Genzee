@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { Box, Divider, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { Expand } from "@mui/icons-material";
 
 export default function TopDailyPosts() {
@@ -40,7 +40,6 @@ export default function TopDailyPosts() {
           <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
-      <Divider variant="inset" component="li" />
 
       <Box
         display={"flex"}
@@ -70,7 +69,6 @@ export default function TopDailyPosts() {
           <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
-      <Divider variant="inset" component="li" />
 
       <Box
         display={"flex"}
@@ -100,6 +98,8 @@ export default function TopDailyPosts() {
           <Expand sx={{ width: 20, height: 20 }} color="primary" />
         </IconButton>
       </Box>
+
+
     </List>
   );
 }

@@ -11,7 +11,7 @@ import {
 import React from "react";
 import TopDailyPosts from "./TopDailyPost";
 import FriendRequest from "./TopDailyRequest";
-import { Add, VideoCall } from "@mui/icons-material";
+import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
@@ -33,16 +33,6 @@ const RightbarAll = () => {
         position={"fixed"}
         bgcolor={"background.default"}
         color={"text.primary"}
-        sx={{
-          overflowX: "auto",
-          // Hide scrollbar for Chrome, Safari and Opera
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          // Hide scrollbar for IE, Edge and Firefox
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-        }}
       >
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
@@ -54,7 +44,7 @@ const RightbarAll = () => {
         <Box display={"flex"} justifyContent={"space-between"} p={1}>
           <FriendRequest />
           <IconButton>
-            <Add color="primary"  />
+            <Add color="primary" />
           </IconButton>
         </Box>
 
@@ -64,27 +54,24 @@ const RightbarAll = () => {
             Posts of the Day
           </Typography>
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
         <Box display={"flex"} justifyContent={"center"}>
           <TopDailyPosts />
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
 
+        <Divider component={"div"} variant="fullWidth" className="mb-2" />
         <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
+          <Typography className="fw-bold mb-2" variant="caption">
             Explore Events
           </Typography>
         </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
         <Box
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+          <ListItemButton LinkComponent={"a"} href="#home" >
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
@@ -105,7 +92,7 @@ const RightbarAll = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+          <ListItemButton LinkComponent={"a"} href="#home" >
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
@@ -120,7 +107,42 @@ const RightbarAll = () => {
           </Typography>
         </Box>
 
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          className="pe-2"
+        >
+          <ListItemButton LinkComponent={"a"} href="#home" >
+            <ListItemIcon>
+              <Bookmark color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              primary={<Typography variant="body2">My Event Viewer Status </Typography>}
+            />
+          </ListItemButton>
+          <Typography className="fw-normal" variant="body2">
+            3
+          </Typography>
+        </Box>
+
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          className="pe-2"
+        >
+          <ListItemButton LinkComponent={"a"} href="#home" >
+            <ListItemIcon>
+              <Add color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography variant="body2">Add an Upcoming Event</Typography>
+              }
+            />
+          </ListItemButton>
+        </Box>
       </Box>
 
       {/* display speed dial in feed section only for mobile and no landscape */}
@@ -140,5 +162,6 @@ const RightbarAll = () => {
     </Box>
   );
 };
+console.log("🚀 ~ RightbarAll ~ Typography:", Typography);
 
 export default RightbarAll;

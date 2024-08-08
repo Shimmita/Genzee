@@ -218,8 +218,7 @@ const Navbar = ({ setMode, mode }) => {
 
   // handle showing of the rightbar for mobile non landscape mode
   const handleShowingRightbar = () => {
-    console.log('clicked in nav')
-    dispatch(showMobileRighBar())
+    dispatch(showMobileRighBar());
   };
   return (
     <AppBar position="sticky">
@@ -349,9 +348,12 @@ const Navbar = ({ setMode, mode }) => {
               </Badge>
               &nbsp;
               <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
-              <IconButton onClick={handleShowingRightbar}>
-                <MoreVert style={{ color: "white" }} />
-              </IconButton>
+              {/* show more icon if the device is tablet at portrati or is smartphone */}
+              {window.screen.availWidth <= 900 && (
+                <IconButton onClick={handleShowingRightbar}>
+                  <MoreVert style={{ color: "white" }} />
+                </IconButton>
+              )}
             </>
           )}
         </IconsContainer>

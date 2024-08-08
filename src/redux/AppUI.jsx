@@ -17,6 +17,7 @@ const initialState = {
   isJobsPage: false,
   isArchivePage: false,
   isMobileRighBar: false,
+  isRefreshBox: true,
 
   // theme
   isDarkMode: false,
@@ -144,10 +145,17 @@ const appUISliceReducerSlice = createSlice({
     },
 
     showMobileRighBar: (state) => {
-    return{
-      ...state,
-      isMobileRighBar: !state.isMobileRighBar,
-    };
+      return {
+        ...state,
+        isMobileRighBar: !state.isMobileRighBar,
+      };
+    },
+
+    showRefreshBox: (state) => {
+      return {
+        ...state,
+        isRefreshBox: !state.isRefreshBox,
+      };
     },
   },
 });
@@ -169,6 +177,7 @@ export const {
   showJobsPage,
   showArchivesPage,
   showMobileRighBar,
+  showRefreshBox,
 } = appUISliceReducerSlice.actions;
 
 // export the appUISliceReducer for universal purposes
