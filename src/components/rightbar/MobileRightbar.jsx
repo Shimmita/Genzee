@@ -59,7 +59,7 @@ const MobileRightbar = () => {
 
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold mb-2 mt-1" variant="caption">
-            Follow Suggestions
+            Follow Requests
           </Typography>
         </Box>
 

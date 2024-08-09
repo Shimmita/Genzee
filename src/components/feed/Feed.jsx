@@ -42,26 +42,13 @@ const Feed = () => {
   useScrolledDown();
 
   return (
-    <Box
-      flex={3}
-      p={1}
-      sx={{
-        overflowX: "auto",
-        // Hide scrollbar for Chrome, Safari and Opera
-        "&::-webkit-scrollbar": {
-          display: "none",
-        },
-        // Hide scrollbar for IE, Edge and Firefox
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
-      }}
-    >
+    <Box flex={3} p={1}>
       {/* show refresh box */}
-      {isRefreshBox && (
+      {isRefreshBox && defaultState && (
         <Box
           sx={{
             position: "fixed",
-            top: '40%',
+            top: "60%",
             right:
               window.screen.availWidth <= 500
                 ? "-8%"

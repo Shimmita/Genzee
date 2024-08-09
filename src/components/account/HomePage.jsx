@@ -35,8 +35,6 @@ function Homepage() {
             </Stack>
           </Stack>
 
-          {/* <hr />
-          <hr /> */}
 
           {/* if scrolled down dont show bottom nav */}
           {!isScrolledDown && (

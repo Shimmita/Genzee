@@ -36,7 +36,7 @@ const RightbarAll = () => {
       >
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
-            Follow Suggestions
+            Follow Requests
           </Typography>
         </Box>
         <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
