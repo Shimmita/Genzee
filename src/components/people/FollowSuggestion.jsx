@@ -2,19 +2,22 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Button, CardActions, IconButton } from "@mui/material";
+import { Avatar, Box, Button, CardActions } from "@mui/material";
 import devImage from "../../images/dev.jpeg";
-import { Close } from "@mui/icons-material";
 
 export default function FollowSuggetion() {
   return (
     <Box bgcolor={"background.default"} color={"text.primary"}>
-      <Card elevation={0} sx={{ width: 130 }} className="rounded border">
-        <Box display={"flex"} justifyContent={"flex-end"}>
+      <Card
+        elevation={0}
+        sx={{ width: 140, height: 170 }}
+        className="border rounded"
+      >
+        {/* <Box display={"flex"} justifyContent={"flex-end"}>
           <IconButton>
             <Close color="primary" sx={{ width: 15, height: 15 }} />
           </IconButton>
-        </Box>
+        </Box> */}
         <CardContent>
           <Box display={"flex"} justifyContent={"center"}>
             <Avatar src={devImage} />
@@ -38,12 +41,12 @@ export default function FollowSuggetion() {
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             disableElevation
-            variant="contained"
             size="small"
+            variant="contained"
             color="primary"
             sx={{ borderRadius: 5 }}
           >
-            <small>Follow</small>
+            <small style={{ fontSize: "x-small" }}>Follow</small>
           </Button>
         </CardActions>
       </Card>

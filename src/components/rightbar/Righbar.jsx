@@ -162,6 +162,5 @@ const RightbarAll = () => {
     </Box>
   );
 };
-console.log("🚀 ~ RightbarAll ~ Typography:", Typography);
 
 export default RightbarAll;

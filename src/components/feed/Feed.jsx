@@ -44,22 +44,7 @@ const Feed = () => {
   return (
     <Box flex={3} p={1}>
       {/* show refresh box */}
-      {isRefreshBox && defaultState && (
-        <Box
-          sx={{
-            position: "fixed",
-            top: "60%",
-            right:
-              window.screen.availWidth <= 500
-                ? "-8%"
-                : window.screen.availWidth > 1000
-                ? "28%"
-                : "-3%",
-          }}
-        >
-          <RefreshBox />
-        </Box>
-      )}
+      {isRefreshBox && defaultState && <RefreshBox />}
       {/* show default card and contents */}
       {defaultState && <FeedDefaultContent />}
       {/* show the view all accounts of the drawer or sidebar */}

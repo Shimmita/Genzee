@@ -1,29 +1,26 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import FollowSuggetion from "./FollowSuggestion";
+import { GetScreenWidth } from "../utilities/GetScreenWidth";
 
-const PeopleContainer = () => {
+const PeopleContainer = ({ items }) => {
   return (
     <Box
       sx={{
-        position: "st",
+        width:GetScreenWidth(),
+        display: "flex",
         overflowX: "auto",
-        // Hide scrollbar for Chrome, Safari and Opera
-        "&::-webkit-scrollbar": {
-          display: "none",
-        },
-        // Hide scrollbar for IE, Edge and Firefox
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
+        gap: 1,
+        padding: 1,
+        "&::-webkit-scrollbar": { display: "none" },
+        "-ms-overflow-style": "none" /* IE and Edge */,
+        "scrollbar-width": "none" /* Firefox */,
       }}
     >
-      <Typography variant="caption" component={"div"} className="ms-1 mb-2">
-        Follow Suggestion
-      </Typography>
-      <Stack direction={"row"} spacing={1}>
-        <FollowSuggetion />
-        <FollowSuggetion />
-      </Stack>
+      {items.map((item, index) => (
+        <FollowSuggetion key={index} />
+      ))}
+      
     </Box>
   );
 };
