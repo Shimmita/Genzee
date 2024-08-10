@@ -10,14 +10,10 @@ export default function FollowSuggetion() {
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <Card
         elevation={0}
-        sx={{ width: 140, height: 170 }}
-        className="border rounded"
+        sx={{ width: 120, height: 170 }}
+        className="rounded"
       >
-        {/* <Box display={"flex"} justifyContent={"flex-end"}>
-          <IconButton>
-            <Close color="primary" sx={{ width: 15, height: 15 }} />
-          </IconButton>
-        </Box> */}
+      
         <CardContent>
           <Box display={"flex"} justifyContent={"center"}>
             <Avatar src={devImage} />

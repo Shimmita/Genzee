@@ -16,7 +16,6 @@ import DownloadPageTabs from "../more/download/Download";
 import BottomViral from "../more/bottom/BottomViral";
 import BottomJobs from "../more/bottom/BottomJobs";
 import BottomArchive from "../more/bottom/BottomArchive";
-import RefreshBox from "../refresh/RefreshBox";
 
 const Feed = () => {
   // backdrop state
@@ -35,7 +34,6 @@ const Feed = () => {
     isViralPage,
     isJobsPage,
     isArchivePage,
-    isRefreshBox,
   } = useSelector((state) => state.appUI);
 
   // run the listening component hook
@@ -43,8 +41,7 @@ const Feed = () => {
 
   return (
     <Box flex={3} p={1}>
-      {/* show refresh box */}
-      {isRefreshBox && defaultState && <RefreshBox />}
+ 
       {/* show default card and contents */}
       {defaultState && <FeedDefaultContent />}
       {/* show the view all accounts of the drawer or sidebar */}

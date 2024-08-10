@@ -32,7 +32,7 @@ export const GetScreenWidth = () => {
     : window.screen.availWidth <= 1700
     ? 600
     : window.screen.availWidth <= 2000
-    ? 700
+    ? 750
     : window.screen.availWidth <= 2500
     ? 850
     : window.screen.availWidth <= 3000
