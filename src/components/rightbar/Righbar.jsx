@@ -2,7 +2,6 @@ import {
   Backdrop,
   Box,
   Divider,
-  IconButton,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -10,7 +9,6 @@ import {
 } from "@mui/material";
 import React from "react";
 import TopDailyPosts from "./TopDailyPost";
-import FriendRequest from "./TopDailyRequest";
 import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
@@ -36,21 +34,6 @@ const RightbarAll = () => {
       >
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold" variant="caption">
-            Follow Requests
-          </Typography>
-        </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
-        <Box display={"flex"} justifyContent={"space-between"} p={1}>
-          <FriendRequest />
-          <IconButton>
-            <Add color="primary" />
-          </IconButton>
-        </Box>
-
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
             Posts of the Day
           </Typography>
         </Box>
@@ -71,7 +54,7 @@ const RightbarAll = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" >
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
@@ -92,7 +75,7 @@ const RightbarAll = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" >
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <VideoCall color="primary" />
             </ListItemIcon>
@@ -113,12 +96,14 @@ const RightbarAll = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" >
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <Bookmark color="primary" />
             </ListItemIcon>
             <ListItemText
-              primary={<Typography variant="body2">My Event Viewer Status </Typography>}
+              primary={
+                <Typography variant="body2">My Event Viewer Status </Typography>
+              }
             />
           </ListItemButton>
           <Typography className="fw-normal" variant="body2">
@@ -132,7 +117,7 @@ const RightbarAll = () => {
           alignItems={"center"}
           className="pe-2"
         >
-          <ListItemButton LinkComponent={"a"} href="#home" >
+          <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemIcon>
               <Add color="primary" />
             </ListItemIcon>

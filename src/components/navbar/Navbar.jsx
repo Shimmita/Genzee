@@ -16,7 +16,6 @@ import {
   Smartphone,
   Support,
   SearchRounded,
-  Mic,
   AllInclusive,
   Close,
   Logout,
@@ -31,10 +30,8 @@ import {
   Box,
   Button,
   Collapse,
-  Divider,
   Drawer,
   IconButton,
-  InputBase,
   List,
   ListItemButton,
   ListItemIcon,
@@ -66,7 +63,6 @@ import {
   showReportUser,
   showAssistEmail,
   showAbout,
-  showDownloadPage,
   showMobileRighBar,
 } from "../../redux/AppUI";
 import MobileRightbar from "../rightbar/MobileRightbar";
@@ -96,15 +92,9 @@ const Navbar = ({ setMode, mode }) => {
   });
 
   const SearchBar = styled("div")(({ theme }) => ({
-    backgroundColor: "white",
     paddingBottom: "2px",
     paddingTop: "2px",
     paddingLeft: "8px",
-    width: "40%",
-    borderRadius: theme.shape.borderRadius,
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-    },
   }));
 
   const IconsContainer = styled(Box)(({ theme }) => ({
@@ -211,8 +201,6 @@ const Navbar = ({ setMode, mode }) => {
 
   // handle show download page
   const handleShowDownloadPage = () => {
-    dispatch(resetAll());
-    dispatch(showDownloadPage());
     handleCloseDrawer();
   };
 
@@ -237,7 +225,6 @@ const Navbar = ({ setMode, mode }) => {
             <Typography variant="body1" className="fw-bold">
               GENZEE
             </Typography>
-            <Mic />
           </IconButton>
         </LogoContent>
 
@@ -257,7 +244,6 @@ const Navbar = ({ setMode, mode }) => {
                 GENZEE
               </small>
             </IconButton>
-            {window.screen.availWidth > 380 && <Mic />}{" "}
           </LogoContent>
         )}
 
@@ -271,26 +257,23 @@ const Navbar = ({ setMode, mode }) => {
                 alignItems: "center",
               }}
             >
-              <InputBase
-                placeholder="search text ..."
-                sx={{
-                  color: "grey",
-                }}
-              />
+              <form className="d-flex gap-1">
+                <Box>
+                  <input
+                    type="text"
+                    placeholder={"search..."}
+                    className="form-control w-100 border-0 text-secondary"
+                  />
+                </Box>
 
-              <Divider
-                variant="inset"
-                orientation="vertical"
-                component={"div"}
-                flexItem
-              />
-              <IconButton>
-                <SearchRounded color="primary" sx={{ width: 20, height: 20 }} />
-              </IconButton>
-
-              <IconButton onClick={handleShowMobileSearch}>
-                <Close sx={{ width: 20, height: 20 }} color="primary" />
-              </IconButton>
+                <Box>
+                  <IconButton type="submit">
+                    <SearchRounded
+                      sx={{ width: 20, height: 20, color: "white" }}
+                    />
+                  </IconButton>
+                </Box>
+              </form>
             </Box>
           </SearchBar>
         )}
@@ -305,25 +288,26 @@ const Navbar = ({ setMode, mode }) => {
                 alignItems: "center",
               }}
             >
-              <InputBase
-                placeholder="search text ..."
-                sx={{
-                  color: "grey",
-                }}
-              />
+              <form className="d-flex gap-1 ps-5">
+                <Box>
+                  <input
+                    type="text"
+                    placeholder={"search..."}
+                    className="form-control w-100 border-0 text-secondary"
+                  />
+                </Box>
 
-              <Divider
-                variant="inset"
-                orientation="vertical"
-                component={"div"}
-                flexItem
-              />
-              <IconButton>
-                <SearchRounded color="primary" sx={{ width: 18, height: 18 }} />
-              </IconButton>
+                <Box>
+                  <IconButton type="submit">
+                    <SearchRounded
+                      sx={{ width: 20, height: 20, color: "white" }}
+                    />
+                  </IconButton>
+                </Box>
+              </form>
 
               <IconButton onClick={handleShowMobileSearch}>
-                <Close sx={{ width: 18, height: 18 }} color="primary" />
+                <Close sx={{ width: 18, height: 18 , color:'whitesmoke'}} />
               </IconButton>
             </Box>
           </SearchBar>
@@ -634,7 +618,7 @@ const Navbar = ({ setMode, mode }) => {
                 <Smartphone />
               </ListItemIcon>
               <ListItemText
-                primary={<Typography variant="body2">Mobile App</Typography>}
+                primary={<Typography variant="body2">Install App</Typography>}
               />
               {openMobileApp ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>

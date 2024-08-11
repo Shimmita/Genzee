@@ -2,7 +2,6 @@ import {
   AccountBox,
   AllInclusive,
   BarChart,
-  ContactPage,
   DarkMode,
   Download,
   Email,
@@ -209,14 +208,6 @@ const Sidebar = ({ setMode, mode }) => {
             />
           </ListItemButton>
 
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <ContactPage />
-            </ListItemIcon>
-            <ListItemText
-              primary={<Typography variant="body2">Contacts</Typography>}
-            />
-          </ListItemButton>
 
           <ListItemButton
             LinkComponent={"a"}
@@ -227,7 +218,7 @@ const Sidebar = ({ setMode, mode }) => {
               <Smartphone />
             </ListItemIcon>
             <ListItemText
-              primary={<Typography variant="body2">Mobile App</Typography>}
+              primary={<Typography variant="body2">Install App</Typography>}
             />
             {openMobileApp ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>

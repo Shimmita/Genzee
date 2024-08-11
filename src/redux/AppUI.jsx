@@ -12,7 +12,6 @@ const initialState = {
   isAssistEmail: false,
   isAbout: false,
   isScrolledDown: false,
-  isDownloadPage: false,
   isViralPage: false,
   isJobsPage: false,
   isArchivePage: false,
@@ -62,7 +61,6 @@ const appUISliceReducerSlice = createSlice({
         isReportUser: false,
         isAssistEmail: false,
         isAbout: false,
-        isDownloadPage: false,
         isViralPage: false,
         isJobsPage: false,
         isArchivePage: false,
@@ -110,14 +108,6 @@ const appUISliceReducerSlice = createSlice({
     // manages user scrolling
     handleScrolledDown: (state, action) => {
       state.isScrolledDown = action.payload;
-    },
-
-    showDownloadPage: (state) => {
-      return {
-        ...state,
-        defaultState: false,
-        isDownloadPage: true,
-      };
     },
 
     showViralPage: (state) => {
@@ -172,7 +162,6 @@ export const {
   showAssistEmail,
   showAbout,
   handleScrolledDown,
-  showDownloadPage,
   showViralPage,
   showJobsPage,
   showArchivesPage,

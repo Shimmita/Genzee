@@ -99,7 +99,34 @@ export default function TopDailyPosts() {
         </IconButton>
       </Box>
 
-
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="image" src={devImage} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={<Typography variant="body2">Yahya Ishmael</Typography>}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                ></Typography>
+                {"Do you have Paris recommendations? Have…"}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+        <IconButton>
+          <Expand sx={{ width: 20, height: 20 }} color="primary" />
+        </IconButton>
+      </Box>
     </List>
   );
 }

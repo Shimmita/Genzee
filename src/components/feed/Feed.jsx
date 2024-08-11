@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import BasicSpeedDial from "../custom/SpeedDial";
-import { Backdrop } from "@mui/material";
 import { useSelector } from "react-redux";
 import FeedDefaultContent from "./FeedDefaultContent";
 import AccountStatusTabs from "../more/account/AccountStatus";
@@ -12,14 +11,12 @@ import HelpReportUserTab from "../more/help/HelpReportUser";
 import HelpAssistanceEmail from "../more/help/HelpAssistEmail";
 import AboutPage from "../more/about/About";
 import useScrolledDown from "../hooks/useScrolledDown";
-import DownloadPageTabs from "../more/download/Download";
 import BottomViral from "../more/bottom/BottomViral";
 import BottomJobs from "../more/bottom/BottomJobs";
 import BottomArchive from "../more/bottom/BottomArchive";
 
 const Feed = () => {
   // backdrop state
-  const [openBackdrop, setOpenBackdrop] = useState(false);
   const {
     isAccountViewAll,
     isAccountStatistics,
@@ -30,7 +27,6 @@ const Feed = () => {
     isAbout,
     defaultState,
     isScrolledDown,
-    isDownloadPage,
     isViralPage,
     isJobsPage,
     isArchivePage,
@@ -41,7 +37,6 @@ const Feed = () => {
 
   return (
     <Box flex={3} p={1}>
- 
       {/* show default card and contents */}
       {defaultState && <FeedDefaultContent />}
       {/* show the view all accounts of the drawer or sidebar */}
@@ -58,8 +53,7 @@ const Feed = () => {
       {isAssistEmail && <HelpAssistanceEmail />}
       {/* show about page */}
       {isAbout && <AboutPage />}
-      {/* app download page */}
-      {isDownloadPage && <DownloadPageTabs />}
+
       {/* show viral page of the bottom nav */}
       {isViralPage && <BottomViral />}
       {/* show jobs page of the bottom nav */}
@@ -73,9 +67,8 @@ const Feed = () => {
           {/* show speed dial if not scrolling down */}
           {!isScrolledDown && (
             <>
-              <Backdrop open={openBackdrop} />
               <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-                <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
+                <BasicSpeedDial />
               </Box>
             </>
           )}

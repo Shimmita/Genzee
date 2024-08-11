@@ -4,15 +4,13 @@ import {
   Backdrop,
   Box,
   Divider,
-  IconButton,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
 import TopDailyPosts from "./TopDailyPost";
-import FriendRequest from "./TopDailyRequest";
-import { Add, Bookmark, Close, VideoCall } from "@mui/icons-material";
+import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
@@ -50,24 +48,11 @@ const MobileRightbar = () => {
           height: "100%",
         }}
       >
-        <Box display={"flex"} justifyContent={"end"}>
-          <IconButton onClick={handleCloseDrawer}>
-            <Close sx={{ width: 25, height: 25 }} color="primary" />
-          </IconButton>
-        </Box>
-        <Divider component={"div"} variant="fullWidth" className="mt-2 mb-2" />
-
+        <Divider component={"div"} variant="fullWidth" className="mb-2" />
         <Box display={"flex"} justifyContent={"center"}>
           <Typography className="fw-bold mb-2 mt-1" variant="caption">
             Follow Requests
           </Typography>
-        </Box>
-
-        <Box display={"flex"} justifyContent={"space-between"} className="ms-2">
-          <FriendRequest />
-          <IconButton>
-            <Add color="primary" />
-          </IconButton>
         </Box>
 
         <Divider component={"div"} variant="fullWidth" className="mt-3 mb-2" />
