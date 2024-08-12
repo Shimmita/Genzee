@@ -1,7 +1,5 @@
 import {
   AccountBox,
-  AllInclusive,
-  BarChart,
   DarkMode,
   Download,
   Email,
@@ -13,6 +11,10 @@ import {
   Settings,
   Smartphone,
   Support,
+  Report,
+  People,
+  PostAdd,
+  MonetizationOn,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -31,14 +33,31 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+
+import {
+  showAccountSettings,
+  resetAll,
+  resetDarkMode,
+  showHelpQuiz,
+  showReportUser,
+  showAssistEmail,
+  showAbout,
+} from "../../redux/AppUI";
+
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = ({ setMode, mode }) => {
   const [openAccountMore, setOpenAccountMore] = useState(false);
   const [openMobileApp, setOpenMobileApp] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
+
+  // redux states
+  const { isDarkMode } = useSelector((state) => state.appUI);
+
+  const dispatch = useDispatch();
 
   const BoxAvatarContent = styled(Box)({
     display: "flex",
@@ -47,6 +66,53 @@ const Sidebar = ({ setMode, mode }) => {
     alignItems: "center",
     gap: "1rem",
   });
+
+  // return home
+  const handleReturnHome = () => {
+    // reset everything to default
+    dispatch(resetAll());
+  };
+
+  // show settings
+  const handleShowSettings = () => {
+    // reset everything to default
+    dispatch(resetAll());
+
+    dispatch(showAccountSettings());
+  };
+
+  // UI theme dark light teaking effect
+  const handleShowDarkMode = () => {
+    // alter the light/ dark mode
+    dispatch(resetDarkMode());
+  };
+
+  // show frequent questions
+  const handleShowQuestions = () => {
+    dispatch(resetAll());
+    dispatch(showHelpQuiz());
+  };
+
+  // handle show report user
+  const handleShowReportUser = () => {
+    dispatch(resetAll());
+    dispatch(showReportUser());
+  };
+
+  // handle show assistance email
+  const handleShowEmailAssist = () => {
+    dispatch(resetAll());
+    dispatch(showAssistEmail());
+  };
+
+  // handle show about page
+  const handleShowAboutPage = () => {
+    dispatch(resetAll());
+    dispatch(showAbout());
+  };
+
+  // handle show download page
+  const handleShowDownloadPage = () => {};
 
   return (
     <Box
@@ -75,7 +141,7 @@ const Sidebar = ({ setMode, mode }) => {
 
           <Typography variant="body2">shimitadouglas@gmail.com</Typography>
         </BoxAvatarContent>
-        <Table aria-label="table" >
+        <Table aria-label="table">
           <TableHead>
             <TableRow>
               <TableCell>
@@ -99,7 +165,11 @@ const Sidebar = ({ setMode, mode }) => {
         </Table>
 
         <List>
-          <ListItemButton LinkComponent={"a"} href="#home">
+          <ListItemButton
+            LinkComponent={"a"}
+            href="#home"
+            onClick={handleReturnHome}
+          >
             <ListItemIcon>
               <Home />
             </ListItemIcon>
@@ -129,24 +199,40 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={null}
+              >
                 <ListItemIcon>
-                  <AllInclusive />
+                  <People />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<Typography variant="body2">View All</Typography>}
-                />
-              </ListItemButton>
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
-                <ListItemIcon>
-                  <BarChart />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<Typography variant="body2">Statistics</Typography>}
+                  primary={<Typography variant="body2">People</Typography>}
                 />
               </ListItemButton>
 
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={null}
+              >
+                <ListItemIcon>
+                  <PostAdd />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Posts</Typography>}
+                />
+              </ListItemButton>
+
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowSettings}
+              >
                 <ListItemIcon>
                   <Settings />
                 </ListItemIcon>
@@ -154,7 +240,20 @@ const Sidebar = ({ setMode, mode }) => {
                   primary={<Typography variant="body2">Settings</Typography>}
                 />
               </ListItemButton>
-              
+
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={null}
+              >
+                <ListItemIcon>
+                  <MonetizationOn />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Premium</Typography>}
+                />
+              </ListItemButton>
             </List>
           </Collapse>
 
@@ -179,35 +278,69 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowAboutPage}
+              >
                 <ListItemIcon>
-                  <Email />
+                  <Lightbulb />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<Typography variant="body2">Email</Typography>}
+                  primary={<Typography variant="body2">About Us</Typography>}
                 />
               </ListItemButton>
 
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowReportUser}
+              >
+                <ListItemIcon>
+                  <Report />
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <Typography variant="body2">Report User </Typography>
+                  }
+                />
+              </ListItemButton>
+
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowQuestions}
+              >
                 <ListItemIcon>
                   <QuestionMark />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<Typography variant="body2">Q & A</Typography>}
+                  primary={
+                    <Typography variant="body2">Frequent Quizes</Typography>
+                  }
+                />
+              </ListItemButton>
+
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowEmailAssist}
+              >
+                <ListItemIcon>
+                  <Email />
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <Typography variant="body2">Assistance Email</Typography>
+                  }
                 />
               </ListItemButton>
             </List>
           </Collapse>
-
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <Lightbulb />
-            </ListItemIcon>
-            <ListItemText
-              primary={<Typography variant="body2">About</Typography>}
-            />
-          </ListItemButton>
-
 
           <ListItemButton
             LinkComponent={"a"}
@@ -230,7 +363,12 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton LinkComponent={"a"} href="#home" sx={{ pl: 8 }}>
+              <ListItemButton
+                LinkComponent={"a"}
+                href="#home"
+                sx={{ pl: 8 }}
+                onClick={handleShowDownloadPage}
+              >
                 <ListItemIcon>
                   <Download />
                 </ListItemIcon>
@@ -241,14 +379,19 @@ const Sidebar = ({ setMode, mode }) => {
             </List>
           </Collapse>
 
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
+          <ListItemButton
+            LinkComponent={"a"}
+            href="#home"
+            onClick={handleShowDarkMode}
+          >
+            <ListItemIcon > 
               <DarkMode />
             </ListItemIcon>
             <ListItemText
-              primary={<Typography variant="body2">Dark Mode</Typography>}
+              primary={<Typography  variant="body2">Dark Mode</Typography>}
             />
             <Switch
+              checked={isDarkMode}
               onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
             />
           </ListItemButton>

@@ -10,14 +10,6 @@ import Typography from "@mui/material/Typography";
 
 const steps = [
   {
-    label: "Medal @Ksh.50 Monthly",
-    description: `Lowest priority in both posts and job applications. 
-    Posts totally depends on the number of likes from the users of the platform. 
-    No following up of the job application suppose you have already completed one.
-    Feedback from the recruiters is not guaranteed for it is scaled down to 50/50.
-    `,
-  },
-  {
     label: "Silver @KSh.100 Monthly",
     description: `
     Posts are guaranteed to be published viral and slightly depends on the number of user likes.
@@ -60,17 +52,15 @@ export default function AccountLevelInfo({ setShowLevelInfo }) {
           <Step key={step.label}>
             <StepLabel
               optional={
-                index === 2 ? (
+                index === 1 ? (
                   <Typography variant="caption">
-                    best for social media influencers and artists
+                    best for social media influencers/artists
                   </Typography>
-                ) : index === 1 ? (
+                ) :  (
                   <Typography variant="caption">
-                    best for users looking for opportunities
+                    best for users looking for connections
                   </Typography>
-                ) : (
-                  <Typography variant="caption">best for beginners</Typography>
-                )
+                ) 
               }
             >
               {step.label}

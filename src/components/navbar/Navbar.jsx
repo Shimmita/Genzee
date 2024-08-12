@@ -3,7 +3,6 @@ import {
   MenuRounded,
   MoreVert,
   AccountBox,
-  BarChart,
   DarkMode,
   Download,
   Email,
@@ -16,11 +15,13 @@ import {
   Smartphone,
   Support,
   SearchRounded,
-  AllInclusive,
   Close,
   Logout,
   ArrowForwardOutlined,
   Report,
+  People,
+  PostAdd,
+  MonetizationOn,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -54,8 +55,6 @@ import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  showAccountStatistics,
-  showAccountViewAll,
   showAccountSettings,
   resetAll,
   resetDarkMode,
@@ -125,25 +124,6 @@ const Navbar = ({ setMode, mode }) => {
   // close the drawer
   const handleCloseDrawer = (e) => {
     setOpenDrawer(false);
-  };
-
-  // trigger the showing of accounts status tab
-  const handleShowViewAll = (e) => {
-    // reset everything to default
-    dispatch(resetAll());
-    dispatch(showAccountViewAll());
-    // close the drawer
-    handleCloseDrawer();
-  };
-
-  // trigger the showing of statistics tab
-  const handleShowStatistics = (e) => {
-    // reset everything to default
-    dispatch(resetAll());
-
-    dispatch(showAccountStatistics());
-    // close the drawer
-    handleCloseDrawer();
   };
 
   // return home
@@ -307,7 +287,7 @@ const Navbar = ({ setMode, mode }) => {
               </form>
 
               <IconButton onClick={handleShowMobileSearch}>
-                <Close sx={{ width: 18, height: 18 , color:'whitesmoke'}} />
+                <Close sx={{ width: 18, height: 18, color: "whitesmoke" }} />
               </IconButton>
             </Box>
           </SearchBar>
@@ -483,13 +463,13 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleShowViewAll}
+                  onClick={handleCloseDrawer}
                 >
                   <ListItemIcon>
-                    <AllInclusive />
+                    <People />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">Status</Typography>}
+                    primary={<Typography variant="body2">People</Typography>}
                   />
                 </ListItemButton>
 
@@ -497,15 +477,13 @@ const Navbar = ({ setMode, mode }) => {
                   LinkComponent={"a"}
                   href="#home"
                   sx={{ pl: 8 }}
-                  onClick={handleShowStatistics}
+                  onClick={handleCloseDrawer}
                 >
                   <ListItemIcon>
-                    <BarChart />
+                    <PostAdd />
                   </ListItemIcon>
                   <ListItemText
-                    primary={
-                      <Typography variant="body2">Statistics</Typography>
-                    }
+                    primary={<Typography variant="body2">Posts</Typography>}
                   />
                 </ListItemButton>
 
@@ -520,6 +498,20 @@ const Navbar = ({ setMode, mode }) => {
                   </ListItemIcon>
                   <ListItemText
                     primary={<Typography variant="body2">Settings</Typography>}
+                  />
+                </ListItemButton>
+
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleCloseDrawer}
+                >
+                  <ListItemIcon>
+                    <MonetizationOn />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={<Typography variant="body2">Premium</Typography>}
                   />
                 </ListItemButton>
               </List>
@@ -546,6 +538,20 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
+                <ListItemButton
+                  LinkComponent={"a"}
+                  href="#home"
+                  sx={{ pl: 8 }}
+                  onClick={handleShowAboutPage}
+                >
+                  <ListItemIcon>
+                    <Lightbulb />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={<Typography variant="body2">About Us</Typography>}
+                  />
+                </ListItemButton>
+                
                 <ListItemButton
                   LinkComponent={"a"}
                   href="#home"
@@ -595,19 +601,6 @@ const Navbar = ({ setMode, mode }) => {
                 </ListItemButton>
               </List>
             </Collapse>
-
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={handleShowAboutPage}
-            >
-              <ListItemIcon>
-                <Lightbulb />
-              </ListItemIcon>
-              <ListItemText
-                primary={<Typography variant="body2">About</Typography>}
-              />
-            </ListItemButton>
 
             <ListItemButton
               LinkComponent={"a"}

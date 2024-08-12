@@ -7,7 +7,6 @@ import {
   Modal,
   styled,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import React from "react";
 import devImage from "../../images/dev.jpeg";
@@ -32,8 +31,8 @@ const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
     >
       <Box
         width={400}
-        p={2}
-        borderRadius={2}
+        p={1}
+        borderRadius={5}
         bgcolor={"background.default"}
         color={"text.primary"}
       >

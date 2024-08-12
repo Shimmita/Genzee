@@ -17,7 +17,7 @@ export default function DrawerAccountInfo({ showLevelInfo, setShowLevelInfo }) {
         bgcolor={"background.default"}
         color={"text.primary"}
       >
-        {/* render the  */}
+        {/* render   */}
         <AccountLevelInfo setShowLevelInfo={setShowLevelInfo} />
       </Box>
     </Drawer>

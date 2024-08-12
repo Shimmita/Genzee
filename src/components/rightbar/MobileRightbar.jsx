@@ -1,9 +1,7 @@
-import { Drawer } from "@mui/material";
+import { Button, Drawer } from "@mui/material";
 import React from "react";
 import {
-  Backdrop,
   Box,
-  Divider,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -12,52 +10,28 @@ import {
 import TopDailyPosts from "./TopDailyPost";
 import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import useScrolledDown from "../hooks/useScrolledDown";
-import BasicSpeedDial from "../custom/SpeedDial";
 import { showMobileRighBar } from "../../redux/AppUI";
 const MobileRightbar = () => {
-  // backdrop state
-  const { isScrolledDown, isMobileRighBar } = useSelector(
-    (state) => state.appUI
-  );
+  const { isMobileRighBar } = useSelector((state) => state.appUI);
   // dispatch for handle callbacks
   const dispatch = useDispatch();
-
-  const [openBackdrop, setOpenBackdrop] = React.useState(false);
-
-  // run the listening component hook for scrolling
-  useScrolledDown();
 
   const handleCloseDrawer = () => {
     dispatch(showMobileRighBar());
   };
 
   return (
-    <Drawer
-      anchor={"bottom"}
-      open={isMobileRighBar}
-      onClose={handleCloseDrawer}
-    >
+    <Drawer anchor={"right"} open={isMobileRighBar} onClose={handleCloseDrawer}>
       <Box
-        // width={window.screen.availWidth <= 500 ? 280 : 450}
-        // p={window.screen.availWidth >= 700 ? 2 : 0}
-        className="m-1 border-top border-start rounded"
+        className="m-2 border-start border-top border-end rounded"
         bgcolor={"background.default"}
         color={"text.primary"}
         sx={{
           height: "100%",
         }}
       >
-        <Divider component={"div"} variant="fullWidth" className="mb-2" />
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold mb-2 mt-1" variant="caption">
-            Follow Requests
-          </Typography>
-        </Box>
-
-        <Divider component={"div"} variant="fullWidth" className="mt-3 mb-2" />
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
+        <Box display={"flex"} justifyContent={"center"} className="mt-2">
+          <Typography className="fw-bold mb-2" variant="caption">
             Posts of the Day
           </Typography>
         </Box>
@@ -66,13 +40,14 @@ const MobileRightbar = () => {
           <TopDailyPosts />
         </Box>
 
-        <Divider component={"div"} variant="fullWidth" className="mt-3 mb-2" />
+        {/* <Divider component={"div"} variant="fullWidth" className="mb-2" /> */}
 
-        <Box display={"flex"} justifyContent={"center"}>
+        <Box display={"flex"} justifyContent={"center"} className="mt-2">
           <Typography className="fw-bold mb-2" variant="caption">
             Explore Events
           </Typography>
         </Box>
+
         <Box
           display={"flex"}
           justifyContent={"center"}
@@ -150,20 +125,11 @@ const MobileRightbar = () => {
           </ListItemButton>
         </Box>
 
-        {/* display speed dial in feed section only for mobile and no landscape */}
-        {window.screen.availWidth > 900 && (
-          <Box>
-            {/* show speed dial if not scrolling down */}
-            {!isScrolledDown && (
-              <>
-                <Backdrop open={openBackdrop} />
-                <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-                  <BasicSpeedDial setOpenBackdrop={setOpenBackdrop} />
-                </Box>
-              </>
-            )}
-          </Box>
-        )}
+        <Box p={2} display={"flex"} justifyContent={"flex-end"}>
+          <Button size="small" variant="contained" onClick={handleCloseDrawer}>
+            <small>close</small>
+          </Button>
+        </Box>
       </Box>
     </Drawer>
   );

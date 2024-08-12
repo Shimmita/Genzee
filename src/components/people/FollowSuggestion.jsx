@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Avatar, Box, Button, CardActions } from "@mui/material";
 import devImage from "../../images/dev.jpeg";
+import { Image } from "react-bootstrap";
 
 export default function FollowSuggetion() {
   return (
@@ -16,7 +17,10 @@ export default function FollowSuggetion() {
       
         <CardContent>
           <Box display={"flex"} justifyContent={"center"}>
-            <Avatar src={devImage} />
+            <Avatar >
+              <Image width={36} src={devImage}/>
+            </Avatar>
+
           </Box>
           <Typography
             className="text-center"

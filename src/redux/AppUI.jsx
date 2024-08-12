@@ -4,8 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   // view state
   defaultState: true, // default
-  isAccountViewAll: false,
-  isAccountStatistics: false,
   isAccountSettings: false,
   isHelpQuiz: false,
   isReportUser: false,
@@ -26,22 +24,6 @@ const appUISliceReducerSlice = createSlice({
   name: "AppUI",
   initialState,
   reducers: {
-    showAccountViewAll: (state) => {
-      return {
-        ...state,
-        defaultState: false,
-        isAccountViewAll: true,
-      };
-    },
-
-    showAccountStatistics: (state) => {
-      return {
-        ...state,
-        defaultState: false,
-        isAccountStatistics: true,
-      };
-    },
-
     showAccountSettings: (state) => {
       return {
         ...state,
@@ -54,8 +36,6 @@ const appUISliceReducerSlice = createSlice({
       return {
         ...state,
         defaultState: true,
-        isAccountStatistics: false,
-        isAccountViewAll: false,
         isAccountSettings: false,
         isHelpQuiz: false,
         isReportUser: false,
@@ -152,8 +132,6 @@ const appUISliceReducerSlice = createSlice({
 
 // exporting the actions
 export const {
-  showAccountViewAll,
-  showAccountStatistics,
   showAccountSettings,
   resetAll,
   resetDarkMode,

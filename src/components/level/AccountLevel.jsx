@@ -7,12 +7,13 @@ import { IconButton } from "@mui/material";
 import { Info } from "@mui/icons-material";
 import DrawerAccountInfo from "./AccountInfoDrawer";
 
-const steps = ["Medal", "Silver", "Gold"];
+const steps = ["Silver", "Gold"];
 
 export default function AccountLevelStep() {
   const [showLevelInfo, setShowLevelInfo] = React.useState(false);
 
   return (
+    
     <Box className='mt-2' sx={{ width: "100%" }}>
       <Stepper  activeStep={3} alternativeLabel>
         {steps.map((label) => (

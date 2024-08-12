@@ -80,16 +80,15 @@ export default function AccountSettingsTabs() {
             onChange={handleChange}
             aria-label="styled tabs"
             className="fw-light"
-
           >
             <StyledTab
-              label={<Typography variant="body2">privacy</Typography>}
+              label={<Typography variant="body2">Profile</Typography>}
             />
             <StyledTab
-              label={<Typography variant="body2">streaming</Typography>}
+              label={<Typography variant="body2">Streaming</Typography>}
             />
             <StyledTab
-              label={<Typography variant="body2">notification</Typography>}
+              label={<Typography variant="body2">Notification</Typography>}
             />
           </StyledTabs>
         </Box>

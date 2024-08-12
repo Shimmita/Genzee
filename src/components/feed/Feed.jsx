@@ -3,8 +3,6 @@ import React from "react";
 import BasicSpeedDial from "../custom/SpeedDial";
 import { useSelector } from "react-redux";
 import FeedDefaultContent from "./FeedDefaultContent";
-import AccountStatusTabs from "../more/account/AccountStatus";
-import AccountStatisticsTabs from "../more/account/AccountStatistics";
 import AccountSettingsTabs from "../more/account/AccountSettings";
 import HelpFrequentQuiz from "../more/help/HelpFrequentQuiz";
 import HelpReportUserTab from "../more/help/HelpReportUser";
@@ -18,8 +16,6 @@ import BottomArchive from "../more/bottom/BottomArchive";
 const Feed = () => {
   // backdrop state
   const {
-    isAccountViewAll,
-    isAccountStatistics,
     isAccountSettings,
     isHelpQuiz,
     isReportUser,
@@ -39,10 +35,6 @@ const Feed = () => {
     <Box flex={3} p={1}>
       {/* show default card and contents */}
       {defaultState && <FeedDefaultContent />}
-      {/* show the view all accounts of the drawer or sidebar */}
-      {isAccountViewAll && <AccountStatusTabs />}
-      {/* show the statistics of the drawer or sidebar */}
-      {isAccountStatistics && <AccountStatisticsTabs />}
       {/* show setting of the drawer or sidebar */}
       {isAccountSettings && <AccountSettingsTabs />}
       {/* show helpQuiz */}
@@ -53,7 +45,6 @@ const Feed = () => {
       {isAssistEmail && <HelpAssistanceEmail />}
       {/* show about page */}
       {isAbout && <AboutPage />}
-
       {/* show viral page of the bottom nav */}
       {isViralPage && <BottomViral />}
       {/* show jobs page of the bottom nav */}

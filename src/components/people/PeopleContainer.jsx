@@ -7,6 +7,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { PersonAdd } from "@mui/icons-material";
 import ModalMorePeople from "./ModalMorePeople";
 import ConnectSuggestion from "./ConnectSuggestion";
+import Events from "../events/Events";
 
 const PeopleContainer = () => {
   // for follow/connect people people
@@ -24,12 +25,11 @@ const PeopleContainer = () => {
   };
 
   return (
-    <Box className="border-bottom border-top  mb-3">
+    <Box className="border-top mb-2">
       <Box
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        className="p-1"
       >
         <Box>
           <ToggleButtonGroup
@@ -39,11 +39,19 @@ const PeopleContainer = () => {
             onChange={handleChange}
           >
             <ToggleButton value={0}>
-              <small style={{ fontSize: "x-small" }}>follow</small>
+              <small style={{ fontSize: "x-small" }}>follow &nbsp;20 </small>
             </ToggleButton>
             <ToggleButton value={1}>
-              <small style={{ fontSize: "x-small" }}>connect</small>
+              <small style={{ fontSize: "x-small" }}>connect &nbsp;10</small>
             </ToggleButton>
+            {/* display only in small devices */}
+            {window.screen.availWidth < 1000 && (
+              <>
+                <ToggleButton value={2}>
+                  <small style={{ fontSize: "x-small" }}>Events</small>
+                </ToggleButton>
+              </>
+            )}
           </ToggleButtonGroup>
         </Box>
 
@@ -76,11 +84,15 @@ const PeopleContainer = () => {
               <FollowSuggetion key={index} />
             ))}
           </>
-        ) : (
+        ) : followConnect === 1 ? (
           <>
             {items.map((item, index) => (
               <ConnectSuggestion key={index} />
             ))}
+          </>
+        ) : (
+          <>
+            <Events />
           </>
         )}
       </Box>
