@@ -50,7 +50,6 @@ const Sidebar = ({ setMode, mode }) => {
 
   // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
-
   const dispatch = useDispatch();
 
   const BoxAvatarContent = styled(Box)({
@@ -111,8 +110,7 @@ const Sidebar = ({ setMode, mode }) => {
     navigate("/about");
   };
 
-  // handle show download page
-  const handleShowDownloadPage = () => {};
+
 
   return (
     <Box
@@ -292,8 +290,7 @@ const Sidebar = ({ setMode, mode }) => {
           </Collapse>
 
           <ListItemButton
-            LinkComponent={"a"}
-            href="#home"
+          
             onClick={(e) => setOpenMobileApp(!openMobileApp)}
           >
             <ListItemIcon>
@@ -313,10 +310,8 @@ const Sidebar = ({ setMode, mode }) => {
           >
             <List component="div" disablePadding>
               <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
+              
                 sx={{ pl: 8 }}
-                onClick={handleShowDownloadPage}
               >
                 <ListItemIcon>
                   <Download />
@@ -348,6 +343,7 @@ const Sidebar = ({ setMode, mode }) => {
           {/* show account level status */}
           <AccountLevelStep />
         </List>
+        
       </Box>
     </Box>
   );

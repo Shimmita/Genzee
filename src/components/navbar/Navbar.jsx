@@ -1,8 +1,6 @@
 import {
-  Mail,
-  MenuRounded,
-  MoreVert,
   AccountBox,
+  Close,
   DarkMode,
   Download,
   Email,
@@ -10,26 +8,23 @@ import {
   ExpandMore,
   Home,
   Lightbulb,
-  QuestionMark,
-  Settings,
-  Smartphone,
-  Support,
-  SearchRounded,
-  Close,
-  Logout,
-  ArrowForwardOutlined,
-  Report,
+  Mail,
+  MenuRounded,
+  MonetizationOn,
   People,
   PostAdd,
-  MonetizationOn,
+  QuestionMark,
+  Report,
+  SearchRounded,
+  Settings,
+  Smartphone,
+  Support
 } from "@mui/icons-material";
 import {
   AppBar,
   Avatar,
-  Backdrop,
   Badge,
   Box,
-  Button,
   Collapse,
   Drawer,
   IconButton,
@@ -37,8 +32,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Menu,
-  MenuItem,
   styled,
   Switch,
   Table,
@@ -47,27 +40,17 @@ import {
   TableHead,
   TableRow,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useState } from "react";
 
-import devImage from "../../images/dev.jpeg";
-import AccountLevelStep from "../level/AccountLevel";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  showAccountSettings,
-  resetAll,
-  resetDarkMode,
-  showHelpQuiz,
-  showReportUser,
-  showAssistEmail,
-  showAbout,
-  showMobileRighBar,
-} from "../../redux/AppUI";
-import MobileRightbar from "../rightbar/MobileRightbar";
+import { useNavigate } from "react-router-dom";
+import devImage from "../../images/dev.jpeg";
+import { resetDarkMode } from "../../redux/AppUI";
+import AccountLevelStep from "../level/AccountLevel";
 
 const Navbar = ({ setMode, mode }) => {
-  const [openMore, setOpenMore] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const [openAccountMore, setOpenAccountMore] = useState(false);
@@ -75,6 +58,7 @@ const Navbar = ({ setMode, mode }) => {
   const [openHelp, setOpenHelp] = useState(false);
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const navigate = useNavigate();
 
   const handleShowMobileSearch = () => {
     setShowMobileSearch((prev) => !prev);
@@ -82,7 +66,6 @@ const Navbar = ({ setMode, mode }) => {
 
   // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
-
   const dispatch = useDispatch();
 
   const GenzeeToolBar = styled(Toolbar)({
@@ -121,30 +104,30 @@ const Navbar = ({ setMode, mode }) => {
     gap: "1rem",
   });
 
-  // close the drawer
-  const handleCloseDrawer = (e) => {
-    setOpenDrawer(false);
-  };
-
   // return home
   const handleReturnHome = () => {
-    // reset everything to default
-    dispatch(resetAll());
+    navigate("/");
+  };
 
-    // close the drawer
-    handleCloseDrawer();
+  // show posts
+  const handleShowMyPost = () => {
+    navigate("/account/posts");
+  };
+
+  // show people
+  const handleShowMyPeople = () => {
+    navigate("/account/people");
   };
 
   // show settings
   const handleShowSettings = () => {
-    // reset everything to default
-    dispatch(resetAll());
-
-    dispatch(showAccountSettings());
-    // close the drawer
-    handleCloseDrawer();
+    navigate("/account/settings");
   };
 
+  // show premium
+  const handleShowPremium = () => {
+    navigate("/account/premium");
+  };
   // UI theme dark light teaking effect
   const handleShowDarkMode = () => {
     // alter the light/ dark mode
@@ -153,41 +136,24 @@ const Navbar = ({ setMode, mode }) => {
 
   // show frequent questions
   const handleShowQuestions = () => {
-    dispatch(resetAll());
-    dispatch(showHelpQuiz());
-    handleCloseDrawer();
+    navigate("/help/quiz");
   };
 
   // handle show report user
   const handleShowReportUser = () => {
-    dispatch(resetAll());
-    dispatch(showReportUser());
-    handleCloseDrawer();
+    navigate("/help/report");
   };
 
   // handle show assistance email
   const handleShowEmailAssist = () => {
-    dispatch(resetAll());
-    dispatch(showAssistEmail());
-    handleCloseDrawer();
+    navigate("/help/email");
   };
 
   // handle show about page
   const handleShowAboutPage = () => {
-    dispatch(resetAll());
-    dispatch(showAbout());
-    handleCloseDrawer();
+    navigate("/about");
   };
 
-  // handle show download page
-  const handleShowDownloadPage = () => {
-    handleCloseDrawer();
-  };
-
-  // handle showing of the rightbar for mobile non landscape mode
-  const handleShowingRightbar = () => {
-    dispatch(showMobileRighBar());
-  };
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
@@ -313,55 +279,10 @@ const Navbar = ({ setMode, mode }) => {
               &nbsp;
               <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
               {/* show more icon if the device is tablet at portrati or is smartphone */}
-              {window.screen.availWidth <= 900 && (
-                <IconButton onClick={handleShowingRightbar}>
-                  <MoreVert style={{ color: "white" }} />
-                </IconButton>
-              )}
             </>
           )}
         </IconsContainer>
       </GenzeeToolBar>
-
-      {/* show backdrop when morevert icon is aclicked */}
-      <Backdrop open={openMore} />
-      <Menu
-        id="more-menu"
-        aria-labelledby="more-menu"
-        open={openMore}
-        className="mt-4"
-        onClose={(e) => setOpenMore(false)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <MenuItem>
-          <Button
-            endIcon={<Logout sx={{ width: 20, height: 20 }} />}
-            type="small"
-          >
-            <Typography variant="caption">logout</Typography>
-          </Button>
-        </MenuItem>
-        <hr />
-        <MenuItem>
-          <small>
-            privacy policy
-            <ArrowForwardOutlined sx={{ width: 12, height: 12 }} />
-          </small>
-        </MenuItem>
-        <MenuItem>
-          <small>
-            terms of service{" "}
-            <ArrowForwardOutlined sx={{ width: 12, height: 12 }} />
-          </small>
-        </MenuItem>
-      </Menu>
 
       {/* drawer  tablet and samall screen */}
       <Drawer open={openDrawer} onClose={(e) => setOpenDrawer(false)}>
@@ -425,11 +346,7 @@ const Navbar = ({ setMode, mode }) => {
           </BoxAvatarContent>
 
           <List>
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={handleReturnHome}
-            >
+            <ListItemButton onClick={handleReturnHome}>
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
@@ -439,8 +356,6 @@ const Navbar = ({ setMode, mode }) => {
             </ListItemButton>
 
             <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
               onClick={(e) => setOpenAccountMore(!openAccountMore)}
             >
               <ListItemIcon>
@@ -459,12 +374,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowMyPost}>
                   <ListItemIcon>
                     <PostAdd />
                   </ListItemIcon>
@@ -472,12 +382,8 @@ const Navbar = ({ setMode, mode }) => {
                     primary={<Typography variant="body2">Posts</Typography>}
                   />
                 </ListItemButton>
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
-                >
+
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowMyPeople}>
                   <ListItemIcon>
                     <People />
                   </ListItemIcon>
@@ -486,26 +392,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowSettings}
-                >
-                  <ListItemIcon>
-                    <Settings />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Settings</Typography>}
-                  />
-                </ListItemButton>
-
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleCloseDrawer}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
                   <ListItemIcon>
                     <MonetizationOn />
                   </ListItemIcon>
@@ -513,14 +400,19 @@ const Navbar = ({ setMode, mode }) => {
                     primary={<Typography variant="body2">Premium</Typography>}
                   />
                 </ListItemButton>
+
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowSettings}>
+                  <ListItemIcon>
+                    <Settings />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={<Typography variant="body2">Settings</Typography>}
+                  />
+                </ListItemButton>
               </List>
             </Collapse>
 
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={(e) => setOpenHelp(!openHelp)}
-            >
+            <ListItemButton onClick={(e) => setOpenHelp(!openHelp)}>
               <ListItemIcon>
                 <Support />
               </ListItemIcon>
@@ -537,12 +429,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowAboutPage}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowAboutPage}>
                   <ListItemIcon>
                     <Lightbulb />
                   </ListItemIcon>
@@ -551,12 +438,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowReportUser}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowReportUser}>
                   <ListItemIcon>
                     <Report />
                   </ListItemIcon>
@@ -567,12 +449,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowQuestions}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowQuestions}>
                   <ListItemIcon>
                     <QuestionMark />
                   </ListItemIcon>
@@ -583,12 +460,7 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowEmailAssist}
-                >
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowEmailAssist}>
                   <ListItemIcon>
                     <Email />
                   </ListItemIcon>
@@ -601,11 +473,7 @@ const Navbar = ({ setMode, mode }) => {
               </List>
             </Collapse>
 
-            <ListItemButton
-              LinkComponent={"a"}
-              href="#home"
-              onClick={(e) => setOpenMobileApp(!openMobileApp)}
-            >
+            <ListItemButton onClick={(e) => setOpenMobileApp(!openMobileApp)}>
               <ListItemIcon>
                 <Smartphone />
               </ListItemIcon>
@@ -622,12 +490,7 @@ const Navbar = ({ setMode, mode }) => {
               unmountOnExit
             >
               <List component="div" disablePadding>
-                <ListItemButton
-                  LinkComponent={"a"}
-                  href="#home"
-                  sx={{ pl: 8 }}
-                  onClick={handleShowDownloadPage}
-                >
+                <ListItemButton sx={{ pl: 8 }}>
                   <ListItemIcon>
                     <Download />
                   </ListItemIcon>
@@ -660,9 +523,6 @@ const Navbar = ({ setMode, mode }) => {
           </List>
         </Box>
       </Drawer>
-
-      {/* drawer bottom small */}
-      <MobileRightbar />
     </AppBar>
   );
 };
