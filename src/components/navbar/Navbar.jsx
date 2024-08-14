@@ -466,13 +466,12 @@ const Navbar = ({ setMode, mode }) => {
                   onClick={handleCloseDrawer}
                 >
                   <ListItemIcon>
-                    <People />
+                    <PostAdd />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">People</Typography>}
+                    primary={<Typography variant="body2">Posts</Typography>}
                   />
                 </ListItemButton>
-
                 <ListItemButton
                   LinkComponent={"a"}
                   href="#home"
@@ -480,10 +479,10 @@ const Navbar = ({ setMode, mode }) => {
                   onClick={handleCloseDrawer}
                 >
                   <ListItemIcon>
-                    <PostAdd />
+                    <People />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">Posts</Typography>}
+                    primary={<Typography variant="body2">People</Typography>}
                   />
                 </ListItemButton>
 
@@ -551,7 +550,7 @@ const Navbar = ({ setMode, mode }) => {
                     primary={<Typography variant="body2">About Us</Typography>}
                   />
                 </ListItemButton>
-                
+
                 <ListItemButton
                   LinkComponent={"a"}
                   href="#home"

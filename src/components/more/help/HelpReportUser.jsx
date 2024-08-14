@@ -3,10 +3,7 @@ import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { IconButton, Typography } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { resetAll } from "../../../redux/AppUI";
+import { Typography } from "@mui/material";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -46,21 +43,14 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function HelpReportUserTab() {
   const [value, setValue] = React.useState(0);
 
-  const dispatch = useDispatch();
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleReturnHome = (event) => {
-    // reset everything and default values
-    dispatch(resetAll());
-  };
-
   return (
-    <Box>
+    <Box bgcolor={"background.default"} color={"text.primary"}>
       <>
-        <div className="d-flex justify-align-content-between w-100 align-items-center">
+        <div className="d-flex justify-content-center w-100 align-items-center">
           {/* title */}
           <Typography
             variant={"caption"}
@@ -68,10 +58,6 @@ export default function HelpReportUserTab() {
           >
             Help Center Report User
           </Typography>
-          {/* close the window */}
-          <IconButton onClick={handleReturnHome}>
-            <Close color="primary" sx={{ width: 15, height: 15 }} />
-          </IconButton>
         </div>
         {/* tabs */}
         <Box className="border-bottom p-0 d-flex justify-content-center align-items-center">
@@ -80,7 +66,6 @@ export default function HelpReportUserTab() {
             onChange={handleChange}
             aria-label="styled tabs"
             className="fw-light"
-
           >
             <StyledTab label={<Typography variant="body2">post</Typography>} />
             <StyledTab

@@ -46,7 +46,7 @@ export default function FollowSuggetion() {
             color="primary"
             sx={{ borderRadius: 5 }}
           >
-            <small style={{ fontSize: "x-small" }}>Follow</small>
+            <small style={{ fontSize: "xx-small" }}>Follow</small>
           </Button>
         </CardActions>
       </Card>

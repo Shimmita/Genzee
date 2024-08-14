@@ -165,7 +165,7 @@ const RegistrationAuth = () => {
 
           <div className="d-flex justify-content-center mb-2">
             {" "}
-            <small className="text-secondary" style={{ fontSize: "small" }}>
+            <small className="text-secondary" >
               attributes marked in asterisk(*) are mandatory
             </small>
           </div>

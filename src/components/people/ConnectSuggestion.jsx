@@ -37,7 +37,7 @@ export default function ConnectSuggestion() {
             color="primary"
             sx={{ borderRadius: 5 }}
           >
-            <small style={{ fontSize: "x-small" }}>connect</small>
+            <small style={{ fontSize: "xx-small" }}>connect</small>
           </Button>
         </CardActions>
       </Card>

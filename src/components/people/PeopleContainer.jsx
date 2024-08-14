@@ -31,7 +31,7 @@ const PeopleContainer = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Box>
+        <Box  >
           <ToggleButtonGroup
             color="primary"
             value={followConnect}
@@ -61,8 +61,8 @@ const PeopleContainer = () => {
           </IconButton>
         </Box>
       </Box>
-
       <Divider component={"div"} />
+
 
       <Box
         sx={{

@@ -53,7 +53,7 @@ const LoginAuth = () => {
           onSubmit={handleSubmit}
           className="w-100 p-4 border rounded  justify-content-center align-items-center align-content-center"
         >
-          <div className="mb-3 mt-4">
+          <div className="mb-4 mt-4">
             <TextField
               required
               id="outlined-required"
@@ -66,7 +66,7 @@ const LoginAuth = () => {
             />
           </div>
 
-          <div className="mb-2">
+          <div className="mb-3">
             <FormControl fullWidth variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
                 Enter Password &nbsp;*
@@ -94,9 +94,9 @@ const LoginAuth = () => {
             </FormControl>
           </div>
           <hr />
-          <div className="d-flex justify-content-center mb-2">
+          <div className="d-flex justify-content-center mb-3">
             {" "}
-            <small className="text-secondary" style={{ fontSize: "small" }}>
+            <small className="text-secondary" >
               forgot password? click to{" "}
               <Link
                 to={"/genzee/auth/recover"}

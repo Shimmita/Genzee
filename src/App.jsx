@@ -1,36 +1,62 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Homepage from "./components/account/Home";
-import LoginAuth from "./components/auth/LoginAuth";
-import PageNotFound from "./components/notfound/PageNotFound";
-import RegistrationAuth from "./components/auth/RegistrationAuth";
-import RecoverAuth from "./components/auth/RecoverAuth";
-import Homepage from "./components/account/HomePage";
-import AuthCheck from "./components/account/AuthCheck";
+import { Box } from "@mui/material";
+import React, { lazy, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
+const HomePageLazy = lazy(() => import("./components/account/HomePage"));
+const RecoverAuthLay = lazy(() => import("./components/auth/RecoverAuth"));
+const RegistrationAuthLazy = lazy(() =>
+  import("./components/auth/RegistrationAuth")
+);
+const AuthCheckLazy = lazy(() => import("./components/account/AuthCheck"));
+const PageNotFoundLazy = lazy(() =>
+  import("./components/notfound/PageNotFound")
+);
+const LoginAuthLazy = lazy(() => import("./components/auth/LoginAuth"));
 const App = () => {
   return (
     <React.Fragment>
-      <Router>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <AuthCheck>
-                <Homepage />
-              </AuthCheck>
-            }
-          />
-          <Route path={"/genzee/auth/login"} element={<LoginAuth />} />
-          <Route
-            path={"/genzee/auth/register"}
-            element={<RegistrationAuth />}
-          />
-          <Route path={"/genzee/auth/recover"} element={<RecoverAuth />} />
-          <Route path={"*"} element={<PageNotFound />} />
-        </Routes>
-      </Router>
+      <Suspense
+        fallback={
+          <Box
+            bgcolor={"background.default"}
+            color={"text.primary"}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "90vh",
+            }}
+          >
+            Loading...
+          </Box>
+        }
+      >
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/*"
+              element={
+                <AuthCheckLazy>
+                  <HomePageLazy />
+                </AuthCheckLazy>
+              }
+            />
+            <Route exact path={"/auth/login"} element={<LoginAuthLazy />} />
+            <Route
+              exact
+              path={"/auth/register"}
+              element={<RegistrationAuthLazy />}
+            />
+            <Route exact path={"/auth/recover"} element={<RecoverAuthLay />} />
+            <Route path={"*"} element={PageNotFoundLazy} />
+          </Routes>
+        </Router>
+      </Suspense>
     </React.Fragment>
   );
 };

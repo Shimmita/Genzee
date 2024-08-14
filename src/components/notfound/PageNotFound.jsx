@@ -1,18 +1,21 @@
 import React from "react";
 import NabvBarAuth from "../auth/NabvBarAuth";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const PageNotFound = () => {
   return (
     <React.Fragment>
       <NabvBarAuth />
-      <div
+      <Box
+      bgcolor={"background.default"}
+      color={"text.primary"}
         style={{
-          height: "90vh",
           display: "flex",
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
+          
         }}
       >
         <div className="rounded-2 p-5 d-flex justify-content-center align-items-center w-75 shadow-lg">
@@ -28,7 +31,7 @@ const PageNotFound = () => {
             </small>
           </div>
         </div>
-      </div>
+      </Box>
     </React.Fragment>
   );
 };

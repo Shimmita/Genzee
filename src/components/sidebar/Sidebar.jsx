@@ -34,25 +34,19 @@ import {
   Typography,
 } from "@mui/material";
 
-import {
-  showAccountSettings,
-  resetAll,
-  resetDarkMode,
-  showHelpQuiz,
-  showReportUser,
-  showAssistEmail,
-  showAbout,
-} from "../../redux/AppUI";
+import { resetDarkMode } from "../../redux/AppUI";
 
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ setMode, mode }) => {
   const [openAccountMore, setOpenAccountMore] = useState(false);
   const [openMobileApp, setOpenMobileApp] = useState(false);
   const [openHelp, setOpenHelp] = useState(false);
+  const navigate = useNavigate();
 
   // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
@@ -69,18 +63,28 @@ const Sidebar = ({ setMode, mode }) => {
 
   // return home
   const handleReturnHome = () => {
-    // reset everything to default
-    dispatch(resetAll());
+    navigate("/");
+  };
+
+  // show posts
+  const handleShowMyPost = () => {
+    navigate("/account/posts");
+  };
+
+  // show people
+  const handleShowMyPeople = () => {
+    navigate("/account/people");
   };
 
   // show settings
   const handleShowSettings = () => {
-    // reset everything to default
-    dispatch(resetAll());
-
-    dispatch(showAccountSettings());
+    navigate("/account/settings");
   };
 
+  // show premium
+  const handleShowPremium = () => {
+    navigate("/account/premium");
+  };
   // UI theme dark light teaking effect
   const handleShowDarkMode = () => {
     // alter the light/ dark mode
@@ -89,26 +93,22 @@ const Sidebar = ({ setMode, mode }) => {
 
   // show frequent questions
   const handleShowQuestions = () => {
-    dispatch(resetAll());
-    dispatch(showHelpQuiz());
+    navigate("/help/quiz");
   };
 
   // handle show report user
   const handleShowReportUser = () => {
-    dispatch(resetAll());
-    dispatch(showReportUser());
+    navigate("/help/report");
   };
 
   // handle show assistance email
   const handleShowEmailAssist = () => {
-    dispatch(resetAll());
-    dispatch(showAssistEmail());
+    navigate("/help/email");
   };
 
   // handle show about page
   const handleShowAboutPage = () => {
-    dispatch(resetAll());
-    dispatch(showAbout());
+    navigate("/about");
   };
 
   // handle show download page
@@ -141,6 +141,7 @@ const Sidebar = ({ setMode, mode }) => {
 
           <Typography variant="body2">shimitadouglas@gmail.com</Typography>
         </BoxAvatarContent>
+
         <Table aria-label="table">
           <TableHead>
             <TableRow>
@@ -165,11 +166,7 @@ const Sidebar = ({ setMode, mode }) => {
         </Table>
 
         <List>
-          <ListItemButton
-            LinkComponent={"a"}
-            href="#home"
-            onClick={handleReturnHome}
-          >
+          <ListItemButton onClick={handleReturnHome}>
             <ListItemIcon>
               <Home />
             </ListItemIcon>
@@ -178,11 +175,7 @@ const Sidebar = ({ setMode, mode }) => {
             />
           </ListItemButton>
 
-          <ListItemButton
-            LinkComponent={"a"}
-            href="#home"
-            onClick={(e) => setOpenAccountMore(!openAccountMore)}
-          >
+          <ListItemButton onClick={(e) => setOpenAccountMore(!openAccountMore)}>
             <ListItemIcon>
               <AccountBox />
             </ListItemIcon>
@@ -199,26 +192,7 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={null}
-              >
-                <ListItemIcon>
-                  <People />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<Typography variant="body2">People</Typography>}
-                />
-              </ListItemButton>
-
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={null}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowMyPost}>
                 <ListItemIcon>
                   <PostAdd />
                 </ListItemIcon>
@@ -227,26 +201,16 @@ const Sidebar = ({ setMode, mode }) => {
                 />
               </ListItemButton>
 
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={handleShowSettings}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowMyPeople}>
                 <ListItemIcon>
-                  <Settings />
+                  <People />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<Typography variant="body2">Settings</Typography>}
+                  primary={<Typography variant="body2">People</Typography>}
                 />
               </ListItemButton>
 
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={null}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
                 <ListItemIcon>
                   <MonetizationOn />
                 </ListItemIcon>
@@ -254,14 +218,19 @@ const Sidebar = ({ setMode, mode }) => {
                   primary={<Typography variant="body2">Premium</Typography>}
                 />
               </ListItemButton>
+
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowSettings}>
+                <ListItemIcon>
+                  <Settings />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Settings</Typography>}
+                />
+              </ListItemButton>
             </List>
           </Collapse>
 
-          <ListItemButton
-            LinkComponent={"a"}
-            href="#home"
-            onClick={(e) => setOpenHelp(!openHelp)}
-          >
+          <ListItemButton onClick={(e) => setOpenHelp(!openHelp)}>
             <ListItemIcon>
               <Support />
             </ListItemIcon>
@@ -278,12 +247,7 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={handleShowAboutPage}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowAboutPage}>
                 <ListItemIcon>
                   <Lightbulb />
                 </ListItemIcon>
@@ -292,12 +256,7 @@ const Sidebar = ({ setMode, mode }) => {
                 />
               </ListItemButton>
 
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={handleShowReportUser}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowReportUser}>
                 <ListItemIcon>
                   <Report />
                 </ListItemIcon>
@@ -308,12 +267,7 @@ const Sidebar = ({ setMode, mode }) => {
                 />
               </ListItemButton>
 
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={handleShowQuestions}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowQuestions}>
                 <ListItemIcon>
                   <QuestionMark />
                 </ListItemIcon>
@@ -324,12 +278,7 @@ const Sidebar = ({ setMode, mode }) => {
                 />
               </ListItemButton>
 
-              <ListItemButton
-                LinkComponent={"a"}
-                href="#home"
-                sx={{ pl: 8 }}
-                onClick={handleShowEmailAssist}
-              >
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowEmailAssist}>
                 <ListItemIcon>
                   <Email />
                 </ListItemIcon>
@@ -384,11 +333,11 @@ const Sidebar = ({ setMode, mode }) => {
             href="#home"
             onClick={handleShowDarkMode}
           >
-            <ListItemIcon > 
+            <ListItemIcon>
               <DarkMode />
             </ListItemIcon>
             <ListItemText
-              primary={<Typography  variant="body2">Dark Mode</Typography>}
+              primary={<Typography variant="body2">Dark Mode</Typography>}
             />
             <Switch
               checked={isDarkMode}

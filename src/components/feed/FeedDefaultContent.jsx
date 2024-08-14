@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
-import CardFeed from "../custom/CardFeed";
 import PeopleContainer from "../people/PeopleContainer";
+import FeedCardContainer from "./FeedCardContainer";
 
 const FeedDefaultContent = () => {
   return (
@@ -12,14 +12,9 @@ const FeedDefaultContent = () => {
           <PeopleContainer />
         </Box>
       </Box>
-
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
-      <CardFeed />
+      <Box>
+        <FeedCardContainer />
+      </Box>
     </Box>
   );
 };

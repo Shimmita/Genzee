@@ -30,11 +30,9 @@ function Homepage() {
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Sidebar setMode={setMode} mode={mode} />
               <Feed />
-
               <Righbar />
             </Stack>
           </Stack>
-
 
           {/* if scrolled down dont show bottom nav */}
           {!isScrolledDown && (

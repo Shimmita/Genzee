@@ -32,7 +32,8 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import devImage from "../../images/dev.jpeg";
+// import devImage from "../../images/dev.jpeg";
+import devImage from "../../images/mac.png";
 
 import { Image } from "react-bootstrap";
 import AccordionComment from "./AccordionComment";
@@ -178,29 +179,18 @@ const CardFeed = () => {
           title="Shimmitah"
           subheader="@devshim"
         />
-
-        <Box className="d-flex justify-content-center align-items-center">
-          <Image
-            className="rounded w-100 shadow-sm"
-            src={devImage}
-            style={{
-              maxHeight:
-                window.screen.availWidth > 700 &&
-                window.screen.availWidth < 1000
-                  ? 550
-                  : window.screen.availWidth > 1000
-                  ? 460
-                  : 350,
-              minHeight:
-                window.screen.availWidth > 700 &&
-                window.screen.availWidth < 1000
-                  ? 550
-                  : window.screen.availWidth > 1000
-                  ? 460
-                  : 350,
-            }}
-          />
-        </Box>
+        {/* media */}
+        <Image
+          src={devImage}
+          
+          style={{
+            width: "100%",
+            maxHeight: "400px",
+            objectFit: "contain",
+            borderRadius:5,
+            backgroundColor: '#f9f9f9'
+          }}
+        />
 
         {!showComment && (
           <CardContent>

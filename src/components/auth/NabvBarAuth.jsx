@@ -1,4 +1,4 @@
-import { Mic } from "@mui/icons-material";
+import React from "react";
 import {
   AppBar,
   Box,
@@ -7,7 +7,6 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const NabvBarAuth = ({ isLogin }) => {
@@ -19,32 +18,31 @@ const NabvBarAuth = ({ isLogin }) => {
 
   return (
     <>
-    <AppBar position="sticky" elevation={0}>
-      <AuthToolbar>
-        <Box display={"flex"} alignItems={"center"}>
-          <Typography className="fw-bold" variant="body1">
-            GENZEE
-          </Typography>
-          <Mic />
-        </Box>
-        {/* if isLoginMeans go registration */}
-        {isLogin ? (
-          <Button
-            color="inherit"
-            onClick={(e) => navigate("/genzee/auth/register")}
-          >
-            <Typography variant="caption">Register</Typography>
-          </Button>
-        ) : (
-          <Button
-            color="inherit"
-            onClick={(e) => navigate("/genzee/auth/login")}
-          >
-            <Typography variant="caption">Login</Typography>
-          </Button>
-        )}
-      </AuthToolbar>
-    </AppBar>
+      <AppBar position="sticky" elevation={0}>
+        <AuthToolbar>
+          <Box display={"flex"} alignItems={"center"}>
+            <Typography className="fw-bold" variant="body1">
+              GENZEE
+            </Typography>
+          </Box>
+          {/* if isLoginMeans go registration */}
+          {isLogin ? (
+            <Button
+              color="inherit"
+              onClick={(e) => navigate("/genzee/auth/register")}
+            >
+              <Typography variant="caption">Register</Typography>
+            </Button>
+          ) : (
+            <Button
+              color="inherit"
+              onClick={(e) => navigate("/genzee/auth/login")}
+            >
+              <Typography variant="caption">Login</Typography>
+            </Button>
+          )}
+        </AuthToolbar>
+      </AppBar>
     </>
   );
 };

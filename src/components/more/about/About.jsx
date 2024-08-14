@@ -3,10 +3,7 @@ import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { IconButton, Typography } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { resetAll } from "../../../redux/AppUI";
+import { Typography } from "@mui/material";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -46,35 +43,15 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function AboutPage() {
   const [value, setValue] = React.useState(0);
 
-  const dispatch = useDispatch();
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleReturnHome = (event) => {
-    // reset everything and default values
-    dispatch(resetAll());
   };
 
   return (
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <>
-        <div className="d-flex justify-align-content-between w-100 align-items-center">
-          {/* title */}
-          <Typography
-            variant={"caption"}
-            className="w-100 fw-light text-center"
-          >
-            About Genzee
-          </Typography>
-          {/* close the window */}
-          <IconButton onClick={handleReturnHome}>
-            <Close color="primary" sx={{ width: 15, height: 15 }} />
-          </IconButton>
-        </div>
         {/* tabs */}
-        <Box className="border-bottom p-0 d-flex justify-content-center align-items-center">
+        <Box className="border-bottom d-flex justify-content-center align-items-center">
           <StyledTabs
             value={value}
             onChange={handleChange}
@@ -82,14 +59,14 @@ export default function AboutPage() {
             className="fw-light"
           >
             <StyledTab
-              label={<Typography variant="body2">application</Typography>}
+              label={<Typography variant="body2">Application</Typography>}
             />
             <StyledTab
-              label={<Typography variant="body2">developer</Typography>}
+              label={<Typography variant="body2">Developer</Typography>}
             />
 
             <StyledTab
-              label={<Typography variant="body2">mission</Typography>}
+              label={<Typography variant="body2">Mission</Typography>}
             />
           </StyledTabs>
         </Box>

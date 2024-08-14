@@ -58,7 +58,7 @@ export default function AccountSettingsTabs() {
   };
 
   return (
-    <Box>
+    <Box bgcolor={"background.default"} color={"text.primary"}>
       <>
         <div className="d-flex justify-align-content-between w-100 align-items-center">
           {/* title */}
@@ -96,7 +96,7 @@ export default function AccountSettingsTabs() {
 
       {/* content of each tab goes here */}
       <Box height={"70vh"}>
-        {value === 0 && <p>Privacy</p>}
+        {value === 0 && <p>Profile</p>}
         {value === 1 && <p>Data Saver</p>}
         {value === 2 && <p>Sound Effect</p>}
       </Box>

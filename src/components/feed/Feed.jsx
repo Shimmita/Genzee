@@ -1,70 +1,79 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import BasicSpeedDial from "../custom/SpeedDial";
-import { useSelector } from "react-redux";
-import FeedDefaultContent from "./FeedDefaultContent";
-import AccountSettingsTabs from "../more/account/AccountSettings";
-import HelpFrequentQuiz from "../more/help/HelpFrequentQuiz";
-import HelpReportUserTab from "../more/help/HelpReportUser";
-import HelpAssistanceEmail from "../more/help/HelpAssistEmail";
-import AboutPage from "../more/about/About";
 import useScrolledDown from "../hooks/useScrolledDown";
-import BottomViral from "../more/bottom/BottomViral";
-import BottomJobs from "../more/bottom/BottomJobs";
-import BottomArchive from "../more/bottom/BottomArchive";
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+const AccountPremium = lazy(() => import("../more/account/AccountPremium"));
+const AccountPeople = lazy(() => import("../more/account/AccountPeople"));
+const AccountPosts = lazy(() => import("../more/account/AccountPosts"));
+const AccountSettingsTabs = lazy(() =>
+  import("../more/account/AccountSettings")
+);
+
+const HelpFrequentQuiz = lazy(() => import("../more/help/HelpFrequentQuiz"));
+const HelpReportUserTab = lazy(() => import("../more/help/HelpReportUser"));
+const HelpAssistanceEmail = lazy(() => import("../more/help/HelpAssistEmail"));
+const AboutPage = lazy(() => import("../more/about/About"));
+const BottomMessage = lazy(() => import("../more/bottom/BottomMessage"));
+const BottomJobs = lazy(() => import("../more/bottom/BottomJobs"));
+const BottomArchive = lazy(() => import("../more/bottom/BottomArchive"));
+const FeedDefaultContent = lazy(() => import("./FeedDefaultContent"));
 
 const Feed = () => {
   // backdrop state
-  const {
-    isAccountSettings,
-    isHelpQuiz,
-    isReportUser,
-    isAssistEmail,
-    isAbout,
-    defaultState,
-    isScrolledDown,
-    isViralPage,
-    isJobsPage,
-    isArchivePage,
-  } = useSelector((state) => state.appUI);
+  const { isScrolledDown } = useSelector((state) => state.appUI);
 
   // run the listening component hook
   useScrolledDown();
 
   return (
-    <Box flex={3} p={1}>
-      {/* show default card and contents */}
-      {defaultState && <FeedDefaultContent />}
-      {/* show setting of the drawer or sidebar */}
-      {isAccountSettings && <AccountSettingsTabs />}
-      {/* show helpQuiz */}
-      {isHelpQuiz && <HelpFrequentQuiz />}
-      {/* show report user */}
-      {isReportUser && <HelpReportUserTab />}
-      {/* show assistance email window */}
-      {isAssistEmail && <HelpAssistanceEmail />}
-      {/* show about page */}
-      {isAbout && <AboutPage />}
-      {/* show viral page of the bottom nav */}
-      {isViralPage && <BottomViral />}
-      {/* show jobs page of the bottom nav */}
-      {isJobsPage && <BottomJobs />}
-      {/* show Archives of the bottom nav */}
-      {isArchivePage && <BottomArchive />}
+    <Box flex={3} p={1} bgcolor={"background.default"} color={"text.primary"}>
+      <Suspense
+        fallback={
+          <Box
+            bgcolor={"background.default"}
+            color={"text.primary"}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "90vh",
+            }}
+          >
+            Getting...
+          </Box>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<FeedDefaultContent />} />
+          <Route path="/account/settings" element={<AccountSettingsTabs />} />
+          <Route path="/account/posts" element={<AccountPosts />} />
+          <Route path="/account/people" element={<AccountPeople />} />
+          <Route path="/account/premium" element={<AccountPremium />} />
+          <Route path="/help/quiz" element={<HelpFrequentQuiz />} />
+          <Route path="/help/report" element={<HelpReportUserTab />} />
+          <Route path="/help/email" element={<HelpAssistanceEmail />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/messages" element={<BottomMessage />} />
+          <Route path="/jobs" element={<BottomJobs />} />
+          <Route path="/archives" element={<BottomArchive />} />
+        </Routes>
 
-      {/* display speed dial in feed section only for mobile and no landscape */}
-      {window.screen.availWidth <= 900 && (
-        <Box>
-          {/* show speed dial if not scrolling down */}
-          {!isScrolledDown && (
-            <>
-              <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
-                <BasicSpeedDial />
-              </Box>
-            </>
-          )}
-        </Box>
-      )}
+        {/* display speed dial in feed section only for mobile and no landscape */}
+        {window.screen.availWidth <= 900 && (
+          <Box>
+            {/* show speed dial if not scrolling down */}
+            {!isScrolledDown && (
+              <>
+                <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+                  <BasicSpeedDial />
+                </Box>
+              </>
+            )}
+          </Box>
+        )}
+      </Suspense>
     </Box>
   );
 };
