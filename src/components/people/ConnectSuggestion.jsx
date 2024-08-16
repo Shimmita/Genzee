@@ -31,13 +31,12 @@ export default function ConnectSuggestion() {
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
         <Button
+          variant="outlined"
+          size="small"
             disableElevation
-            size="small"
-            variant="contained"
-            color="primary"
-            sx={{ borderRadius: 5 }}
+            sx={{ borderRadius:5 }}
           >
-            <small style={{ fontSize: "xx-small" }}>connect</small>
+            <small style={{ fontSize: "xx-small", paddingTop:'1px' }}>Connect</small>
           </Button>
         </CardActions>
       </Card>

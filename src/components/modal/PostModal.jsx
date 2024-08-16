@@ -64,7 +64,11 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
       >
         {/* toolbar like box */}
         <Box display={"flex"} alignItems={"center"} marginLeft={1}>
-          <Avatar src={devImage} sx={{ width: 35, height: 35 }} />
+          <Avatar
+            alt="user image"
+            src={devImage}
+            sx={{ width: 35, height: 35 }}
+          />
           <Typography
             id="modal-modal-title"
             color={"gray"}

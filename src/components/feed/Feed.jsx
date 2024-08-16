@@ -4,6 +4,8 @@ import BasicSpeedDial from "../custom/SpeedDial";
 import useScrolledDown from "../hooks/useScrolledDown";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+
 const AccountPremium = lazy(() => import("../more/account/AccountPremium"));
 const AccountPeople = lazy(() => import("../more/account/AccountPeople"));
 const AccountPosts = lazy(() => import("../more/account/AccountPosts"));
@@ -17,8 +19,12 @@ const HelpAssistanceEmail = lazy(() => import("../more/help/HelpAssistEmail"));
 const AboutPage = lazy(() => import("../more/about/About"));
 const BottomMessage = lazy(() => import("../more/bottom/BottomMessage"));
 const BottomJobs = lazy(() => import("../more/bottom/BottomJobs"));
-const BottomArchive = lazy(() => import("../more/bottom/BottomArchive"));
+const BottomFavorites = lazy(() => import("../more/bottom/BottomFavorites"));
 const FeedDefaultContent = lazy(() => import("./FeedDefaultContent"));
+const EventsLive = lazy(() => import("../events/EventsLive"));
+const EventsUpcoming = lazy(() => import("../events/EventsUpcoming"));
+const EventsBookMarks = lazy(() => import("../events/EventsBookMarks"));
+const EventsAdd = lazy(() => import("../events/EventsAdd"));
 
 const Feed = () => {
   // backdrop state
@@ -28,7 +34,12 @@ const Feed = () => {
   useScrolledDown();
 
   return (
-    <Box flex={3} p={1} bgcolor={"background.default"} color={"text.primary"}>
+    <Box
+      flex={3}
+      p={CustomDeviceTablet() ? 2 : 1}
+      bgcolor={"background.default"}
+      color={"text.primary"}
+    >
       <Suspense
         fallback={
           <Box
@@ -57,7 +68,11 @@ const Feed = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/messages" element={<BottomMessage />} />
           <Route path="/jobs" element={<BottomJobs />} />
-          <Route path="/archives" element={<BottomArchive />} />
+          <Route path="/favorites" element={<BottomFavorites />} />
+          <Route path="/events/live" element={<EventsLive />} />
+          <Route path="/events/add" element={<EventsAdd />} />
+          <Route path="/events/bookmarks" element={<EventsBookMarks />} />
+          <Route path="/events/upcoming" element={<EventsUpcoming />} />
         </Routes>
 
         {/* display speed dial in feed section only for mobile and no landscape */}

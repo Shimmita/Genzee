@@ -55,9 +55,9 @@ const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
                   placeholder={"search people..."}
                 />
 
-                <Tooltip title={"post"}>
+                <Tooltip title={"search"}>
                   <IconButton type="submit">
-                    <Search color="primary" />
+                    <Search />
                   </IconButton>
                 </Tooltip>
               </form>

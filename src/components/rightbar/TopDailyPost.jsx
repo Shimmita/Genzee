@@ -19,7 +19,7 @@ export default function TopDailyPosts() {
       >
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="image" src={devImage} />
+            <Avatar alt="image"  src={devImage} />
           </ListItemAvatar>
           <ListItemText
             primary={<Typography variant="body2">Warrior Michael</Typography>}

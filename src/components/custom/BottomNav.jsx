@@ -1,4 +1,9 @@
-import { Archive, Home, Message, Work } from "@mui/icons-material";
+import {
+  Favorite,
+  Home,
+  Message,
+  Work,
+} from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +30,7 @@ const BottomNav = () => {
 
   // return archive  page
   const handleArchiveContent = () => {
-    navigate("/archives");
+    navigate("/favorites");
   };
   return (
     <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
@@ -52,19 +57,19 @@ const BottomNav = () => {
           onClick={handleReturnHome}
         />
         <BottomNavigationAction
-          onClick={handleMessageContent}
-          label="Message"
-          icon={<Message />}
-        />
-        <BottomNavigationAction
           onClick={handleJobContent}
           label="Jobs"
           icon={<Work />}
         />
         <BottomNavigationAction
+          onClick={handleMessageContent}
+          label="Message"
+          icon={<Message />}
+        />
+        <BottomNavigationAction
           onClick={handleArchiveContent}
-          label="Archive"
-          icon={<Archive />}
+          label="Favorites"
+          icon={<Favorite />}
         />
       </BottomNavigation>
     </Paper>

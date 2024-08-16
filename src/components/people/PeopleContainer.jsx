@@ -25,7 +25,7 @@ const PeopleContainer = () => {
   };
 
   return (
-    <Box className="border-top mb-2">
+    <Box className="border-top border-bottom mb-2">
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -57,7 +57,7 @@ const PeopleContainer = () => {
 
         <Box display={"flex"}>
           <IconButton onClick={handleShowingModalMorePeople}>
-            <PersonAdd color="primary" sx={{ width: 20, height: 20 }} />
+            <PersonAdd  color="primary" sx={{ width: 20, height: 20 }} />
           </IconButton>
         </Box>
       </Box>

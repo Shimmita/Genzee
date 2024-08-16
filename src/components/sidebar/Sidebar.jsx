@@ -41,6 +41,8 @@ import devImage from "../../images/dev.jpeg";
 import AccountLevelStep from "../level/AccountLevel";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import EventsTablet from "../events/EventsIsTablet";
 
 const Sidebar = ({ setMode, mode }) => {
   const [openAccountMore, setOpenAccountMore] = useState(false);
@@ -110,13 +112,18 @@ const Sidebar = ({ setMode, mode }) => {
     navigate("/about");
   };
 
-
-
   return (
     <Box
-      flex={2}
-      p={2}
-      sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+      flex={CustomDeviceTablet() ? 1 : 2}
+      p={CustomDeviceTablet() ? 1 : 2}
+      sx={{
+        display: {
+          xs: "none",
+          sm: CustomDeviceTablet() ? "block" : "none",
+          md: "block",
+          marginRight: "4rem",
+        },
+      }}
     >
       <Box position={"fixed"}>
         <BoxAvatarContent>
@@ -127,7 +134,12 @@ const Sidebar = ({ setMode, mode }) => {
             flexDirection={"column"}
             gap={2}
           >
-            <Avatar src={devImage} sx={{ width: 80, height: 80 }} />
+            <Avatar
+              alt={"user image"}
+              src={devImage}
+              className="mt-3"
+              sx={{ width: 60, height: 60 }}
+            />
 
             <Typography
               fontWeight={"bold"}
@@ -289,10 +301,7 @@ const Sidebar = ({ setMode, mode }) => {
             </List>
           </Collapse>
 
-          <ListItemButton
-          
-            onClick={(e) => setOpenMobileApp(!openMobileApp)}
-          >
+          <ListItemButton onClick={(e) => setOpenMobileApp(!openMobileApp)}>
             <ListItemIcon>
               <Smartphone />
             </ListItemIcon>
@@ -309,10 +318,7 @@ const Sidebar = ({ setMode, mode }) => {
             unmountOnExit
           >
             <List component="div" disablePadding>
-              <ListItemButton
-              
-                sx={{ pl: 8 }}
-              >
+              <ListItemButton sx={{ pl: 8 }}>
                 <ListItemIcon>
                   <Download />
                 </ListItemIcon>
@@ -343,7 +349,22 @@ const Sidebar = ({ setMode, mode }) => {
           {/* show account level status */}
           <AccountLevelStep />
         </List>
-        
+        {/* box for Events displayed for tablets only */}
+        {CustomDeviceTablet && (
+          <>
+            <hr />
+            <Box className="mt-5">
+              <Typography
+                fontWeight={"bold"}
+                className="text-center"
+                style={{ color: mode === "light" ? "steelblue" : "white" }}
+              >
+                EVENTS
+              </Typography>
+              <EventsTablet />
+            </Box>
+          </>
+        )}
       </Box>
     </Box>
   );

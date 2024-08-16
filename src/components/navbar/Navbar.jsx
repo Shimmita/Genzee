@@ -18,7 +18,7 @@ import {
   SearchRounded,
   Settings,
   Smartphone,
-  Support
+  Support,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -40,7 +40,7 @@ import {
   TableHead,
   TableRow,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 
@@ -49,6 +49,7 @@ import { useNavigate } from "react-router-dom";
 import devImage from "../../images/dev.jpeg";
 import { resetDarkMode } from "../../redux/AppUI";
 import AccountLevelStep from "../level/AccountLevel";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 
 const Navbar = ({ setMode, mode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -104,29 +105,38 @@ const Navbar = ({ setMode, mode }) => {
     gap: "1rem",
   });
 
+  const handleCloseDrawer = () => {
+    setOpenDrawer(false);
+  };
+
   // return home
   const handleReturnHome = () => {
     navigate("/");
+    handleCloseDrawer();
   };
 
   // show posts
   const handleShowMyPost = () => {
     navigate("/account/posts");
+    handleCloseDrawer();
   };
 
   // show people
   const handleShowMyPeople = () => {
     navigate("/account/people");
+    handleCloseDrawer();
   };
 
   // show settings
   const handleShowSettings = () => {
     navigate("/account/settings");
+    handleCloseDrawer();
   };
 
   // show premium
   const handleShowPremium = () => {
     navigate("/account/premium");
+    handleCloseDrawer();
   };
   // UI theme dark light teaking effect
   const handleShowDarkMode = () => {
@@ -137,21 +147,25 @@ const Navbar = ({ setMode, mode }) => {
   // show frequent questions
   const handleShowQuestions = () => {
     navigate("/help/quiz");
+    handleCloseDrawer();
   };
 
   // handle show report user
   const handleShowReportUser = () => {
     navigate("/help/report");
+    handleCloseDrawer();
   };
 
   // handle show assistance email
   const handleShowEmailAssist = () => {
     navigate("/help/email");
+    handleCloseDrawer();
   };
 
   // handle show about page
   const handleShowAboutPage = () => {
     navigate("/about");
+    handleCloseDrawer();
   };
 
   return (
@@ -182,9 +196,15 @@ const Navbar = ({ setMode, mode }) => {
               display: { xs: "block", sm: "block", md: "none", lg: "none" },
             }}
           >
-            <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
-              <MenuRounded style={{ color: "white" }} />
-            </IconButton>
+            {/* show menu on small devices only not tab+laps+desk */}
+            {!CustomDeviceTablet() && (
+              <>
+                <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
+                  <MenuRounded style={{ color: "white" }} />
+                </IconButton>
+              </>
+            )}
+
             <IconButton style={{ color: "white" }}>
               <small style={{ fontSize: "small" }} className="fw-bold">
                 GENZEE
@@ -277,7 +297,11 @@ const Navbar = ({ setMode, mode }) => {
                 <Mail sx={{ width: 25, height: 25 }} />
               </Badge>
               &nbsp;
-              <Avatar sx={{ width: 28, height: 28 }} src={devImage} />
+              <Avatar
+                sx={{ width: 28, height: 28, border: "1px solid gray" }}
+                src={devImage}
+                alt={"user image"}
+              />
               {/* show more icon if the device is tablet at portrati or is smartphone */}
             </>
           )}

@@ -7,10 +7,9 @@ import {
   Typography,
 } from "@mui/material";
 import { Add, Bookmark, UpcomingRounded, VideoCall } from "@mui/icons-material";
-import { GetScreenWidth } from "../utilities/GetScreenWidth";
 import { useNavigate } from "react-router-dom";
 
-export default function Events() {
+export default function EventsTablet() {
   const navigate = useNavigate();
 
   const handleEventsLive = () => {
@@ -28,24 +27,12 @@ export default function Events() {
     navigate("events/bookmarks");
   };
   return (
-    
-    <Box
-      sx={{
-        width: GetScreenWidth(),
-        display: "flex",
-        overflowX: "auto",
-        gap: 1,
-        padding: 1,
-        "&::-webkit-scrollbar": { display: "none" },
-        msOverflowStyle: "none",
-        scrollbarWidth: "none",
-      }}
-    >
+    <>
       <Box
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        className="pe-2 border  rounded"
+        className="pe-2"
       >
         <ListItemButton onClick={handleEventsLive}>
           <ListItemIcon>
@@ -62,7 +49,7 @@ export default function Events() {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        className="pe-2 border  rounded"
+        className="pe-2 "
       >
         <ListItemButton onClick={handleEventsUpcoming}>
           <ListItemIcon>
@@ -81,7 +68,7 @@ export default function Events() {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        className="pe-2 border  rounded"
+        className="pe-2"
       >
         <ListItemButton onClick={handleEventsBookMarks}>
           <ListItemIcon>
@@ -100,7 +87,7 @@ export default function Events() {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        className="pe-2 border  rounded"
+        className="pe-2"
       >
         <ListItemButton onClick={handleEventsAdd}>
           <ListItemIcon>
@@ -111,6 +98,6 @@ export default function Events() {
           />
         </ListItemButton>
       </Box>
-    </Box>
+    </>
   );
 }

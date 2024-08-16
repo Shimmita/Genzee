@@ -3,10 +3,8 @@ import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { IconButton, Typography } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
-import { resetAll } from "../../../redux/AppUI";
+import { Typography } from "@mui/material";
+
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -46,15 +44,10 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function AccountSettingsTabs() {
   const [value, setValue] = React.useState(0);
 
-  const dispatch = useDispatch();
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleReturnHome = (event) => {
-    // reset everything and default values
-    dispatch(resetAll());
   };
 
   return (
@@ -68,10 +61,6 @@ export default function AccountSettingsTabs() {
           >
             Account Settings
           </Typography>
-          {/* close the window */}
-          <IconButton onClick={handleReturnHome}>
-            <Close color="primary" sx={{ width: 15, height: 15 }} />
-          </IconButton>
         </div>
         {/* tabs */}
         <Box className="border-bottom p-0 d-flex justify-content-center align-items-center">

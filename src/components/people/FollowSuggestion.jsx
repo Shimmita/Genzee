@@ -40,13 +40,12 @@ export default function FollowSuggetion() {
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
           <Button
+          variant="outlined"
+          size="small"
             disableElevation
-            size="small"
-            variant="contained"
-            color="primary"
-            sx={{ borderRadius: 5 }}
+            sx={{ borderRadius:5 }}
           >
-            <small style={{ fontSize: "xx-small" }}>Follow</small>
+            <small style={{ fontSize: "xx-small", paddingTop:'1px' }}>Follow</small>
           </Button>
         </CardActions>
       </Card>

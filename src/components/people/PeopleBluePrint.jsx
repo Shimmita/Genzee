@@ -14,8 +14,7 @@ export default function PeopleBluePrint() {
       <ListItem>
         <ListItemAvatar>
           <IconButton>
-
-          <Avatar src={devImage} />
+            <Avatar alt="user image" src={devImage} />
           </IconButton>
         </ListItemAvatar>
         <ListItemText
@@ -25,7 +24,7 @@ export default function PeopleBluePrint() {
 
         <Box pl={8} display={"flex"} justifyContent={"flex-end"}>
           <IconButton className="border">
-            <PersonAdd color="primary" sx={{ width: 20, height: 20 }} />
+            <PersonAdd sx={{ width: 20, height: 20 }} />
           </IconButton>
         </Box>
       </ListItem>

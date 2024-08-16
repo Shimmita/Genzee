@@ -1,16 +1,15 @@
 import {
-  AddCommentOutlined,
-  ArchiveOutlined,
-  ArchiveRounded,
   Block,
+  CommentBankOutlined,
+  CommentBankRounded,
   DownloadOutlined,
   Favorite,
   FavoriteBorder,
-  FlagCircle,
   FlagOutlined,
-  Link,
   MoreVert,
   PersonAddOutlined,
+  ThumbUpAltOutlined,
+  ThumbUpRounded,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -32,17 +31,15 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-// import devImage from "../../images/dev.jpeg";
-import devImage from "../../images/mac.png";
 
 import { Image } from "react-bootstrap";
 import AccordionComment from "./AccordionComment";
-
+import PostData from "../data/PostData";
+import { Link } from "react-router-dom";
 const CardFeed = () => {
   const [showComment, setShowComment] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMoreVertPost = Boolean(anchorEl);
-
   const handleShowReply = () => {
     setShowComment((prev) => !prev);
   };
@@ -54,9 +51,21 @@ const CardFeed = () => {
     setAnchorEl(null);
   };
 
+  // fun to handle the showing of dotted lines for 280 above characters
+  const handleDetailsLength = () => {
+    const details = PostData && PostData.details;
+    return details.length > 277 ? details.substring(0, 277) + "..." : details;
+  };
+
+  // fun to handle showing of the more button
+  const handleShowMoreButton = () => {
+    const details = PostData && PostData.details;
+    return details.length > 277;
+  };
+
   return (
     <Box>
-      <Card elevation={0} className="w-100  rounded">
+      <Card elevation={0} className="w-100">
         <CardHeader
           sx={{
             padding: "0px",
@@ -65,14 +74,7 @@ const CardFeed = () => {
           avatar={
             <Tooltip title="profile" arrow>
               <IconButton>
-                <Avatar
-                  sx={{
-                    bgcolor: "steelblue",
-                  }}
-                  aria-label="avatar"
-                >
-                  S
-                </Avatar>
+                <Avatar aria-label="avatar">S</Avatar>
               </IconButton>
             </Tooltip>
           }
@@ -86,11 +88,7 @@ const CardFeed = () => {
 
               <Tooltip title="follow" arrow>
                 <Checkbox
-                  icon={
-                    <PersonAddOutlined
-                      sx={{ color: "steelblue", width: 18, height: 18 }}
-                    />
-                  }
+                  icon={<PersonAddOutlined sx={{ width: 20, height: 20 }} />}
                   checkedIcon={
                     <Typography variant="body2">
                       <small>following</small>
@@ -179,107 +177,99 @@ const CardFeed = () => {
           title="Shimmitah"
           subheader="@devshim"
         />
-        {/* media */}
-        <Image
-          src={devImage}
-          
-          style={{
-            width: "100%",
-            maxHeight: "400px",
-            objectFit: "contain",
-            borderRadius:5,
-            backgroundColor: '#f9f9f9'
-          }}
-        />
 
+        {/* description */}
         {!showComment && (
           <CardContent>
             <small>
-              <p className="text-center w-100">
-                <Divider variant="middle" component="div">
-                  Artistic
-                </Divider>
-              </p>
+              <Typography variant="body2" className="text-center w-100">
+                <Divider>Artistic</Divider>
+              </Typography>
             </small>
-            {/* <hr style={{paddingBottom:'0 1px'}}/> */}
-            <Typography color="text.secondary" variant="body2">
-              This impressive paella is a perfect party dish and a fun meal to
-              cook together with your guests.Add 1 cup of frozen peas along with
-              the mussels,if you like.This impressive paella is a perfect party
-              dish and a fun meal to cook.This impressive paella is a perfect
-              party dish and a fun meal to cook together with your guests.
+            <Typography color="text.primary" variant="caption">
+              {handleDetailsLength()}
+              {handleShowMoreButton() && (
+                <span>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    sx={{ borderRadius: 5 }}
+                  >
+                    <Typography
+                      color={"text.primary"}
+                      variant="body2"
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "xx-small",
+                        paddingTop: "2px",
+                        textTransform: "lowercase",
+                      }}
+                    >
+                      more
+                    </Typography>
+                  </Button>
+                </span>
+              )}
             </Typography>
           </CardContent>
         )}
 
-        <CardActions disableSpacing className="d-flex gap-1 ">
-          <Tooltip title="like" arrow>
-            <Checkbox
-              icon={<FavoriteBorder sx={{ width: 20, height: 20 }} />}
-              checkedIcon={<Favorite sx={{ width: 20, height: 20 }} />}
-              style={{ color: "steelblue" }}
-            />
-            <small style={{ fontSize: "small" }}>300k</small>
-          </Tooltip>
-          {/* &nbsp; | */}
-          <Tooltip title="scam" arrow>
-            <Checkbox
-              icon={<FlagOutlined sx={{ width: 20, height: 20 }} />}
-              checkedIcon={<FlagCircle sx={{ width: 20, height: 20 }} />}
-              style={{ color: "steelblue" }}
-            />
-            <small style={{ fontSize: "small" }}>10</small>
-          </Tooltip>
-          {/* &nbsp; | */}
-          <Tooltip title="archive" arrow>
-            <Checkbox
-              icon={<ArchiveOutlined sx={{ width: 20, height: 20 }} />}
-              checkedIcon={<ArchiveRounded sx={{ width: 20, height: 20 }} />}
-              style={{ color: "steelblue" }}
-            />
-            <small style={{ fontSize: "small" }}>2k</small>
-          </Tooltip>
-          {/* &nbsp; | */}
+        {/* media */}
+        <Image
+          src={PostData.image}
+          alt={"image"}
+          style={{
+            width: "100%",
+            maxHeight: window.screen.availWidth > 600 ? "500px" : "350px",
+            objectFit:'fill',
+            borderRadius: "10px",
+          }}
+        />
 
-          <Box className="ms-3">
-            <Tooltip title="comment">
-              <Button
-                color="inherit"
-                onClick={handleShowReply}
-                className="fw-normal"
-                startIcon={
-                  <AddCommentOutlined
-                    style={{ color: "steelblue", width: 20, height: 20 }}
-                  />
-                }
-              >
-                {showComment ? (
-                  <small
-                    className="fw-bold"
-                    style={{
-                      fontSize: "small",
-                      textTransform: "lowercase",
-                      color: "steelblue",
-                    }}
-                  >
-                    close
-                  </small>
-                ) : (
-                  <small
-                    style={{ fontSize: "small", textTransform: "lowercase" }}
-                  >
-                    1k
-                  </small>
-                )}
-              </Button>
+        <Box display={"flex "} justifyContent={"end"} p={1}>
+          <CardActions
+            disableSpacing
+            style={{
+              gap: 2,
+              paddingRight: window.screen.availWidth > 600 && "2rem",
+            }}
+            className="d-flex"
+          >
+            <Tooltip title="like" arrow>
+              <Checkbox
+                icon={<ThumbUpAltOutlined sx={{ width: 20, height: 20 }} />}
+                checkedIcon={<ThumbUpRounded sx={{ width: 20, height: 20 }} />}
+              />
+              <small style={{ fontSize: "small" }}>20k</small>
             </Tooltip>
-          </Box>
-        </CardActions>
+
+            <Tooltip title="favorite" arrow>
+              <Checkbox
+                icon={<FavoriteBorder sx={{ width: 20, height: 20 }} />}
+                checkedIcon={<Favorite sx={{ width: 20, height: 20 }} />}
+              />
+              <small style={{ fontSize: "small" }}>50</small>
+            </Tooltip>
+
+            <Box>
+              <Tooltip title={showComment ? "close" : "comment"} arrow>
+                <Checkbox
+                  onChange={handleShowReply}
+                  icon={<CommentBankOutlined sx={{ width: 20, height: 20 }} />}
+                  checkedIcon={
+                    <CommentBankRounded sx={{ width: 20, height: 20 }} />
+                  }
+                />
+                <small style={{ fontSize: "small" }}>33</small>
+              </Tooltip>
+            </Box>
+          </CardActions>
+        </Box>
         {/* show reply here when comment clicked */}
         {showComment && <AccordionComment />}
       </Card>
 
-      <Divider component={"div"} className="my-2" />
+      <Divider component={"div"} className="my-3" />
       {/* show backdrop when more icon of the post is clicked */}
       <Backdrop open={openMoreVertPost} />
     </Box>
