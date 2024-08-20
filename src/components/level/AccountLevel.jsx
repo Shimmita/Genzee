@@ -13,11 +13,10 @@ export default function AccountLevelStep() {
   const [showLevelInfo, setShowLevelInfo] = React.useState(false);
 
   return (
-    
-    <Box className='mt-2' sx={{ width: "100%" }}>
-      <Stepper  activeStep={3} alternativeLabel>
+    <Box sx={{ width: "100%" }}>
+      <Stepper activeStep={0}>
         {steps.map((label) => (
-          <Step key={label}>
+          <Step className="p-2" key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
@@ -26,7 +25,7 @@ export default function AccountLevelStep() {
         </IconButton>
       </Stepper>
       {/* a drawer with details when the info icon is clicked  */}
-      {setShowLevelInfo && (
+      {showLevelInfo && (
         <DrawerAccountInfo
           showLevelInfo={showLevelInfo}
           setShowLevelInfo={setShowLevelInfo}

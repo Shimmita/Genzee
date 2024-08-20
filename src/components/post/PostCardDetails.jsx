@@ -12,7 +12,6 @@ import {
   Avatar,
   Backdrop,
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -24,20 +23,20 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { lazy, useState } from "react";
 
 import { Image } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import PostData from "../data/PostData";
-import CardFeedMore from "./CardFeedMore";
-const CardFeed = () => {
+const AccordionComment = lazy(() => import("../custom/AccordionComment"));
+const CardFeedMore = lazy(() => import("../custom/CardFeedMore"));
+
+const PostCardDetails = () => {
+  const [showComment, setShowComment] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMoreVertPost = Boolean(anchorEl);
-  const navigate = useNavigate();
 
-  // show reply in the post details page
-  const handleReplyPost = () => {
-    navigate("posts/details");
+  const handleShowReply = () => {
+    setShowComment((prev) => !prev);
   };
 
   const handleClickMoreVertPost = (event) => {
@@ -45,28 +44,6 @@ const CardFeed = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  // fun to handle the showing of dotted lines for 280 above characters
-  const handleDetailsLength = () => {
-    const details = PostData && PostData.details;
-    return details.length > 277 ? details.substring(0, 277) + "..." : details;
-  };
-
-  // fun to handle showing of the more button
-  const handleShowMoreButton = () => {
-    const details = PostData && PostData.details;
-    return details.length > 277;
-  };
-
-  // navigate to the post details page
-  const handlePostDetails = () => {
-    navigate("posts/details");
-  };
-
-  // display the user profile information
-  const handleShowUserProfile = () => {
-    navigate("users/profile");
   };
 
   return (
@@ -79,7 +56,7 @@ const CardFeed = () => {
           }}
           avatar={
             <Tooltip title="profile" arrow>
-              <IconButton onClick={handleShowUserProfile}>
+              <IconButton>
                 <Avatar aria-label="avatar">S</Avatar>
               </IconButton>
             </Tooltip>
@@ -144,39 +121,25 @@ const CardFeed = () => {
           title="Shimmitah"
           subheader="@devshim"
         />
-        <CardContent>
-          <small>
-            <Typography variant="body2" className="text-center w-100">
-              <Divider>{`${PostData.category} >> ${PostData.county}`} </Divider>
-            </Typography>
-          </small>
 
-          <Typography color="text.primary" variant="caption">
-            {handleDetailsLength()}
-            {handleShowMoreButton() && (
-              <span>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={handlePostDetails}
-                  sx={{ borderRadius: 5 }}
-                >
-                  <Typography
-                    variant="body2"
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "xx-small",
-                      paddingTop: "2px",
-                      textTransform: "lowercase",
-                    }}
-                  >
-                    more
-                  </Typography>
-                </Button>
-              </span>
-            )}
-          </Typography>
-        </CardContent>
+        {/* description */}
+        {!showComment && (
+          <CardContent>
+            <small>
+              <Typography variant="body2" className="text-center w-100">
+                <Divider>
+                  {`${PostData && PostData.category} >> ${
+                    PostData && PostData.county
+                  }`}
+                </Divider>
+              </Typography>
+            </small>
+
+            <Typography color="text.primary" variant="caption">
+              {PostData && PostData.details}
+            </Typography>
+          </CardContent>
+        )}
 
         {/* media */}
         <Image
@@ -216,9 +179,9 @@ const CardFeed = () => {
             </Tooltip>
 
             <Box>
-              <Tooltip title={"comment"} arrow>
+              <Tooltip title={showComment ? "close" : "comment"} arrow>
                 <Checkbox
-                  onChange={handleReplyPost}
+                  onChange={handleShowReply}
                   icon={<CommentBankOutlined sx={{ width: 22, height: 22 }} />}
                   checkedIcon={
                     <CommentBankRounded sx={{ width: 22, height: 22 }} />
@@ -229,6 +192,8 @@ const CardFeed = () => {
             </Box>
           </CardActions>
         </Box>
+        {/* show reply here when comment clicked */}
+        {showComment && <AccordionComment />}
       </Card>
 
       <Divider component={"div"} className="my-3" />
@@ -238,4 +203,4 @@ const CardFeed = () => {
   );
 };
 
-export default CardFeed;
+export default PostCardDetails;

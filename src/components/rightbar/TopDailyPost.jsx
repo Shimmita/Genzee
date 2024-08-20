@@ -1,4 +1,3 @@
-import devImage from "../../images/dev.jpeg";
 import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import { Expand } from "@mui/icons-material";
+import devImage from "../../images/dev.jpeg";
 
 export default function TopDailyPosts() {
   return (

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -11,14 +11,9 @@ import { SendOutlined } from "@mui/icons-material";
 
 export default function AccordionComment({ mode }) {
   const [expanded, setExpanded] = React.useState(false);
-  const [showOuterComment, setShowOuterComment] = React.useState(true);
 
   const handleExpansion = () => {
     setExpanded((prevExpanded) => !prevExpanded);
-  };
-
-  const handleComment = () => {
-    setShowOuterComment((prev) => !prev);
   };
 
   return (
@@ -46,27 +41,27 @@ export default function AccordionComment({ mode }) {
           </small>
         </AccordionSummary>
         <AccordionDetails
-           sx={{
-            maxHeight:300,
+          sx={{
+            maxHeight: 300,
             overflowX: "auto",
             // Hide scrollbar for Chrome, Safari and Opera
             "&::-webkit-scrollbar": {
               display: "none",
             },
             // Hide scrollbar for IE, Edge and Firefox
-            msOverflowStyle:'none',
-            scrollbarWidth:'none'
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
           }}
         >
           <small style={{ fontSize: "small" }}>
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
-            <UserComment image={devImage} handleComment={handleComment} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
+            <UserComment image={devImage} />
           </small>
         </AccordionDetails>
         <Stack
@@ -79,25 +74,14 @@ export default function AccordionComment({ mode }) {
             alignItems: "center",
           }}
         >
-          {showOuterComment ? (
-            <InputBase
-              multiline
-              className="w-100 mt-2 p-3"
-              placeholder="write your comment here..."
-              sx={{
-                fontSize: "small",
-              }}
-            />
-          ) : (
-            <InputBase
-              multiline
-              className="w-100 mt-2 p-3"
-              placeholder="reply to this comment here..."
-              sx={{
-                fontSize: "small",
-              }}
-            />
-          )}
+          <InputBase
+            multiline
+            className="w-100 mt-2 p-3"
+            placeholder="write your comment here..."
+            sx={{
+              fontSize: "small",
+            }}
+          />
 
           <Box className="border-start border rounded" alignContent={"center"}>
             <Tooltip title={"post"}>

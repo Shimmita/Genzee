@@ -5,6 +5,8 @@ import useScrolledDown from "../hooks/useScrolledDown";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+const UserProfile = lazy(() => import('../profile/UserProfile'));
+const PostDetailsContainer = lazy(() => import("../post/PostDetailsContiner"));
 
 const AccountPremium = lazy(() => import("../more/account/AccountPremium"));
 const AccountPeople = lazy(() => import("../more/account/AccountPeople"));
@@ -73,6 +75,8 @@ const Feed = () => {
           <Route path="/events/add" element={<EventsAdd />} />
           <Route path="/events/bookmarks" element={<EventsBookMarks />} />
           <Route path="/events/upcoming" element={<EventsUpcoming />} />
+          <Route path="/posts/details" element={<PostDetailsContainer />} />
+          <Route path="/users/profile" element={<UserProfile />} />
         </Routes>
 
         {/* display speed dial in feed section only for mobile and no landscape */}

@@ -8,6 +8,7 @@ import { PersonAdd } from "@mui/icons-material";
 import ModalMorePeople from "./ModalMorePeople";
 import ConnectSuggestion from "./ConnectSuggestion";
 import Events from "../events/Events";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 
 const PeopleContainer = () => {
   // for follow/connect people people
@@ -31,7 +32,7 @@ const PeopleContainer = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Box  >
+        <Box>
           <ToggleButtonGroup
             color="primary"
             value={followConnect}
@@ -45,7 +46,7 @@ const PeopleContainer = () => {
               <small style={{ fontSize: "x-small" }}>connect &nbsp;10</small>
             </ToggleButton>
             {/* display only in small devices */}
-            {window.screen.availWidth < 1000 && (
+            {!CustomDeviceTablet() && (
               <>
                 <ToggleButton value={2}>
                   <small style={{ fontSize: "x-small" }}>Events</small>
@@ -57,12 +58,11 @@ const PeopleContainer = () => {
 
         <Box display={"flex"}>
           <IconButton onClick={handleShowingModalMorePeople}>
-            <PersonAdd  color="primary" sx={{ width: 20, height: 20 }} />
+            <PersonAdd color="primary" sx={{ width: 20, height: 20 }} />
           </IconButton>
         </Box>
       </Box>
       <Divider component={"div"} />
-
 
       <Box
         sx={{

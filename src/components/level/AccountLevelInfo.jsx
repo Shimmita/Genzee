@@ -96,7 +96,7 @@ export default function AccountLevelInfo({ setShowLevelInfo }) {
             management of the platform such as hiring and payment of our
             software developers and catering for the giantly related cloud
             hosting bills. <br />{" "}
-            <span className="text-success">
+            <span className="text-success fw-bold">
               support kenyan developers and lets build the unreal{" "}
             </span>
           </Typography>

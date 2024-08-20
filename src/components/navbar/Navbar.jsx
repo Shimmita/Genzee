@@ -168,6 +168,9 @@ const Navbar = ({ setMode, mode }) => {
     handleCloseDrawer();
   };
 
+  // home page
+  const handleHome = () => navigate("/");
+
   return (
     <AppBar position="sticky">
       <GenzeeToolBar>
@@ -181,7 +184,7 @@ const Navbar = ({ setMode, mode }) => {
             },
           }}
         >
-          <IconButton style={{ color: "white" }}>
+          <IconButton onClick={handleHome} style={{ color: "white" }}>
             <Typography variant="body1" className="fw-bold">
               GENZEE
             </Typography>
@@ -205,7 +208,7 @@ const Navbar = ({ setMode, mode }) => {
               </>
             )}
 
-            <IconButton style={{ color: "white" }}>
+            <IconButton onClick={handleHome} style={{ color: "white" }}>
               <small style={{ fontSize: "small" }} className="fw-bold">
                 GENZEE
               </small>
@@ -223,7 +226,7 @@ const Navbar = ({ setMode, mode }) => {
                 alignItems: "center",
               }}
             >
-              <form className="d-flex gap-1">
+              <form className="d-flex  ps-5 ms-5">
                 <Box>
                   <input
                     type="text"
@@ -416,21 +419,21 @@ const Navbar = ({ setMode, mode }) => {
                   />
                 </ListItemButton>
 
-                <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
-                  <ListItemIcon>
-                    <MonetizationOn />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={<Typography variant="body2">Premium</Typography>}
-                  />
-                </ListItemButton>
-
                 <ListItemButton sx={{ pl: 8 }} onClick={handleShowSettings}>
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
                   <ListItemText
                     primary={<Typography variant="body2">Settings</Typography>}
+                  />
+                </ListItemButton>
+
+                <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
+                  <ListItemIcon>
+                    <MonetizationOn />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={<Typography variant="body2">Premium</Typography>}
                   />
                 </ListItemButton>
               </List>

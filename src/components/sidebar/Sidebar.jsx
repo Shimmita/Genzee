@@ -121,7 +121,7 @@ const Sidebar = ({ setMode, mode }) => {
           xs: "none",
           sm: CustomDeviceTablet() ? "block" : "none",
           md: "block",
-          marginRight: "4rem",
+          marginRight: CustomDeviceTablet() && "5rem",
         },
       }}
     >
@@ -220,21 +220,20 @@ const Sidebar = ({ setMode, mode }) => {
                 />
               </ListItemButton>
 
-              <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
-                <ListItemIcon>
-                  <MonetizationOn />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<Typography variant="body2">Premium</Typography>}
-                />
-              </ListItemButton>
-
               <ListItemButton sx={{ pl: 8 }} onClick={handleShowSettings}>
                 <ListItemIcon>
                   <Settings />
                 </ListItemIcon>
                 <ListItemText
                   primary={<Typography variant="body2">Settings</Typography>}
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 8 }} onClick={handleShowPremium}>
+                <ListItemIcon>
+                  <MonetizationOn />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<Typography variant="body2">Premium</Typography>}
                 />
               </ListItemButton>
             </List>
@@ -350,7 +349,7 @@ const Sidebar = ({ setMode, mode }) => {
           <AccountLevelStep />
         </List>
         {/* box for Events displayed for tablets only */}
-        {CustomDeviceTablet && (
+        {CustomDeviceTablet() && (
           <>
             <hr />
             <Box className="mt-5">

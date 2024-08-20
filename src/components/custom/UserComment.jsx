@@ -1,32 +1,18 @@
-import * as React from "react";
+import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
+import { Badge, Checkbox, Divider, Stack, Tooltip } from "@mui/material";
 import {
-  Badge,
-  Box,
-  Checkbox,
-  Divider,
-  IconButton,
-  Stack,
-  Tooltip,
-} from "@mui/material";
-import {
-  Reply,
+  ThumbDownAltOutlined,
+  ThumbDownAltRounded,
   ThumbUpAltOutlined,
   ThumbUpAltRounded,
 } from "@mui/icons-material";
-import UserCommentReply from "./UserCommentReply";
 
 export default function UserComment({ image, handleComment }) {
-  const [showReply, setShowReply] = React.useState(false);
-
-  const handleShowReply = () => {
-    setShowReply((prev) => !prev);
-    handleComment();
-  };
   return (
     <List className="w-100" sx={{ bgcolor: "background.paper" }}>
       <ListItem alignItems="flex-start">
@@ -49,38 +35,16 @@ export default function UserComment({ image, handleComment }) {
                 display={"flex"}
                 justifyContent={"flex-start"}
                 alignContent={"center"}
+                gap={2}
               >
-                <Tooltip title="reply">
-                  <IconButton
-                    sx={{ color: "steelblue" }}
-                    onClick={handleShowReply}
-                  >
-                    {showReply ? (
-                      <small
-                        className="shadow-lg p-1"
-                        style={{ color: "steelblue", fontSize: "small" }}
-                      >
-                        close
-                      </small>
-                    ) : (
-                      <Badge badgeContent={1}>
-                        <Reply
-                          className="me-2"
-                          sx={{ width: 15, height: 15, color: "steelblue" }}
-                        />
-                      </Badge>
-                    )}
-                  </IconButton>
-                </Tooltip>
-
+                {/* like */}
                 <Tooltip title="like">
                   <Checkbox
-                    sx={{ color: "steelblue" }}
                     icon={
                       <Badge badgeContent={3}>
                         <ThumbUpAltOutlined
                           className="me-2"
-                          sx={{ color: "steelblue", width: 13, height: 13 }}
+                          sx={{ width: 16, height: 16 }}
                         />
                       </Badge>
                     }
@@ -88,21 +52,35 @@ export default function UserComment({ image, handleComment }) {
                       <Badge badgeContent={3}>
                         <ThumbUpAltRounded
                           className="me-2"
-                          sx={{ color: "steelblue", width: 13, height: 13 }}
+                          sx={{ width: 16, height: 16 }}
+                        />
+                      </Badge>
+                    }
+                  />
+                </Tooltip>
+                
+                {/* unlike */}
+                <Tooltip title="like">
+                  <Checkbox
+                    icon={
+                      <Badge badgeContent={3}>
+                        <ThumbDownAltOutlined
+                          className="me-2"
+                          sx={{ width: 16, height: 16 }}
+                        />
+                      </Badge>
+                    }
+                    checkedIcon={
+                      <Badge badgeContent={3}>
+                        <ThumbDownAltRounded
+                          className="me-2"
+                          sx={{ width: 16, height: 16 }}
                         />
                       </Badge>
                     }
                   />
                 </Tooltip>
               </Stack>
-              {showReply && (
-                <Box>
-                  <UserCommentReply image={image} />
-                  <UserCommentReply image={image} />
-                  <UserCommentReply image={image} />
-                  <UserCommentReply image={image} />
-                </Box>
-              )}
             </>
           }
         />
