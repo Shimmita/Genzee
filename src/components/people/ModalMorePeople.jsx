@@ -11,19 +11,21 @@ import {
 import React from "react";
 import devImage from "../../images/dev.jpeg";
 import PeopleResults from "./PeopleResults";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 
-const StyledModalPost = styled(Modal)({
+const StyledModalMorePeople = styled(Modal)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   margin: "10px",
+  marginLeft: CustomDeviceTablet() && "30%",
 });
 
 const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
   // handle the closing of the modal
   const handleCloseModal = () => setOpenPostModal(false);
   return (
-    <StyledModalPost
+    <StyledModalMorePeople
       open={openPostModal}
       onClose={(e) => setOpenPostModal(false)}
       aria-labelledby="modal-modal-title"
@@ -73,7 +75,7 @@ const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
         <Divider component={"div"} variant="fullWidth" />
         <PeopleResults />
       </Box>
-    </StyledModalPost>
+    </StyledModalMorePeople>
   );
 };
 

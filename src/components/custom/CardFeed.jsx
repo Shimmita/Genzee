@@ -23,6 +23,7 @@ import {
   Menu,
   Tooltip,
   Typography,
+  CardActionArea,
 } from "@mui/material";
 import React from "react";
 
@@ -144,39 +145,48 @@ const CardFeed = () => {
           title="Shimmitah"
           subheader="@devshim"
         />
-        <CardContent>
-          <small>
-            <Typography variant="body2" className="text-center w-100">
-              <Divider>{`${PostData.category} >> ${PostData.county}`} </Divider>
-            </Typography>
-          </small>
 
-          <Typography color="text.primary" variant="caption">
-            {handleDetailsLength()}
-            {handleShowMoreButton() && (
-              <span>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={handlePostDetails}
-                  sx={{ borderRadius: 5 }}
-                >
-                  <Typography
-                    variant="body2"
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "xx-small",
-                      paddingTop: "2px",
-                      textTransform: "lowercase",
-                    }}
+        <CardActionArea onClick={handlePostDetails}>
+          <CardContent>
+            <small>
+              <Typography
+                variant="body2"
+                component="div"
+                className="text-center w-100"
+              >
+                <Divider>
+                  {`${PostData.category} >> ${PostData.county}`}{" "}
+                </Divider>
+              </Typography>
+            </small>
+
+            <Typography color="text.secondary" variant="body2">
+              {handleDetailsLength()}
+              {handleShowMoreButton() && (
+                <span>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={handlePostDetails}
+                    sx={{ borderRadius: 5 }}
                   >
-                    more
-                  </Typography>
-                </Button>
-              </span>
-            )}
-          </Typography>
-        </CardContent>
+                    <Typography
+                      variant="body2"
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "xx-small",
+                        paddingTop: "2px",
+                        textTransform: "lowercase",
+                      }}
+                    >
+                      more
+                    </Typography>
+                  </Button>
+                </span>
+              )}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
 
         {/* media */}
         <Image

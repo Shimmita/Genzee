@@ -9,6 +9,7 @@ import ModalMorePeople from "./ModalMorePeople";
 import ConnectSuggestion from "./ConnectSuggestion";
 import Events from "../events/Events";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import CustomLandScape from "../utilities/CustomLandscape";
 
 const PeopleContainer = () => {
   // for follow/connect people people
@@ -46,13 +47,14 @@ const PeopleContainer = () => {
               <small style={{ fontSize: "x-small" }}>connect &nbsp;10</small>
             </ToggleButton>
             {/* display only in small devices */}
-            {!CustomDeviceTablet() && (
-              <>
-                <ToggleButton value={2}>
-                  <small style={{ fontSize: "x-small" }}>Events</small>
-                </ToggleButton>
-              </>
-            )}
+            {!CustomDeviceTablet() ||
+              (!CustomLandScape && (
+                <>
+                  <ToggleButton value={2}>
+                    <small style={{ fontSize: "x-small" }}>Events</small>
+                  </ToggleButton>
+                </>
+              ))}
           </ToggleButtonGroup>
         </Box>
 

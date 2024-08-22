@@ -59,6 +59,8 @@ const Navbar = ({ setMode, mode }) => {
   const [openHelp, setOpenHelp] = useState(false);
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  
+
   const navigate = useNavigate();
 
   const handleShowMobileSearch = () => {
@@ -248,7 +250,7 @@ const Navbar = ({ setMode, mode }) => {
         )}
 
         {/* show search bar on small devices when necessary */}
-        {showMobileSearch && (
+        {showMobileSearch &&  (
           <SearchBar>
             <Box
               sx={{

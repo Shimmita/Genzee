@@ -10,6 +10,7 @@ const initialState = {
   isAbout: false,
   isScrolledDown: false,
   isMobileRighBar: false,
+  isSearchBar: true,
 
   // theme
   isDarkMode: false,
@@ -71,6 +72,7 @@ const appUISliceReducerSlice = createSlice({
         isMobileRighBar: !state.isMobileRighBar,
       };
     },
+   
   },
 });
 

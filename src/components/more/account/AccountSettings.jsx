@@ -1,10 +1,14 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-
+const ProfileSettings = lazy(() => import("./settings/ProfileSettings"));
+const StreamingSettings = lazy(() => import("./settings/StreamingSettings"));
+const NotificationSettings = lazy(() =>
+  import("./settings/NotificationSettings")
+);
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -44,8 +48,6 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function AccountSettingsTabs() {
   const [value, setValue] = React.useState(0);
 
-
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -84,10 +86,12 @@ export default function AccountSettingsTabs() {
       </>
 
       {/* content of each tab goes here */}
-      <Box height={"70vh"}>
-        {value === 0 && <p>Profile</p>}
-        {value === 1 && <p>Data Saver</p>}
-        {value === 2 && <p>Sound Effect</p>}
+      <Box height={"70vh"} mt={2} className="w-100">
+        <Suspense fallback={<p className="text-text-center">loading...</p>}>
+          {value === 0 && <ProfileSettings />}
+          {value === 1 && <StreamingSettings />}
+          {value === 2 && <NotificationSettings />}
+        </Suspense>
       </Box>
     </Box>
   );

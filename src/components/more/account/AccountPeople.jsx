@@ -12,6 +12,7 @@ import React, { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { handleScrolledDown } from "../../../redux/AppUI";
+import FriendsContainer from "./friends/FriendsContainer";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -57,7 +58,10 @@ export default function AccountPeople() {
 
   // redux to stop showing of the speed dial
   const dispatch = useDispatch();
+
+  // use effect hook
   useEffect(() => {
+    // track scrolled down
     dispatch(handleScrolledDown(true));
   });
 
@@ -66,6 +70,7 @@ export default function AccountPeople() {
   const handleHome = () => {
     navigate("/");
   };
+  
   return (
     <Box height={"92vh"} bgcolor={"background.default"} color={"text.primary"}>
       <IconButton onClick={handleHome}>
@@ -77,7 +82,7 @@ export default function AccountPeople() {
           <input
             type="text"
             className="form-control w-100"
-            placeholder={"search people..."}
+            placeholder={"search friends..."}
           />
 
           <Tooltip title={"search"}>
@@ -97,7 +102,7 @@ export default function AccountPeople() {
           <StyledTab
             className="pe-4"
             label={
-              <Typography >
+              <Typography>
                 Following <span className="ps-1 fw-bold">50k</span>
               </Typography>
             }
@@ -105,7 +110,7 @@ export default function AccountPeople() {
           <StyledTab
             className="ps-5"
             label={
-              <Typography >
+              <Typography>
                 Followers <span className="ps-1 fw-bold">20k</span>
               </Typography>
             }
@@ -114,7 +119,7 @@ export default function AccountPeople() {
       </Box>
 
       <Box
-        height={"82vh"}
+        height={"75vh"}
         sx={{
           overflowX: "auto",
           // Hide scrollbar for Chrome, Safari and Opera
@@ -129,11 +134,14 @@ export default function AccountPeople() {
         {/* content of each tab goes here */}
         <Box>
           <Suspense fallback={<div>loading...</div>}>
-            {value === 0 && <>Following</>}
-            {value === 1 && <>Followers</>}
+            {value === 0 && <FriendsContainer />}
+            {value === 1 && <FriendsContainer />}
           </Suspense>
         </Box>
       </Box>
+
+      
     </Box>
+
   );
 }
