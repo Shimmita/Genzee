@@ -20,6 +20,7 @@ import {
   Avatar,
   Box,
   Collapse,
+  Divider,
   List,
   ListItemButton,
   ListItemIcon,
@@ -344,9 +345,11 @@ const Sidebar = ({ setMode, mode }) => {
               onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
             />
           </ListItemButton>
-
+          <Divider component={"li"} />
           {/* show account level status */}
-          <AccountLevelStep />
+          <Box mt={1}>
+            <AccountLevelStep />
+          </Box>
         </List>
         {/* box for Events displayed for tablets only */}
         {CustomDeviceTablet() && (

@@ -55,11 +55,9 @@ const PostCardDetails = () => {
             margin: "0px",
           }}
           avatar={
-            <Tooltip title="profile" arrow>
-              <IconButton>
-                <Avatar aria-label="avatar">S</Avatar>
-              </IconButton>
-            </Tooltip>
+            <IconButton disabled>
+              <Avatar aria-label="avatar">S</Avatar>
+            </IconButton>
           }
           action={
             <Box className="d-flex flex-row ">
@@ -126,7 +124,7 @@ const PostCardDetails = () => {
         {!showComment && (
           <CardContent>
             <small>
-              <Typography variant="body2" className="text-center w-100">
+              <Typography gutterBottom variant="body2" className="text-center w-100">
                 <Divider>
                   {`${PostData && PostData.category} >> ${
                     PostData && PostData.county
@@ -135,7 +133,7 @@ const PostCardDetails = () => {
               </Typography>
             </small>
 
-            <Typography color="text.primary" variant="caption">
+            <Typography variant="body2">
               {PostData && PostData.details}
             </Typography>
           </CardContent>
@@ -164,8 +162,8 @@ const PostCardDetails = () => {
           >
             <Tooltip title="like" arrow>
               <Checkbox
-                icon={<ThumbUpAltOutlined sx={{ width: 22, height: 22 }} />}
-                checkedIcon={<ThumbUpRounded sx={{ width: 22, height: 22 }} />}
+                icon={<ThumbUpAltOutlined sx={{ width: 23, height: 23 }} />}
+                checkedIcon={<ThumbUpRounded sx={{ width: 23, height: 23 }} />}
               />
               <small style={{ fontSize: "small" }}>20k</small>
             </Tooltip>

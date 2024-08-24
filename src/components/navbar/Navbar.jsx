@@ -8,9 +8,9 @@ import {
   ExpandMore,
   Home,
   Lightbulb,
-  Mail,
   MenuRounded,
   MonetizationOn,
+  Notifications,
   People,
   PostAdd,
   QuestionMark,
@@ -18,7 +18,7 @@ import {
   SearchRounded,
   Settings,
   Smartphone,
-  Support,
+  Support
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -26,6 +26,7 @@ import {
   Badge,
   Box,
   Collapse,
+  Divider,
   Drawer,
   IconButton,
   List,
@@ -59,7 +60,6 @@ const Navbar = ({ setMode, mode }) => {
   const [openHelp, setOpenHelp] = useState(false);
 
   const [showMobileSearch, setShowMobileSearch] = useState(false);
-  
 
   const navigate = useNavigate();
 
@@ -250,7 +250,7 @@ const Navbar = ({ setMode, mode }) => {
         )}
 
         {/* show search bar on small devices when necessary */}
-        {showMobileSearch &&  (
+        {showMobileSearch && (
           <SearchBar>
             <Box
               sx={{
@@ -299,7 +299,7 @@ const Navbar = ({ setMode, mode }) => {
           {!showMobileSearch && (
             <>
               <Badge badgeContent={1} color="error">
-                <Mail sx={{ width: 25, height: 25 }} />
+                <Notifications sx={{ width: 25, height: 25 }} />
               </Badge>
               &nbsp;
               <Avatar
@@ -330,7 +330,7 @@ const Navbar = ({ setMode, mode }) => {
               }}
             >
               <Typography variant="body2">SHIMITA DOUGLAS</Typography>|
-              <Typography variant="caption">7 Days Trial</Typography>
+              <Typography variant="caption">FREE PLAN</Typography>
             </Toolbar>
           </AppBar>
 
@@ -546,9 +546,11 @@ const Navbar = ({ setMode, mode }) => {
                 onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
               />
             </ListItemButton>
-
+            <Divider component={"li"} />
             {/* show account level status */}
-            <AccountLevelStep />
+            <Box paddingLeft={1} paddingRight={1} mt={1}>
+              <AccountLevelStep />
+            </Box>
           </List>
         </Box>
       </Drawer>

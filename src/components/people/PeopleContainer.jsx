@@ -1,15 +1,14 @@
+import { PersonAdd } from "@mui/icons-material";
 import { Box, Divider, IconButton } from "@mui/material";
-import React from "react";
-import FollowSuggetion from "./FollowSuggestion";
-import { GetScreenWidth } from "../utilities/GetScreenWidth";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { PersonAdd } from "@mui/icons-material";
-import ModalMorePeople from "./ModalMorePeople";
-import ConnectSuggestion from "./ConnectSuggestion";
+import React from "react";
 import Events from "../events/Events";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
-import CustomLandScape from "../utilities/CustomLandscape";
+import { GetScreenWidth } from "../utilities/GetScreenWidth";
+import ConnectSuggestion from "./ConnectSuggestion";
+import FollowSuggetion from "./FollowSuggestion";
+import ModalMorePeople from "./ModalMorePeople";
 
 const PeopleContainer = () => {
   // for follow/connect people people
@@ -47,14 +46,13 @@ const PeopleContainer = () => {
               <small style={{ fontSize: "x-small" }}>connect &nbsp;10</small>
             </ToggleButton>
             {/* display only in small devices */}
-            {!CustomDeviceTablet() ||
-              (!CustomLandScape && (
-                <>
-                  <ToggleButton value={2}>
-                    <small style={{ fontSize: "x-small" }}>Events</small>
-                  </ToggleButton>
-                </>
-              ))}
+            {!CustomDeviceTablet() && (
+              <>
+                <ToggleButton value={2}>
+                  <small style={{ fontSize: "x-small" }}>Events</small>
+                </ToggleButton>
+              </>
+            )}
           </ToggleButtonGroup>
         </Box>
 

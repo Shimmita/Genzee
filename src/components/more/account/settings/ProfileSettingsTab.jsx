@@ -1,15 +1,12 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import { IconButton, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { handleScrolledDown } from "../../../redux/AppUI";
-import { ArrowBack } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-const ProfileSettingsTab = lazy(() => import("./settings/ProfileSettingsTab"));
-const StreamingSettings = lazy(() => import("./settings/StreamingSettings"));
+import { styled } from "@mui/material/styles";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import React, { lazy, Suspense } from "react";
+const DeleteAccount = lazy(() => import("./DeleteAccountSettings"));
+const PrivacySettings = lazy(() => import("./PrivacySettings"));
+const GeneralSettings = lazy(() => import("./GeneralSettings"));
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -46,36 +43,15 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-export default function AccountSettingsTabs() {
+export default function ProfileSettingsTab() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // redux to stop showing of the speed dial
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(handleScrolledDown(true));
-  });
-
-  // go back exact place on the home page
-  const navigate = useNavigate();
-  const handleHome = () => {
-    navigate("/");
-  };
   return (
     <Box height={"92vh"} bgcolor={"background.default"} color={"text.primary"}>
-      <IconButton onClick={handleHome}>
-        <ArrowBack />
-      </IconButton>
-      <div className="d-flex justify-align-content-between w-100 align-items-center">
-        {/* title */}
-        <Typography variant={"body1"} className="w-100  text-center">
-          Account Settings
-        </Typography>
-      </div>
-      {/* tabs */}
       <Box className="d-flex justify-content-center align-items-center">
         <StyledTabs
           value={value}
@@ -83,10 +59,9 @@ export default function AccountSettingsTabs() {
           aria-label="styled tabs"
           className="fw-light"
         >
-          <StyledTab label={<Typography variant="body2">Profile</Typography>} />
-          <StyledTab
-            label={<Typography variant="body2">Streaming</Typography>}
-          />
+          <StyledTab label={<Typography variant="body2">General</Typography>} />
+          <StyledTab label={<Typography variant="body2">Privacy</Typography>} />
+          <StyledTab label={<Typography variant="body2">Delete</Typography>} />
         </StyledTabs>
       </Box>
 
@@ -107,8 +82,9 @@ export default function AccountSettingsTabs() {
         className="w-100"
       >
         <Suspense fallback={<p className="text-text-center">loading...</p>}>
-          {value === 0 && <ProfileSettingsTab />}
-          {value === 1 && <StreamingSettings />}
+          {value === 0 && <GeneralSettings />}
+          {value === 1 && <PrivacySettings />}
+          {value === 2 && <DeleteAccount />}
         </Suspense>
       </Box>
     </Box>

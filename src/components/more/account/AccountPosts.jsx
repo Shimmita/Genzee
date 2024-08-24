@@ -23,7 +23,7 @@ export default function AccountPosts() {
       <IconButton onClick={handleHome}>
         <ArrowBack />
       </IconButton>
-      <Typography gutterBottom style={{ textAlign: "center" }}>
+      <Typography variant="body1" gutterBottom style={{ textAlign: "center" }}>
         My Post
       </Typography>
       <Divider component={"div"} className="m-2" />

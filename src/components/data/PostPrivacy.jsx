@@ -1,6 +1,6 @@
 const PostPrivacy = [
-  "everyone should see it",
-  "only friends should see it",
+  "everyone should view",
+  "only friends should view",
 ];
 
 export default PostPrivacy;
