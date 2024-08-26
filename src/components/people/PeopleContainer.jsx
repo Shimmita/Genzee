@@ -1,10 +1,9 @@
 import { PersonAdd } from "@mui/icons-material";
-import { Box, Divider, IconButton } from "@mui/material";
+import { Box, Divider, IconButton, Typography } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import React from "react";
 import Events from "../events/Events";
-import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 import { GetScreenWidth } from "../utilities/GetScreenWidth";
 import ConnectSuggestion from "./ConnectSuggestion";
 import FollowSuggetion from "./FollowSuggestion";
@@ -15,8 +14,8 @@ const PeopleContainer = () => {
   const items = Array.from({ length: 10 }, (_, i) => i);
 
   const [openPostModal, setOpenPostModal] = React.useState(false);
-  const [followConnect, setFollowConnect] = React.useState(0);
-  // handle showing follow or connect
+  const [followConnect, setFollowConnect] = React.useState();
+  // handle showing follow, connect or event
   const handleChange = (event, update) => {
     setFollowConnect(update);
   };
@@ -26,7 +25,7 @@ const PeopleContainer = () => {
   };
 
   return (
-    <Box className="border-top border-bottom mb-2">
+    <Box className="border-top shadow rounded mb-3 ">
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -34,25 +33,29 @@ const PeopleContainer = () => {
       >
         <Box>
           <ToggleButtonGroup
-            color="primary"
             value={followConnect}
             exclusive
+            color="primary"
             onChange={handleChange}
           >
-            <ToggleButton value={0}>
-              <small style={{ fontSize: "x-small" }}>follow &nbsp;20 </small>
-            </ToggleButton>
-            <ToggleButton value={1}>
-              <small style={{ fontSize: "x-small" }}>connect &nbsp;10</small>
-            </ToggleButton>
             {/* display only in small devices */}
-            {!CustomDeviceTablet() && (
-              <>
-                <ToggleButton value={2}>
-                  <small style={{ fontSize: "x-small" }}>Events</small>
-                </ToggleButton>
-              </>
+            {window.screen.availWidth <= 700 && (
+              <ToggleButton value={0}>
+                <Typography fontSize={"smaller"} variant="body2">
+                  Events
+                </Typography>
+              </ToggleButton>
             )}
+            <ToggleButton value={1}>
+              <Typography fontSize={"smaller"} variant="body2">
+                follow <span className="ps-2">20</span>{" "}
+              </Typography>
+            </ToggleButton>
+            <ToggleButton value={2}>
+              <Typography fontSize={"smaller"} variant="body2">
+                connect <span className="ps-2">10</span>{" "}
+              </Typography>
+            </ToggleButton>
           </ToggleButtonGroup>
         </Box>
 
@@ -64,38 +67,41 @@ const PeopleContainer = () => {
       </Box>
       <Divider component={"div"} />
 
-      <Box
-        sx={{
-          width: GetScreenWidth(),
-          display: "flex",
-          overflowX: "auto",
-          gap: 1,
-          padding: 1,
-          "&::-webkit-scrollbar": { display: "none" },
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-        }}
-      >
-        {/* show follow if 0 else(1) show connect */}
+      {/* followconnect empty then do not show else show */}
+      {followConnect && (
+        <Box
+          sx={{
+            width: GetScreenWidth(),
+            display: "flex",
+            overflowX: "auto",
+            gap: 1,
+            padding: 1,
+            "&::-webkit-scrollbar": { display: "none" },
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+          }}
+        >
+          {/* show follow if 0 else(1) show connect */}
 
-        {followConnect === 0 ? (
-          <>
-            {items.map((item, index) => (
-              <FollowSuggetion key={index} />
-            ))}
-          </>
-        ) : followConnect === 1 ? (
-          <>
-            {items.map((item, index) => (
-              <ConnectSuggestion key={index} />
-            ))}
-          </>
-        ) : (
-          <>
-            <Events />
-          </>
-        )}
-      </Box>
+          {followConnect === 1 ? (
+            <>
+              {items.map((item, index) => (
+                <FollowSuggetion key={index} />
+              ))}
+            </>
+          ) : followConnect === 2 ? (
+            <>
+              {items.map((item, index) => (
+                <ConnectSuggestion key={index} />
+              ))}
+            </>
+          ) : followConnect === 0 ? (
+            <>
+              <Events />
+            </>
+          ) : null}
+        </Box>
+      )}
 
       {/* follow more people modal */}
       <ModalMorePeople

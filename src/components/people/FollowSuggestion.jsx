@@ -1,26 +1,24 @@
-import React from "react";
+import { Avatar, Box, Button } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Button, CardActions } from "@mui/material";
-import devImage from "../../images/dev.jpeg";
+import React from "react";
 import { Image } from "react-bootstrap";
+import devImage from "../../images/dev.jpeg";
 
 export default function FollowSuggetion() {
   return (
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <Card
         elevation={0}
-        sx={{ width: 120, height: 170 }}
-        className="rounded"
+        sx={{ width: 120, height: 155 }}
+        className="border rounded"
       >
-      
         <CardContent>
           <Box display={"flex"} justifyContent={"center"}>
-            <Avatar >
-              <Image width={36} src={devImage}/>
+            <Avatar>
+              <Image width={36} src={devImage} />
             </Avatar>
-
           </Box>
           <Typography
             className="text-center"
@@ -38,16 +36,13 @@ export default function FollowSuggetion() {
             <small>@AlbertStar</small>
           </Typography>
         </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button
-          variant="outlined"
-          size="small"
-            disableElevation
-            sx={{ borderRadius:5 }}
-          >
-            <small style={{ fontSize: "xx-small", paddingTop:'1px' }}>Follow</small>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Button size="small" variant="contained" sx={{ borderRadius: 5 }}>
+            <small style={{ fontSize: "xx-small", paddingTop: "1px" }}>
+              Follow
+            </small>
           </Button>
-        </CardActions>
+        </Box>
       </Card>
     </Box>
   );

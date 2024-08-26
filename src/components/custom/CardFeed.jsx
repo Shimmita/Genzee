@@ -1,7 +1,6 @@
 import {
   CommentBankOutlined,
   CommentBankRounded,
-  Done,
   Favorite,
   FavoriteBorder,
   MoreVert,
@@ -25,17 +24,19 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 import { Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import PostData from "../data/PostData";
-import CardFeedMore from "./CardFeedMore";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import CardFeedMore from "./CardFeedMore";
 const CardFeed = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMoreVertPost = Boolean(anchorEl);
   const navigate = useNavigate();
+
+  const [isFriend, setIsFriend] = useState(true);
 
   // show reply in the post details page
   const handleReplyPost = () => {
@@ -56,7 +57,7 @@ const CardFeed = () => {
     if (CustomDeviceTablet() || window.screen.width > 1000)
       return details.length > 220 ? details.substring(0, 220) : details;
     // smaller screens less content
-    return details.length > 160 ? details.substring(0, 160) : details;
+    return details.length > 105 ? details.substring(0, 105) : details;
   };
 
   // fun to handle showing of the more button
@@ -66,7 +67,7 @@ const CardFeed = () => {
     if (CustomDeviceTablet() || window.screen.availWidth > 1000)
       return details.length > 220;
     // show more button in smaller screens
-    return details.length > 160;
+    return details.length > 105;
   };
 
   // navigate to the post details page
@@ -80,8 +81,8 @@ const CardFeed = () => {
   };
 
   return (
-    <Box>
-      <Card elevation={0} className="w-100">
+    <>
+      <Card elevation={0} className="w-100 shadow mb-3 rounded-2 p-1">
         <CardHeader
           sx={{
             padding: "0px",
@@ -102,12 +103,15 @@ const CardFeed = () => {
                 </Typography>
               </IconButton>
 
-              <Tooltip title="follow" arrow>
-                <Checkbox
-                  icon={<PersonAddOutlined sx={{ width: 20, height: 20 }} />}
-                  checkedIcon={<Done sx={{ width: 20, height: 20 }}  />}
-                />
-              </Tooltip>
+              {/* displayed if user is friend */}
+              {isFriend && (
+                <Tooltip title="follow" arrow>
+                  <Checkbox
+                    onChange={() => setIsFriend(false)}
+                    icon={<PersonAddOutlined sx={{ width: 20, height: 20 }} />}
+                  />
+                </Tooltip>
+              )}
 
               <Tooltip title="more" arrow>
                 <IconButton
@@ -149,7 +153,7 @@ const CardFeed = () => {
 
         <CardActionArea onClick={handlePostDetails}>
           <CardContent>
-            <small>
+            <>
               <Typography
                 variant="body2"
                 component="div"
@@ -160,7 +164,7 @@ const CardFeed = () => {
                   {`${PostData.category} >> ${PostData.county}`}{" "}
                 </Divider>
               </Typography>
-            </small>
+            </>
 
             <Typography variant="body2">
               {handleDetailsLength()}
@@ -198,7 +202,6 @@ const CardFeed = () => {
               gap: 2,
               paddingRight: window.screen.availWidth > 600 && "2rem",
             }}
-            className="d-flex"
           >
             <Tooltip title="like" arrow>
               <Checkbox
@@ -231,11 +234,9 @@ const CardFeed = () => {
           </CardActions>
         </Box>
       </Card>
-
-      <Divider component={"div"} className="my-3" />
       {/* show backdrop when more icon of the post is clicked */}
       <Backdrop open={openMoreVertPost} />
-    </Box>
+    </>
   );
 };
 

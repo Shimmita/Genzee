@@ -1,6 +1,6 @@
 import { Box, Divider, IconButton, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import MyPost from "./post/MyPost";
+import MyPostContainer from "./post/MyPostContainer";
 import { handleScrolledDown } from "../../../redux/AppUI";
 import { useDispatch } from "react-redux";
 import { ArrowBack } from "@mui/icons-material";
@@ -40,7 +40,7 @@ export default function AccountPosts() {
           "scrollbar-width": "none",
         }}
       >
-        <MyPost />
+        <MyPostContainer />
       </Box>
     </Box>
   );

@@ -41,6 +41,7 @@ const Feed = () => {
       p={CustomDeviceTablet() ? 2 : 1}
       bgcolor={"background.default"}
       color={"text.primary"}
+      marginRight={window.screen.availWidth>1200 && '6%'}
     >
       <Suspense
         fallback={

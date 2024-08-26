@@ -24,16 +24,12 @@ export default function FriendsCard() {
 
         <Box pl={8} display={"flex"} justifyContent={"flex-end"}>
           <IconButton className="border">
-            <PersonRemove sx={{ width: 18, height: 18 }} />
+            <PersonRemove color="primary" sx={{ width: 18, height: 18 }} />
           </IconButton>
         </Box>
       </ListItem>
-      
+
       <Divider variant="inset" component="li" />
     </List>
   );
 }
-
-
-
-

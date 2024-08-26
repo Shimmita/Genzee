@@ -24,7 +24,7 @@ export default function PeopleBluePrint() {
 
         <Box pl={8} display={"flex"} justifyContent={"flex-end"}>
           <IconButton className="border">
-            <PersonAdd sx={{ width: 20, height: 20 }} />
+            <PersonAdd color="primary" sx={{ width: 20, height: 20 }} />
           </IconButton>
         </Box>
       </ListItem>

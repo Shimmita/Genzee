@@ -1,20 +1,19 @@
+import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import {
   Backdrop,
   Box,
-  Divider,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
 import React from "react";
-import TopDailyPosts from "./TopDailyPost";
-import { Add, Bookmark, VideoCall } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import useScrolledDown from "../hooks/useScrolledDown";
 import BasicSpeedDial from "../custom/SpeedDial";
+import useScrolledDown from "../hooks/useScrolledDown";
+import TopDailyPosts from "./TopDailyPost";
 
-const RightbarAll = () => {
+const RightbarAll = ({ mode }) => {
   // backdrop state
   const [openBackdrop, setOpenBackdrop] = React.useState(false);
   const { isScrolledDown } = useSelector((state) => state.appUI);
@@ -32,101 +31,113 @@ const RightbarAll = () => {
         bgcolor={"background.default"}
         color={"text.primary"}
       >
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold" variant="caption">
-            Posts of the Day
-          </Typography>
+        <Box className="shadow rounded p-1 me-3">
+          <Box display={"flex"} justifyContent={"center"}>
+            <Typography
+              style={{ color: mode === "light" ? "steelblue" : "white" }}
+              className="mt-2"
+            >
+              TRENDING
+            </Typography>
+          </Box>
+
+          <Box display={"flex"} justifyContent={"center"}>
+            <TopDailyPosts />
+          </Box>
         </Box>
 
-        <Box display={"flex"} justifyContent={"center"}>
-          <TopDailyPosts />
-        </Box>
+        <Box className="shadow mt-3 rounded me-3">
+          <Box display={"flex"} justifyContent={"center"}>
+            <Typography
+              style={{ color: mode === "light" ? "steelblue" : "white" }}
+              gutterBottom
+              className="mb-2 mt-2"
+            >
+              EVENTS
+            </Typography>
+          </Box>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="pe-2"
+          >
+            <ListItemButton LinkComponent={"a"} href="#home">
+              <ListItemIcon>
+                <VideoCall color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body2">Ongoing Live Events</Typography>
+                }
+              />
+            </ListItemButton>
+            <Typography  variant="body2">
+              20
+            </Typography>
+          </Box>
 
-        <Divider component={"div"} variant="fullWidth" className="mb-2" />
-        <Box display={"flex"} justifyContent={"center"}>
-          <Typography className="fw-bold mb-2" variant="caption">
-            Explore Events
-          </Typography>
-        </Box>
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          className="pe-2"
-        >
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <VideoCall color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="body2">Ongoing Live Events</Typography>
-              }
-            />
-          </ListItemButton>
-          <Typography className="fw-bold" variant="body2">
-            20
-          </Typography>
-        </Box>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="pe-2"
+          >
+            <ListItemButton LinkComponent={"a"} href="#home">
+              <ListItemIcon>
+                <VideoCall color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body2">Upcoming Live Events</Typography>
+                }
+              />
+            </ListItemButton>
+            <Typography  variant="body2">
+              35
+            </Typography>
+          </Box>
 
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          className="pe-2"
-        >
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <VideoCall color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="body2">Upcoming Live Events</Typography>
-              }
-            />
-          </ListItemButton>
-          <Typography className="fw-normal" variant="body2">
-            35
-          </Typography>
-        </Box>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="pe-2"
+          >
+            <ListItemButton LinkComponent={"a"} href="#home">
+              <ListItemIcon>
+                <Bookmark color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body2">
+                    My Event Viewer Status{" "}
+                  </Typography>
+                }
+              />
+            </ListItemButton>
+            <Typography variant="body2">
+              3
+            </Typography>
+          </Box>
 
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          className="pe-2"
-        >
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <Bookmark color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="body2">My Event Viewer Status </Typography>
-              }
-            />
-          </ListItemButton>
-          <Typography className="fw-normal" variant="body2">
-            3
-          </Typography>
-        </Box>
-
-        <Box
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          className="pe-2"
-        >
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemIcon>
-              <Add color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography variant="body2">Add an Upcoming Event</Typography>
-              }
-            />
-          </ListItemButton>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="pe-2"
+          >
+            <ListItemButton LinkComponent={"a"} href="#home">
+              <ListItemIcon>
+                <Add color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography variant="body2">Add an Upcoming Event</Typography>
+                }
+              />
+            </ListItemButton>
+          </Box>
         </Box>
       </Box>
 

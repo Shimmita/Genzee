@@ -28,7 +28,6 @@ export default function Events() {
     navigate("events/bookmarks");
   };
   return (
-    
     <Box
       sx={{
         width: GetScreenWidth(),
@@ -49,7 +48,7 @@ export default function Events() {
       >
         <ListItemButton onClick={handleEventsLive}>
           <ListItemIcon>
-            <VideoCall />
+            <VideoCall color="primary" />
           </ListItemIcon>
           <ListItemText
             primary={<Typography variant="body2">Live</Typography>}
@@ -66,7 +65,7 @@ export default function Events() {
       >
         <ListItemButton onClick={handleEventsUpcoming}>
           <ListItemIcon>
-            <UpcomingRounded />
+            <UpcomingRounded color="primary" />
           </ListItemIcon>
           <ListItemText
             primary={<Typography variant="body2">Upcoming</Typography>}
@@ -85,7 +84,7 @@ export default function Events() {
       >
         <ListItemButton onClick={handleEventsBookMarks}>
           <ListItemIcon>
-            <Bookmark />
+            <Bookmark color="primary" />
           </ListItemIcon>
           <ListItemText
             primary={<Typography variant="body2">Bookmarks </Typography>}
@@ -104,7 +103,7 @@ export default function Events() {
       >
         <ListItemButton onClick={handleEventsAdd}>
           <ListItemIcon>
-            <Add />
+            <Add color="primary" />
           </ListItemIcon>
           <ListItemText
             primary={<Typography variant="body2">Add</Typography>}

@@ -12,7 +12,7 @@ const FeedDefaultContent = () => {
           <PeopleContainer />
         </Box>
       </Box>
-      <Box>
+      <Box >
         <FeedCardContainer />
       </Box>
     </Box>

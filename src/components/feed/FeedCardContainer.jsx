@@ -6,7 +6,7 @@ const FeedCardContainer = () => {
   const items = Array.from({ length: 10 }, (_, i) => i);
   return (
     <>
-     { items.map((item, index) => (
+      {items.map((item, index) => (
         <CardFeed key={index} />
       ))}
     </>

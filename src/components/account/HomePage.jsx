@@ -25,12 +25,12 @@ function Homepage() {
       <Box bgcolor={"background.default"} color={"text.primary"}>
         <Stack direction={"column"}>
           {/* nav+content */}
-          <Stack direction={"column"} flex={3}>
+          <Stack direction={"column"}>
             <Navbar setMode={setMode} mode={mode} />
-            <Stack direction={"row"} justifyContent={"space-between"}>
+            <Stack  direction={"row"} justifyContent={"space-around"}>
               <Sidebar setMode={setMode} mode={mode} />
               <Feed />
-              <Righbar />
+              <Righbar mode={mode} />
             </Stack>
           </Stack>
 

@@ -98,24 +98,17 @@ export default function UserProfile() {
             </Typography>
           </Box>
 
-          <Box display={"flex"} justifyContent={"center"} mb={1}>
-            <Typography variant="body2" sx={{ textTransform: "capitalize" }}>
-              Life is a gift from God gotta use it well
-            </Typography>
-          </Box>
-
           <Box
             display={"flex"}
-            justifyContent={"space-between"}
+            justifyContent={"center"}
             alignItems={"center"}
-            px={3}
-            mt={1}
-            mb={1}
+            gap={5}
+            m={2}
           >
             <Button
               disableElevation
               startIcon={<PersonAdd />}
-              variant="outlined"
+              variant="contained"
               sx={{ borderRadius: 5, fontWeight: "bold" }}
               size="small"
             >
@@ -136,7 +129,12 @@ export default function UserProfile() {
               </Typography>
             </Button>
           </Box>
-          
+          <Box display={"flex"} justifyContent={"center"} mb={1}>
+            <Typography variant="body2" >
+              Life is a gift from God gotta use it well
+            </Typography>
+          </Box>
+
           <Box display={"flex"} justifyContent={"space-between"} mt={1} px={2}>
             <Typography variant="body2">
               Following <span className="ps-1 fw-bold">50k</span>
