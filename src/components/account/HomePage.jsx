@@ -1,12 +1,12 @@
 import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import BottomNav from "../custom/BottomNav";
 import Feed from "../feed/Feed";
+import useScrolledDown from "../hooks/useScrolledDown";
 import Navbar from "../navbar/Navbar";
 import Righbar from "../rightbar/Righbar";
 import Sidebar from "../sidebar/Sidebar";
-import BottomNav from "../custom/BottomNav";
-import { useState } from "react";
-import useScrolledDown from "../hooks/useScrolledDown";
-import { useSelector } from "react-redux";
 
 function Homepage() {
   const [mode, setMode] = useState("light");
@@ -27,7 +27,7 @@ function Homepage() {
           {/* nav+content */}
           <Stack direction={"column"}>
             <Navbar setMode={setMode} mode={mode} />
-            <Stack  direction={"row"} justifyContent={"space-around"}>
+            <Stack direction={"row"} justifyContent={"space-around"}>
               <Sidebar setMode={setMode} mode={mode} />
               <Feed />
               <Righbar mode={mode} />

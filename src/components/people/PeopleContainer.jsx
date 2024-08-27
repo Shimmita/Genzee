@@ -1,5 +1,5 @@
 import { PersonAdd } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import React from "react";
@@ -25,7 +25,7 @@ const PeopleContainer = () => {
   };
 
   return (
-    <Box className="border-top shadow rounded mb-3 ">
+    <Box className="shadow rounded mb-3 ">
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -65,7 +65,6 @@ const PeopleContainer = () => {
           </IconButton>
         </Box>
       </Box>
-      <Divider component={"div"} />
 
       {/* followconnect empty then do not show else show */}
       {followConnect && (

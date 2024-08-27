@@ -18,7 +18,7 @@ import {
   SearchRounded,
   Settings,
   Smartphone,
-  Support
+  Support,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -48,6 +48,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import devImage from "../../images/dev.jpeg";
+import KenyaFlag from "../../images/KE.png";
 import { resetDarkMode } from "../../redux/AppUI";
 import AccountLevelStep from "../level/AccountLevel";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
@@ -96,7 +97,6 @@ const Navbar = ({ setMode, mode }) => {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "20px",
   });
 
   const BoxAvatarContent = styled(Box)({
@@ -186,35 +186,45 @@ const Navbar = ({ setMode, mode }) => {
             },
           }}
         >
-          <IconButton onClick={handleHome} style={{ color: "white" }}>
-            <Typography variant="body1" className="fw-bold">
-              GENZEE
-            </Typography>
-          </IconButton>
+          <Box display={"flex"} alignItems={"center"} gap={1}>
+            <Avatar alt="KE" src={KenyaFlag} sx={{ width: 28, height: 28 }} />
+            <IconButton onClick={handleHome} style={{ color: "white" }}>
+              <Typography className="fw-bold">GENZEE</Typography>
+            </IconButton>
+          </Box>
         </LogoContent>
 
         {/* show logo content on the small devices searchIcon  not clicked */}
         {!showMobileSearch && (
           <LogoContent
-            display={"flex"}
             sx={{
               display: { xs: "block", sm: "block", md: "none", lg: "none" },
             }}
           >
             {/* show menu on small devices only not tab+laps+desk */}
             {!CustomDeviceTablet() && (
-              <>
-                <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
-                  <MenuRounded style={{ color: "white" }} />
-                </IconButton>
-              </>
+              <IconButton onClick={(e) => setOpenDrawer(!openDrawer)}>
+                <MenuRounded style={{ color: "white" }} />
+              </IconButton>
             )}
+            {/* tablet show KE Flag not on smaller Devices */}
+            {CustomDeviceTablet() ? (
+              <Box display={"flex"} alignItems={"center"} gap={1}>
+                <Avatar
+                  alt="KE"
+                  src={KenyaFlag}
+                  sx={{ width: 28, height: 28 }}
+                />
 
-            <IconButton onClick={handleHome} style={{ color: "white" }}>
-              <small style={{ fontSize: "small" }} className="fw-bold">
-                GENZEE
-              </small>
-            </IconButton>
+                <IconButton onClick={handleHome} style={{ color: "white" }}>
+                  <Typography className="fw-bold">GENZEE</Typography>
+                </IconButton>
+              </Box>
+            ) : (
+              <IconButton onClick={handleHome} style={{ color: "white" }}>
+                <Typography sName="fw-bold">GENZEE</Typography>
+              </IconButton>
+            )}
           </LogoContent>
         )}
 
@@ -316,7 +326,7 @@ const Navbar = ({ setMode, mode }) => {
       {/* drawer  tablet and samall screen */}
       <Drawer open={openDrawer} onClose={(e) => setOpenDrawer(false)}>
         <Box
-          width={300}
+          maxWidth={300}
           height={"100%"}
           bgcolor={"background.default"}
           color={"text.primary"}
@@ -329,8 +339,9 @@ const Navbar = ({ setMode, mode }) => {
                 alignContent: "center",
               }}
             >
-              <Typography variant="body2">SHIMITA DOUGLAS</Typography>|
-              <Typography variant="caption">FREE PLAN</Typography>
+              <Avatar alt="KE" src={KenyaFlag} sx={{ width: 28, height: 28 }} />
+              |<Typography variant="body2">SHIMITA DOUGLAS</Typography>|
+              <Typography variant="body2">FREE PLAN</Typography>
             </Toolbar>
           </AppBar>
 

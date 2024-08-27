@@ -21,7 +21,6 @@ const HelpAssistanceEmail = lazy(() => import("../more/help/HelpAssistEmail"));
 const AboutPage = lazy(() => import("../more/about/About"));
 const BottomMessage = lazy(() => import("../more/bottom/BottomMessage"));
 const BottomJobs = lazy(() => import("../more/bottom/BottomJobs"));
-const BottomFavorites = lazy(() => import("../more/bottom/BottomFavorites"));
 const FeedDefaultContent = lazy(() => import("./FeedDefaultContent"));
 const EventsLive = lazy(() => import("../events/EventsLive"));
 const EventsUpcoming = lazy(() => import("../events/EventsUpcoming"));
@@ -71,7 +70,6 @@ const Feed = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/messages" element={<BottomMessage />} />
           <Route path="/jobs" element={<BottomJobs />} />
-          <Route path="/favorites" element={<BottomFavorites />} />
           <Route path="/events/live" element={<EventsLive />} />
           <Route path="/events/add" element={<EventsAdd />} />
           <Route path="/events/bookmarks" element={<EventsBookMarks />} />

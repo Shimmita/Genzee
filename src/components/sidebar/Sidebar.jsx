@@ -14,7 +14,7 @@ import {
   Report,
   Settings,
   Smartphone,
-  Support
+  Support,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -31,7 +31,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography,
+  Typography
 } from "@mui/material";
 
 import { resetDarkMode } from "../../redux/AppUI";
@@ -116,8 +116,7 @@ const Sidebar = ({ setMode, mode }) => {
     <Box
       flex={CustomDeviceTablet() ? 1 : 2}
       p={CustomDeviceTablet() ? 1 : 2}
-      marginLeft={window.screen.availWidth>1200 ? '4%' :'0'}
-
+      marginLeft={window.screen.availWidth > 1200 ? "4%" : "0"}
       sx={{
         display: {
           xs: "none",
@@ -128,7 +127,7 @@ const Sidebar = ({ setMode, mode }) => {
       }}
     >
       <Box position={"fixed"}>
-        <Box className="shadow rounded">
+        <Box className="shadow rounded mt-1">
           <BoxAvatarContent>
             <Box
               display={"flex"}
@@ -151,7 +150,6 @@ const Sidebar = ({ setMode, mode }) => {
               </Typography>
             </Box>
 
-            
             <Typography gutterBottom variant="body2">
               shimitadouglas@gmail.com
             </Typography>

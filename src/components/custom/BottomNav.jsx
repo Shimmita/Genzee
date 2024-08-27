@@ -1,12 +1,8 @@
-import {
-  Favorite,
-  Home,
-  Message,
-  Work,
-} from "@mui/icons-material";
+import { Home, Message, Work } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 
 const BottomNav = () => {
   const navigate = useNavigate();
@@ -28,10 +24,7 @@ const BottomNav = () => {
     navigate("/jobs");
   };
 
-  // return archive  page
-  const handleArchiveContent = () => {
-    navigate("/favorites");
-  };
+
   return (
     <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
       <BottomNavigation
@@ -54,6 +47,7 @@ const BottomNav = () => {
         <BottomNavigationAction
           label="Home"
           icon={<Home />}
+          style={{marginLeft:CustomDeviceTablet() && '30%'}}
           onClick={handleReturnHome}
         />
         <BottomNavigationAction
@@ -65,11 +59,6 @@ const BottomNav = () => {
           onClick={handleMessageContent}
           label="Message"
           icon={<Message />}
-        />
-        <BottomNavigationAction
-          onClick={handleArchiveContent}
-          label="Favorites"
-          icon={<Favorite />}
         />
       </BottomNavigation>
     </Paper>
