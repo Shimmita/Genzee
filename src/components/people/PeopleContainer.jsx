@@ -56,6 +56,8 @@ const PeopleContainer = () => {
                 connect <span className="ps-2">10</span>{" "}
               </Typography>
             </ToggleButton>
+
+           
           </ToggleButtonGroup>
         </Box>
 

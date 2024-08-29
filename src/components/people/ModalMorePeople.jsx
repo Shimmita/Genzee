@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import devImage from "../../images/dev.jpeg";
-import PeopleResults from "./PeopleResults";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import PeopleResults from "./PeopleResults";
 
 const StyledModalMorePeople = styled(Modal)({
   display: "flex",
@@ -34,7 +34,7 @@ const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
       <Box
         width={400}
         p={1}
-        borderRadius={5}
+        borderRadius={1}
         bgcolor={"background.default"}
         color={"text.primary"}
       >

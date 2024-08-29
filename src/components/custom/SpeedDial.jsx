@@ -1,15 +1,25 @@
-import  React from "react";
 import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import React from "react";
 
-import { Add, Videocam } from "@mui/icons-material";
+import { PostAddRounded, Videocam, Work } from "@mui/icons-material";
 import PostModal from "../modal/PostModal";
+import { Typography } from "@mui/material";
 const actions = [
-  { icon: <Add sx={{ width: 20, height: 20 }} />, name: "Event" },
-  { icon: <Add sx={{ width: 20, height: 20 }} />, name: "Post" },
-  { icon: <Videocam sx={{ width: 20, height: 20 }} />, name: "Live" },
+  {
+    icon: <Work color="primary" sx={{ width: 20, height: 20 }} />,
+    name: "Job",
+  },
+  {
+    icon: <Videocam color="primary" sx={{ width: 20, height: 20 }} />,
+    name: "Live",
+  },
+  {
+    icon: <PostAddRounded color="primary" sx={{ width: 20, height: 20 }} />,
+    name: "Post",
+  },
 ];
 
 export default function BasicSpeedDial() {
@@ -25,7 +35,7 @@ export default function BasicSpeedDial() {
   const [openPostModal, setOpenPostModal] = React.useState(false);
 
   return (
-    <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
+    <Box  sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial"
         sx={{ position: "absolute", bottom: 10, right: 10 }}
@@ -38,6 +48,7 @@ export default function BasicSpeedDial() {
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
+            className="shadow border"
             onClick={(e) => {
               // show modal
               if (action.name.toLowerCase() === "post") {
@@ -45,7 +56,7 @@ export default function BasicSpeedDial() {
               }
             }}
             tooltipTitle={
-              <small style={{ fontSize: "small" }}>{action.name}</small>
+              <Typography p={2} className="shadow border rounded"  fontWeight={'bold'} variant="body2">{action.name}</Typography>
             }
             tooltipOpen
           />

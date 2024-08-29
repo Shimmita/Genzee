@@ -84,7 +84,7 @@ const Feed = () => {
             {/* show speed dial if not scrolling down */}
             {!isScrolledDown && (
               <>
-                <Box position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+                <Box  position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
                   <BasicSpeedDial />
                 </Box>
               </>

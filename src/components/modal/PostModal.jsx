@@ -1,6 +1,15 @@
 import {
+  Add,
+  Close,
+  LockRounded,
+  People,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
+import {
   Avatar,
   Box,
+  Button,
   IconButton,
   MenuItem,
   Modal,
@@ -11,16 +20,10 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
-import PostPrivacy from "../data/PostPrivacy";
-import {
-  Add,
-  Close,
-  People,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material";
-import PostAbout from "../data/PostAbout";
 import CountiesInKenya from "../data/Counties";
+import PostAbout from "../data/PostAbout";
+import PostPrivacy from "../data/PostPrivacy";
+import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 import CardPreview from "./CardPreview";
 
 const StyledModalPost = styled(Modal)({
@@ -28,6 +31,7 @@ const StyledModalPost = styled(Modal)({
   alignItems: "center",
   justifyContent: "center",
   margin: "5px",
+  marginLeft: CustomDeviceTablet() && "34%",
 });
 
 const PostModal = ({ openPostModal, setOpenPostModal }) => {
@@ -56,35 +60,38 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
       aria-describedby="modal-modal-description"
     >
       <Box
-        width={400}
+        width={550}
         p={1}
         borderRadius={2}
         bgcolor={"background.default"}
         color={"text.primary"}
       >
         {/* toolbar like box */}
-        <Box display={"flex"} alignItems={"center"} marginLeft={1}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          marginLeft={1}
+        >
           <Avatar
             alt="user image"
             src={devImage}
-            sx={{ width: 35, height: 35 }}
+            variant="rounded"
+            sx={{ width: 40, height: 40 }}
           />
-          <Typography
-            id="modal-modal-title"
-            color={"gray"}
-            variant="body1"
-            component="h1"
-            className="w-75"
-            textAlign={"center"}
-          >
-            Create a Post
-          </Typography>
 
           {/*  button for posting */}
           <Tooltip title={"post"}>
-            <IconButton>
-              <Add color="primary" />
-            </IconButton>
+            <Button
+              startIcon={<Add />}
+              sx={{ borderRadius: 5 }}
+              disableElevation
+              className="ms-5 w-25"
+              variant="contained"
+              size="small"
+            >
+              Post
+            </Button>
           </Tooltip>
 
           {/* preview  */}
@@ -132,22 +139,30 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                   required
                   select
                   value={privacy}
-                  label="privacy status of the post"
+                  label="who should view this post"
                   fullWidth
                   onChange={(e) => setPrivacy(e.target.value)}
                 >
                   {PostPrivacy &&
-                    PostPrivacy.map((privacy) => (
-                      <MenuItem key={privacy} value={privacy}>
+                    PostPrivacy.map((privacy, index) => (
+                      <MenuItem key={index} value={privacy}>
                         <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-                          {privacy.includes("everyone") && (
+                          {index===0 && (
                             <Visibility color="primary" />
                           )}
-                          {privacy.includes("only") && (
+                          {index===1 && (
                             <People color="primary" />
                           )}
+                           {index===2 && (
+                            <LockRounded color="primary" />
+                          )}
+                          {index===3 && (
+                            <Visibility color="primary" />
+                          )}
+                            {index===4 && (
+                            <LockRounded color="primary" />
+                          )}
                           <small style={{ fontSize: "small" }}>
-                            {" "}
                             {privacy}
                           </small>
                         </Box>
@@ -183,7 +198,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                   select
                   required
                   value={county}
-                  label="location or place "
+                  label="County or Location"
                   fullWidth
                   onChange={(e) => setCounty(e.target.value)}
                 >
@@ -197,41 +212,42 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
               </Box>
 
               <Box className="mb-3">
-                <div className="d-flex justify-content-center">
-                  <small
-                    className="text-secondary"
-                    style={{ fontSize: "small" }}
-                  >
-                    provide an image for visualisation *
-                  </small>
-                </div>
-                <div>
+                <Typography
+                  variant="caption"
+                  className="ms-2"
+                  color={"text.secondary"}
+                >
+                  Image/Video (optional) video max length 2 min
+                </Typography>
+
+                <Box>
                   <input
                     type="file"
                     accept="image/*"
                     className="form-control"
                     onChange={handleFile}
                   />
-                </div>
+                </Box>
               </Box>
 
               <Box className="mb-3 ">
                 <TextField
+                  minRows={5}
                   multiline
                   contentEditable={false}
-                  error={description.length > 400}
+                  error={description.length > 300}
                   id="outlined-required"
                   label={
                     <p>
                       {`description maximum ${
-                        400 - description.length
+                        300 - description.length
                       } characters`}{" "}
                       *
                     </p>
                   }
                   fullWidth
                   value={description}
-                  onChange={(e) => setDescription(e.target.value.toLowerCase())}
+                  onChange={(e) => setDescription(e.target.value)}
                   placeholder="write your description here..."
                 />
               </Box>

@@ -158,12 +158,14 @@ const CardFeed = () => {
                 className="text-center w-100"
               >
                 <Divider>
-                  {`${PostData.category} >> ${PostData.county}`}{" "}
+                  {PostData.category} &gt; &gt; {PostData.county}
                 </Divider>
               </Typography>
             </>
 
-            <Typography color={'text.secondary'} variant="body2">{handleDetailsLength()}</Typography>
+            <Typography color={"text.secondary"} variant="body2">
+              {handleDetailsLength()}
+            </Typography>
           </CardContent>
         </CardActionArea>
 
@@ -201,7 +203,7 @@ const CardFeed = () => {
             </Tooltip>
             <span>
               <Typography variant="body2" color={"text.secondary"}>
-                You and 50 people liked
+                You and 50 others liked
               </Typography>
             </span>
           </Box>
