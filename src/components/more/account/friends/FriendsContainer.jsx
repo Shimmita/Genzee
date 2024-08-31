@@ -23,8 +23,6 @@ function FriendsContainer() {
       <FriendsCard/>
       <FriendsCard/>
       <FriendsCard/>
-      <FriendsCard/>
-      <FriendsCard/>
    
     </Box>
   )

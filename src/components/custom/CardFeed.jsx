@@ -1,12 +1,11 @@
 import {
   Add,
   AddCommentRounded,
+  BarChartRounded,
   FavoriteRounded,
   MenuRounded,
   PersonAddRounded,
   VerifiedRounded,
-  WavesOutlined,
-  WavesRounded
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -74,8 +73,8 @@ const CardFeed = () => {
   };
 
   // redux states
-  // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
+
   return (
     <>
       <Card
@@ -84,7 +83,7 @@ const CardFeed = () => {
           opacity: openMoreVertPost && !isDarkMode && "0.8",
         }}
         elevation={0}
-        className="w-100 shadow mb-4 rounded p-1"
+        className="w-100 shadow mb-4 p-2 rounded"
       >
         <CardHeader
           sx={{
@@ -156,7 +155,9 @@ const CardFeed = () => {
           }
           title={
             <Box display={"flex"} alignItems={"center"} gap={1}>
-              <Typography variant="body1">Shimmita</Typography>
+              <Typography fontWeight={"bold"} variant="body1">
+                Shimmita
+              </Typography>
               <VerifiedRounded color="primary" sx={{ width: 20, height: 20 }} />
             </Box>
           }
@@ -169,21 +170,24 @@ const CardFeed = () => {
               <Typography
                 variant="body2"
                 gutterBottom
-                className="text-center w-100 pb-1"
+                className="text-center w-100 pb-2"
               >
-                <Divider >
+                <Divider>
                   <span className="d-flex justify-content-center align-items-center align-content-center gap-1">
                     <span>{PostData.category}</span>
-                      <Add color="primary"
-                        sx={{ width: 17, height: 17, rotate: "270deg" }}
-                      />
+                    <Add
+                      color="primary"
+                      sx={{ width: 17, height: 17, rotate: "270deg" }}
+                    />
                     <span>{PostData.county}</span>
                   </span>
                 </Divider>
               </Typography>
             </>
 
-            <Typography variant="body2">{handleDetailsLength()}</Typography>
+            <Typography color={"text.secondary"} variant="body2">
+              {handleDetailsLength()}
+            </Typography>
           </CardContent>
         </CardActionArea>
 
@@ -193,14 +197,14 @@ const CardFeed = () => {
           alt={"image"}
           style={{
             width: "100%",
-            maxHeight: window.screen.availWidth > 600 ? "450px" : "310px",
+            maxHeight: window.screen.availWidth > 600 ? "450px" : "300px",
             objectFit: "fill",
             padding: window.screen.availWidth > 1300 && "5px",
             borderRadius: "10px",
             filter: openMoreVertPost && "grayscale(100%)",
           }}
         />
-
+        <Divider component={'div'} className="p-2"/>
         <Box
           display={"flex "}
           p={1}
@@ -213,16 +217,20 @@ const CardFeed = () => {
           <Box display={"flex"} alignItems={"center"}>
             <Tooltip title="like" arrow>
               <Checkbox
-                icon={<FavoriteRounded sx={{ width: 23, height: 23 }} />}
+                icon={<FavoriteRounded sx={{ width: 22, height: 22 }} />}
                 checkedIcon={
                   <FavoriteRounded
-                    sx={{ width: 23, height: 23, color: "#CF4B3F" }}
+                    sx={{ width: 22, height: 22, color: "#CF4B3F" }}
                   />
                 }
               />
             </Tooltip>
             <span>
-              <Typography variant="body2" color={"text.secondary"}>
+              <Typography
+                fontWeight={"bold"}
+                variant="body2"
+                color={"text.secondary"}
+              >
                 500k
               </Typography>
             </span>
@@ -232,18 +240,24 @@ const CardFeed = () => {
             <Box display={"flex"} alignItems={"center"}>
               <Tooltip arrow title="repost">
                 <Checkbox
-                  icon={<WavesOutlined sx={{ width: 20, height: 20 }} />}
-                  checkedIcon={<WavesRounded sx={{ width: 20, height: 20 }} />}
+                  icon={<BarChartRounded sx={{ width: 22, height: 22 }} />}
+                  checkedIcon={
+                    <BarChartRounded sx={{ width: 22, height: 22 }} />
+                  }
                 />
               </Tooltip>
               <span>
-                <Typography variant="body2" color={"text.secondary"}>
+                <Typography
+                  fontWeight={"bold"}
+                  variant="body2"
+                  color={"text.secondary"}
+                >
                   50k
                 </Typography>
               </span>
             </Box>
 
-            <Box display={"flex"} alignItems={"center"} className="ps-2">
+            <Box display={"flex"} alignItems={"center"} className="ps-3">
               <Tooltip title={"comment"} arrow>
                 <Checkbox
                   onChange={handleReplyPost}
@@ -251,13 +265,18 @@ const CardFeed = () => {
                 />
               </Tooltip>
               <span>
-                <Typography variant="body2" color={"text.secondary"}>
+                <Typography
+                  variant="body2"
+                  fontWeight={"bold"}
+                  color={"text.secondary"}
+                >
                   300
                 </Typography>
               </span>
             </Box>
           </Box>
         </Box>
+
       </Card>
     </>
   );

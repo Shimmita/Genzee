@@ -174,7 +174,7 @@ const Navbar = ({ setMode, mode }) => {
   const handleHome = () => navigate("/");
 
   return (
-    <AppBar position="sticky">
+    <AppBar elevation={10} position="sticky">
       <GenzeeToolBar>
         {/* lg screen toolbar */}
         <LogoContent
@@ -189,7 +189,7 @@ const Navbar = ({ setMode, mode }) => {
           <Box display={"flex"} alignItems={"center"} gap={1}>
             <Avatar alt="KE" src={KenyaFlag} sx={{ width: 28, height: 28 }} />
             <IconButton onClick={handleHome} style={{ color: "white" }}>
-              <Typography className="fw-bold">GENZEE</Typography>
+              <Typography fontWeight={"bold"}>GENZEE</Typography>
             </IconButton>
           </Box>
         </LogoContent>
@@ -217,12 +217,12 @@ const Navbar = ({ setMode, mode }) => {
                 />
 
                 <IconButton onClick={handleHome} style={{ color: "white" }}>
-                  <Typography className="fw-bold">GENZEE</Typography>
+                  <Typography fontWeight={"bold"}>GENZEE</Typography>
                 </IconButton>
               </Box>
             ) : (
               <IconButton onClick={handleHome} style={{ color: "white" }}>
-                <Typography sName="fw-bold">GENZEE</Typography>
+                <Typography fontWeight={"bold"}>GENZEE</Typography>
               </IconButton>
             )}
           </LogoContent>
@@ -428,7 +428,7 @@ const Navbar = ({ setMode, mode }) => {
                     <People />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">People</Typography>}
+                    primary={<Typography variant="body2">Friends</Typography>}
                   />
                 </ListItemButton>
 

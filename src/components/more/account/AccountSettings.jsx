@@ -1,13 +1,13 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import { ArrowBackIosRounded } from "@mui/icons-material";
 import { Divider, IconButton, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { handleScrolledDown } from "../../../redux/AppUI";
-import { ArrowBack } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import React, { lazy, Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { handleScrolledDown } from "../../../redux/AppUI";
 const ProfileSettingsTab = lazy(() => import("./settings/ProfileSettingsTab"));
 const StreamingSettings = lazy(() => import("./settings/StreamingSettings"));
 
@@ -60,56 +60,67 @@ export default function AccountSettingsTabs() {
   const handleHome = () => {
     navigate("/");
   };
+
+  // redux states
+  const { isDarkMode } = useSelector((state) => state.appUI);
   return (
     <Box height={"92vh"} bgcolor={"background.default"} color={"text.primary"}>
-      <Box className='shadow rounded mt-3 p-2'>
-      <IconButton onClick={handleHome}>
-        <ArrowBack />
-      </IconButton>
-      <div className="d-flex justify-align-content-between w-100 align-items-center">
-        {/* title */}
-        <Typography gutterBottom variant={"body1"} className="w-100  text-center">
-          Account Settings
-        </Typography>
-      </div>
-      {/* divider */}
-      <Divider component={"div"} />
-      {/* tabs */}
-      <Box className="d-flex justify-content-center align-items-center">
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="styled tabs"
-          className="fw-light"
-        >
-          <StyledTab label={<Typography variant="body2">Profile</Typography>} />
-          <StyledTab
-            label={<Typography variant="body2">Streaming</Typography>}
-          />
-        </StyledTabs>
-      </Box>
+      <Box className="shadow rounded p-2 mt-1">
+        <div className="d-flex justify-align-content-between w-100 align-items-center">
+          <IconButton color="primary" onClick={handleHome}>
+            <ArrowBackIosRounded />
+          </IconButton>
+          {/* title */}
+          <Typography
+            fontWeight={"bold"}
+            style={{ color: !isDarkMode ? "steelblue" : "white" }}
+            variant={"body1"}
+            gutterBottom
+            className="w-100 text-center "
+          >
+            Settings
+          </Typography>
+        </div>
+        {/* divider */}
+        <Divider component={"div"} />
+        {/* tabs */}
+        <Box className="d-flex justify-content-center align-items-center">
+          <StyledTabs
+            value={value}
+            onChange={handleChange}
+            aria-label="styled tabs"
+            className="fw-light"
+          >
+            <StyledTab
+              label={<Typography variant="body2">Profile</Typography>}
+            />
+            <StyledTab
+              label={<Typography variant="body2">Streaming</Typography>}
+            />
+          </StyledTabs>
+        </Box>
 
-      {/* content of each tab goes here */}
-      <Box
-        height={"70vh"}
-        sx={{
-          overflowX: "auto",
-          // Hide scrollbar for Chrome, Safari and Opera
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          // Hide scrollbar for IE, Edge and Firefox
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
-        }}
-        mt={2}
-        className="w-100"
-      >
-        <Suspense fallback={<p className="text-text-center">loading...</p>}>
-          {value === 0 && <ProfileSettingsTab />}
-          {value === 1 && <StreamingSettings />}
-        </Suspense>
-      </Box>
+        {/* content of each tab goes here */}
+        <Box
+          height={"70vh"}
+          sx={{
+            overflowX: "auto",
+            // Hide scrollbar for Chrome, Safari and Opera
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            // Hide scrollbar for IE, Edge and Firefox
+            "-ms-overflow-style": "none",
+            "scrollbar-width": "none",
+          }}
+          mt={2}
+          className="w-100"
+        >
+          <Suspense fallback={<p className="text-text-center">loading...</p>}>
+            {value === 0 && <ProfileSettingsTab />}
+            {value === 1 && <StreamingSettings />}
+          </Suspense>
+        </Box>
       </Box>
     </Box>
   );

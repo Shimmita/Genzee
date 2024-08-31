@@ -1,18 +1,21 @@
 import { Box } from "@mui/material";
 import React from "react";
-import PeopleContainer from "../people/PeopleContainer";
+// import PeopleContainer from "../people/PeopleContainer";
 import FeedCardContainer from "./FeedCardContainer";
+import CustomLandScape from "../utilities/CustomLandscape";
 
 const FeedDefaultContent = () => {
   return (
     <Box>
-      <Box>
+      {/* <Box>
+        
         <Box>
-          {/* follow/connect people container */}
           <PeopleContainer />
         </Box>
-      </Box>
-      <Box >
+
+      </Box> */}
+
+      <Box mt={CustomLandScape() ? '11px' : "3px"}>
         <FeedCardContainer />
       </Box>
     </Box>

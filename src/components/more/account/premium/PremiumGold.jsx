@@ -5,29 +5,31 @@ import PremiumData from "../../../data/PremiumData";
 function PremiumGold() {
   return (
     <Box mt={2}>
-      <ol>
-        {PremiumData &&
-          PremiumData.Gold.map((data, index) => (
-            <Box key={index}>
-              <Box m={2}>
-                <Typography gutterBottom component={"li"} variant="body2">
-                  {data}
-                </Typography>
-              </Box>
-              <Divider component={"div"} variant="fullWidth" />
-            </Box>
-          ))}
-      </ol>
-      <Box>
-        <Button
-          sx={{ borderRadius: 1 }}
-          className="w-100"
-          size="small"
-          variant="contained"
-        >
-          {" "}
-          Subscribe @Ksh.500 monthly
-        </Button>
+      <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <Box className="w-auto">
+          <ul>
+            {PremiumData &&
+              PremiumData.Gold.map((data, index) => (
+                <Box key={index}>
+                  <Box m={2}>
+                    <Typography gutterBottom component={"li"} variant="body2">
+                      {data}
+                    </Typography>
+                  </Box>
+                  <Divider component={"div"} variant="fullWidth" />
+                </Box>
+              ))}
+          </ul>
+            <Button
+              sx={{ borderRadius: 1 }}
+              className="w-100"
+              size="small"
+              variant="contained"
+            >
+              {" "}
+              Subscribe @Ksh.500 monthly
+            </Button>
+        </Box>
       </Box>
     </Box>
   );

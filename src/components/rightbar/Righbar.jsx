@@ -34,6 +34,7 @@ const RightbarAll = ({ mode }) => {
         <Box className="shadow rounded p-1 me-3">
           <Box display={"flex"} justifyContent={"center"}>
             <Typography
+              fontWeight={"bold"}
               style={{ color: mode === "light" ? "steelblue" : "white" }}
               className="mt-2"
             >
@@ -51,6 +52,7 @@ const RightbarAll = ({ mode }) => {
             <Typography
               style={{ color: mode === "light" ? "steelblue" : "white" }}
               gutterBottom
+              fontWeight={"bold"}
               className="mb-2 mt-2"
             >
               EVENTS
@@ -72,9 +74,7 @@ const RightbarAll = ({ mode }) => {
                 }
               />
             </ListItemButton>
-            <Typography  variant="body2">
-              20
-            </Typography>
+            <Typography variant="body2">20</Typography>
           </Box>
 
           <Box
@@ -93,9 +93,7 @@ const RightbarAll = ({ mode }) => {
                 }
               />
             </ListItemButton>
-            <Typography  variant="body2">
-              35
-            </Typography>
+            <Typography variant="body2">35</Typography>
           </Box>
 
           <Box
@@ -116,9 +114,7 @@ const RightbarAll = ({ mode }) => {
                 }
               />
             </ListItemButton>
-            <Typography variant="body2">
-              3
-            </Typography>
+            <Typography variant="body2">3</Typography>
           </Box>
 
           <Box

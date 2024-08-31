@@ -1,7 +1,7 @@
+import { RefreshRounded } from "@mui/icons-material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 import CardFeed from "../custom/CardFeed";
-import { Box, Button } from "@mui/material";
-import { RefreshRounded } from "@mui/icons-material";
 
 const FeedCardContainer = () => {
   // for follow/connect people people
@@ -15,9 +15,14 @@ const FeedCardContainer = () => {
             <Box key={index}>
               <CardFeed />
               {/* show refresh button when the item is last */}
-              {index===items.length-1 && (
+              {index === items.length - 1 && (
                 <Box display={"flex"} justifyContent={"center"} m={2}>
-                  <Button className="rounded-5" size="small" variant="contained" startIcon={<RefreshRounded />}>
+                  <Button
+                    className="rounded-5"
+                    size="small"
+                    variant="contained"
+                    startIcon={<RefreshRounded />}
+                  >
                     More
                   </Button>
                 </Box>

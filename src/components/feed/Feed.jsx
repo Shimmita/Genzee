@@ -9,7 +9,7 @@ const UserProfile = lazy(() => import("../profile/UserProfile"));
 const PostDetailsContainer = lazy(() => import("../post/PostDetailsContiner"));
 
 const AccountPremium = lazy(() => import("../more/account/AccountPremium"));
-const AccountPeople = lazy(() => import("../more/account/AccountPeople"));
+const AccountFriends = lazy(() => import("../more/account/AccountFriends"));
 const AccountPosts = lazy(() => import("../more/account/AccountPosts"));
 const AccountSettingsTabs = lazy(() =>
   import("../more/account/AccountSettings")
@@ -62,7 +62,7 @@ const Feed = () => {
           <Route path="/" element={<FeedDefaultContent />} />
           <Route path="/account/settings" element={<AccountSettingsTabs />} />
           <Route path="/account/posts" element={<AccountPosts />} />
-          <Route path="/account/people" element={<AccountPeople />} />
+          <Route path="/account/people" element={<AccountFriends />} />
           <Route path="/account/premium" element={<AccountPremium />} />
           <Route path="/help/quiz" element={<HelpFrequentQuiz />} />
           <Route path="/help/report" element={<HelpReportUserTab />} />

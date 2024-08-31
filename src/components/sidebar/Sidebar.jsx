@@ -31,7 +31,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
 } from "@mui/material";
 
 import { resetDarkMode } from "../../redux/AppUI";
@@ -52,7 +52,7 @@ const Sidebar = ({ setMode, mode }) => {
 
   // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
-  
+
   const dispatch = useDispatch();
 
   const BoxAvatarContent = styled(Box)({
@@ -115,6 +115,7 @@ const Sidebar = ({ setMode, mode }) => {
 
   return (
     <Box
+      mt={CustomDeviceTablet() && 1}
       flex={CustomDeviceTablet() ? 1 : 2}
       p={CustomDeviceTablet() ? 1 : 2}
       marginLeft={window.screen.availWidth > 1200 ? "4%" : "0"}
@@ -145,6 +146,7 @@ const Sidebar = ({ setMode, mode }) => {
 
               <Typography
                 gutterBottom
+                fontWeight={"bold"}
                 style={{ color: mode === "light" ? "steelblue" : "white" }}
               >
                 SHIMITA DOUGLAS
@@ -184,6 +186,7 @@ const Sidebar = ({ setMode, mode }) => {
         <Box className="p-1 shadow rounded mt-3">
           <Typography
             className=" mt-2"
+            fontWeight={"bold"}
             style={{
               color: mode === "light" ? "steelblue" : "white",
               textAlign: "center",
@@ -234,7 +237,7 @@ const Sidebar = ({ setMode, mode }) => {
                     <People />
                   </ListItemIcon>
                   <ListItemText
-                    primary={<Typography variant="body2">People</Typography>}
+                    primary={<Typography variant="body2">Friends</Typography>}
                   />
                 </ListItemButton>
 
@@ -368,6 +371,7 @@ const Sidebar = ({ setMode, mode }) => {
             <Box className="mt-3 shadow p-1 rounded">
               <Typography
                 gutterBottom
+                fontWeight={"bold"}
                 className="text-center mt-2"
                 style={{ color: mode === "light" ? "steelblue" : "white" }}
               >

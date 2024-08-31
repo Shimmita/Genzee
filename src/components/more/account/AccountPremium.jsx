@@ -1,13 +1,13 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import { ArrowBackIosRounded } from "@mui/icons-material";
 import { Divider, IconButton, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { handleScrolledDown } from "../../../redux/AppUI";
-import { ArrowBack } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import React, { lazy, Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { handleScrolledDown } from "../../../redux/AppUI";
 const PremiumFree = lazy(() => import("./premium/PremiumFree"));
 const PremiumSilver = lazy(() => import("./premium/PremiumSilver"));
 const PremiumGold = lazy(() => import("./premium/PremiumGold"));
@@ -61,15 +61,24 @@ export default function AccountPremiumTab() {
   const handleHome = () => {
     navigate("/");
   };
+
+  // redux states
+  const { isDarkMode } = useSelector((state) => state.appUI);
   return (
     <Box height={"92vh"} bgcolor={"background.default"} color={"text.primary"}>
-      <Box className="shadow rounded mt-3">
-        <IconButton onClick={handleHome}>
-          <ArrowBack />
-        </IconButton>
+      <Box className="shadow rounded mt-1">
         <div className="d-flex justify-align-content-between w-100 align-items-center">
+          <IconButton color="primary" onClick={handleHome}>
+            <ArrowBackIosRounded />
+          </IconButton>
           {/* title */}
-          <Typography variant={"body1"} gutterBottom className="w-100 text-center ">
+          <Typography
+            fontWeight={"bold"}
+            style={{ color: !isDarkMode ? "steelblue" : "white" }}
+            variant={"body1"}
+            gutterBottom
+            className="w-100 text-center "
+          >
             Premium Plan
           </Typography>
         </div>

@@ -24,7 +24,7 @@ export default function FriendsCard() {
 
         <Box pl={8} display={"flex"} justifyContent={"flex-end"}>
           <IconButton className="border">
-            <PersonRemove color="primary" sx={{ width: 18, height: 18 }} />
+            <PersonRemove color="primary"  sx={{ width: 15, height: 15 }} />
           </IconButton>
         </Box>
       </ListItem>

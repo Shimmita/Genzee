@@ -17,7 +17,7 @@ const PremiumData = {
   ],
 
   Gold: [
-    "Direct passport to fame for musicians, celebrities, tech geeks or users seeking recognition at a relatively affordable price",
+    "Direct passport to fame for musicians, celebrities, tech geeks or users seeking recognition",
     "Post is highly boosted to 100% reaching many users on the platform within a short period of time possible",
     "Going live is enabled to actively intereact with friends and people",
     "Posting content on the platform is fully unclocked",
