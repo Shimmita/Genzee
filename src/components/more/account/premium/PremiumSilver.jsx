@@ -5,19 +5,29 @@ import PremiumData from "../../../data/PremiumData";
 function PremiumSilver() {
   return (
     <Box mt={2}>
-      {PremiumData &&
-        PremiumData.Silver.map((data, index) => (
-          <Box key={index}>
-            <Box m={2}>
-              <Typography gutterBottom component={"li"} variant="body2">
-                {data}
-              </Typography>
+      <ol>
+        {PremiumData &&
+          PremiumData.Silver.map((data, index) => (
+            <Box key={index}>
+              <Box m={2}>
+                <Typography gutterBottom component={"li"} variant="body2">
+                  {data}
+                </Typography>
+              </Box>
+              <Divider component={"div"} variant="fullWidth" />
             </Box>
-            <Divider component={"div"} variant="fullWidth" />
-          </Box>
-        ))}
+          ))}
+      </ol>
       <Box>
-        <Button sx={{ borderRadius:1 }} className="w-100" size="small" variant="contained"> Subscribe @Ksh.100 monthly</Button>
+        <Button
+          sx={{ borderRadius: 1 }}
+          className="w-100"
+          size="small"
+          variant="contained"
+        >
+          {" "}
+          Subscribe @Ksh.100 monthly
+        </Button>
       </Box>
     </Box>
   );

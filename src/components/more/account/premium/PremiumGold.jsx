@@ -5,18 +5,19 @@ import PremiumData from "../../../data/PremiumData";
 function PremiumGold() {
   return (
     <Box mt={2}>
-      {PremiumData &&
-        PremiumData.Gold.map((data, index) => (
-          <Box key={index}>
-            <Box m={2}>
-              <Typography gutterBottom component={"li"} variant="body2">
-                {data}
-              </Typography>
+      <ol>
+        {PremiumData &&
+          PremiumData.Gold.map((data, index) => (
+            <Box key={index}>
+              <Box m={2}>
+                <Typography gutterBottom component={"li"} variant="body2">
+                  {data}
+                </Typography>
+              </Box>
+              <Divider component={"div"} variant="fullWidth" />
             </Box>
-            <Divider component={"div"} variant="fullWidth" />
-          </Box>
-        ))}
-
+          ))}
+      </ol>
       <Box>
         <Button
           sx={{ borderRadius: 1 }}
@@ -25,7 +26,7 @@ function PremiumGold() {
           variant="contained"
         >
           {" "}
-          Subscribe @Ksh.300 monthly
+          Subscribe @Ksh.500 monthly
         </Button>
       </Box>
     </Box>

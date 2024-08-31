@@ -1,7 +1,6 @@
 const ControlData = {
-  Profile: ["anyone can View", "only friends can view", "nobody can view"],
-  Messaging: ["anyone can send ", "only friends can send", "nobody can send"],
-  Posts:["anyone can comment ", "only friends can comment", "nobody can comment"],
+  Profile: ["anyone", "only friends", "nobody"],
+  Messaging: ["anyone", "only friends", "nobody"],
 };
 
 export default ControlData;

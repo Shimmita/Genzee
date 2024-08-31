@@ -10,6 +10,7 @@ import {
   Avatar,
   Box,
   Button,
+  Divider,
   IconButton,
   MenuItem,
   Modal,
@@ -20,11 +21,13 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import devImage from "../../images/dev.jpeg";
+import KenyaFlag from "../../images/KE.png";
 import CountiesInKenya from "../data/Counties";
 import PostAbout from "../data/PostAbout";
 import PostPrivacy from "../data/PostPrivacy";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 import CardPreview from "./CardPreview";
+import FileInputToggle from "./FileInputToggle";
 
 const StyledModalPost = styled(Modal)({
   display: "flex",
@@ -35,7 +38,8 @@ const StyledModalPost = styled(Modal)({
 });
 
 const PostModal = ({ openPostModal, setOpenPostModal }) => {
-  const [privacy, setPrivacy] = useState("");
+  const [privacyView, setPrivacyView] = useState("");
+  const [privacyComment, setPrivacyComment] = useState("");
   const [about, setAbout] = useState("");
   const [county, setCounty] = useState("");
   const [imagePath, setImagePath] = useState();
@@ -52,6 +56,9 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
     };
   };
 
+  // control showing of the the input of the file either URL or from filesystem
+  const [isURL, setIsUrl] = React.useState(true);
+
   return (
     <StyledModalPost
       open={openPostModal}
@@ -60,7 +67,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
       aria-describedby="modal-modal-description"
     >
       <Box
-        width={550}
+        width={window.screen.availWidth < 600 ? "100%" : 550}
         p={1}
         borderRadius={2}
         bgcolor={"background.default"}
@@ -76,7 +83,6 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
           <Avatar
             alt="user image"
             src={devImage}
-            variant="rounded"
             sx={{ width: 40, height: 40 }}
           />
 
@@ -109,10 +115,9 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
             </IconButton>
           </Tooltip>
         </Box>
-        {/* divider here */}
-        <hr />
+
         <Box
-          maxHeight={600}
+          maxHeight={550}
           sx={{
             overflowX: "auto",
             // Hide scrollbar for Chrome, Safari and Opera
@@ -135,36 +140,75 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
             <>
               {/* show this if no preview clicked */}
               <Box className="w-100 mb-3 mt-2">
+                {/* divider here */}
+                <Divider component={"div"} className="m-2" />
+                <Box
+                  gap={1}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  {/* flag */}
+                  <Avatar
+                    alt="flag"
+                    src={KenyaFlag}
+                    sx={{ width: 20, height: 20 }}
+                  />
+
+                  <Typography
+                    variant="caption"
+                    className="text-success p-1"
+                    textAlign={"center"}
+                  >
+                    Post should be of significance to Kenyans !
+                  </Typography>
+                </Box>
+                {/* divider here */}
+              </Box>
+              <Divider component={"div"} className="m-2" />
+
+              <Box className="w-100 mb-3 ">
                 <TextField
                   required
                   select
-                  value={privacy}
+                  value={privacyView}
                   label="who should view this post"
                   fullWidth
-                  onChange={(e) => setPrivacy(e.target.value)}
+                  onChange={(e) => setPrivacyView(e.target.value)}
                 >
                   {PostPrivacy &&
                     PostPrivacy.map((privacy, index) => (
                       <MenuItem key={index} value={privacy}>
                         <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-                          {index===0 && (
-                            <Visibility color="primary" />
-                          )}
-                          {index===1 && (
-                            <People color="primary" />
-                          )}
-                           {index===2 && (
-                            <LockRounded color="primary" />
-                          )}
-                          {index===3 && (
-                            <Visibility color="primary" />
-                          )}
-                            {index===4 && (
-                            <LockRounded color="primary" />
-                          )}
-                          <small style={{ fontSize: "small" }}>
-                            {privacy}
-                          </small>
+                          {index === 0 && <Visibility color="primary" />}
+                          {index === 1 && <People color="primary" />}
+                          {index === 2 && <LockRounded color="primary" />}
+                          {index === 3 && <Visibility color="primary" />}
+                          {index === 4 && <LockRounded color="primary" />}
+                          <small style={{ fontSize: "small" }}>{privacy}</small>
+                        </Box>
+                      </MenuItem>
+                    ))}
+                </TextField>
+              </Box>
+
+              <Box className="w-100 mb-3 ">
+                <TextField
+                  required
+                  select
+                  value={privacyComment}
+                  label="who should comment on this post"
+                  fullWidth
+                  onChange={(e) => setPrivacyComment(e.target.value)}
+                >
+                  {PostPrivacy &&
+                    PostPrivacy.map((privacy, index) => (
+                      <MenuItem key={index} value={privacy}>
+                        <Box display={"flex"} alignItems={"center"} gap={"5px"}>
+                          {index === 0 && <Visibility color="primary" />}
+                          {index === 1 && <People color="primary" />}
+                          {index === 2 && <LockRounded color="primary" />}
+                          <small style={{ fontSize: "small" }}>{privacy}</small>
                         </Box>
                       </MenuItem>
                     ))}
@@ -211,28 +255,53 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                 </TextField>
               </Box>
 
-              <Box className="mb-3">
-                <Typography
-                  variant="caption"
-                  className="ms-2"
-                  color={"text.secondary"}
+              <Box className="mb-3 border rounded p-1">
+                <Box
+                  display={"flex"}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  p={1}
                 >
-                  Image/Video (optional) video max length 2 min
-                </Typography>
+                  {/* video from link is no limited to time  */}
+                  {isURL ? (
+                    <Typography variant="body2" color={"text.secondary"}>
+                      Image/Video (optional)
+                    </Typography>
+                  ) : (
+                    <Typography variant="body2" color={"text.secondary"}>
+                      Image/Video 2min (optional)
+                    </Typography>
+                  )}
 
-                <Box>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
-                    onChange={handleFile}
-                  />
+                  <Box>
+                    <FileInputToggle setIsUrl={setIsUrl} />
+                  </Box>
                 </Box>
+
+                {/* show input from filesystem or URL */}
+                {isURL ? (
+                  <Box>
+                    <input
+                      type="url"
+                      placeholder="https://www.myimageorvideolink.com"
+                      className="form-control rounded-0"
+                    />
+                  </Box>
+                ) : (
+                  <Box>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="form-control"
+                      onChange={handleFile}
+                    />
+                  </Box>
+                )}
               </Box>
 
               <Box className="mb-3 ">
                 <TextField
-                  minRows={5}
+                  minRows={window.screen.availWidth <= 320 ? 2 : 5}
                   multiline
                   contentEditable={false}
                   error={description.length > 300}
@@ -248,7 +317,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                   fullWidth
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="write your description here..."
+                  placeholder="what's on your mind ?"
                 />
               </Box>
             </>

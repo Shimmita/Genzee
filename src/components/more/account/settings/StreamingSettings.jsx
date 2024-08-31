@@ -1,10 +1,9 @@
 import {
   Box,
   Checkbox,
-  Divider,
   FormControlLabel,
   FormGroup,
-  Typography,
+  Typography
 } from "@mui/material";
 import React from "react";
 
@@ -12,15 +11,10 @@ function StreamingSettings() {
   return (
     <Box p={2}>
       <Box>
-        <Typography className="text-center mb-2" variant="body1">
-          Video PlayBack Settings
-        </Typography>
-
-        <Divider variant="fullWidth" component={"div"} />
-        <FormGroup className="mt-2">
+        <FormGroup>
           <FormControlLabel
             control={<Checkbox checked />}
-            label={"Auto-play video"}
+            label={<Typography variant="body2">video auto-play</Typography>}
           />
         </FormGroup>
       </Box>

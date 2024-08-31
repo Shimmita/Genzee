@@ -41,18 +41,18 @@ const PeopleContainer = () => {
             {/* display only in small devices */}
             {window.screen.availWidth <= 700 && (
               <ToggleButton value={0}>
-                <Typography fontSize={"smaller"} variant="body2">
+                <Typography fontWeight={'bold'} fontSize={"smaller"} variant="body2">
                   Events
                 </Typography>
               </ToggleButton>
             )}
             <ToggleButton value={1}>
-              <Typography fontSize={"smaller"} variant="body2">
+              <Typography  fontWeight={'bold'} fontSize={"smaller"} variant="body2">
                 follow <span className="ps-2">20</span>{" "}
               </Typography>
             </ToggleButton>
             <ToggleButton value={2}>
-              <Typography fontSize={"smaller"} variant="body2">
+              <Typography  fontWeight={'bold'} fontSize={"smaller"} variant="body2">
                 connect <span className="ps-2">10</span>{" "}
               </Typography>
             </ToggleButton>

@@ -5,7 +5,7 @@ import useScrolledDown from "../hooks/useScrolledDown";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
-const UserProfile = lazy(() => import('../profile/UserProfile'));
+const UserProfile = lazy(() => import("../profile/UserProfile"));
 const PostDetailsContainer = lazy(() => import("../post/PostDetailsContiner"));
 
 const AccountPremium = lazy(() => import("../more/account/AccountPremium"));
@@ -40,7 +40,7 @@ const Feed = () => {
       p={CustomDeviceTablet() ? 2 : 1}
       bgcolor={"background.default"}
       color={"text.primary"}
-      marginRight={window.screen.availWidth>1200 && '6%'}
+      marginRight={window.screen.availWidth > 1200 && "6%"}
     >
       <Suspense
         fallback={
@@ -84,7 +84,14 @@ const Feed = () => {
             {/* show speed dial if not scrolling down */}
             {!isScrolledDown && (
               <>
-                <Box  position={"fixed"} sx={{ left: 0, right: 1, bottom: 55 }}>
+                <Box
+                  position={"fixed"}
+                  sx={{
+                    left: 0,
+                    right: window.screen.availWidth < 600 ? "38%" : "28%",
+                    bottom: 50,
+                  }}
+                >
                   <BasicSpeedDial />
                 </Box>
               </>

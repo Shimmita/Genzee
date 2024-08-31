@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import React, { lazy, Suspense } from "react";
 const DeleteAccount = lazy(() => import("./DeleteAccountSettings"));
 const PrivacySettings = lazy(() => import("./PrivacySettings"));
-const GeneralSettings = lazy(() => import("./GeneralSettings"));
+const DetailsSettings = lazy(() => import("./DetailsSettings"));
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -59,9 +59,9 @@ export default function ProfileSettingsTab() {
           aria-label="styled tabs"
           className="fw-light"
         >
-          <StyledTab label={<Typography variant="body2">General</Typography>} />
-          <StyledTab label={<Typography variant="body2">Privacy</Typography>} />
-          <StyledTab label={<Typography variant="body2">Delete</Typography>} />
+          <StyledTab label={<Typography variant="body2">details</Typography>} />
+          <StyledTab label={<Typography variant="body2">privacy</Typography>} />
+          <StyledTab label={<Typography variant="body2">delete</Typography>} />
         </StyledTabs>
       </Box>
 
@@ -82,7 +82,7 @@ export default function ProfileSettingsTab() {
         className="w-100"
       >
         <Suspense fallback={<p className="text-text-center">loading...</p>}>
-          {value === 0 && <GeneralSettings />}
+          {value === 0 && <DetailsSettings />}
           {value === 1 && <PrivacySettings />}
           {value === 2 && <DeleteAccount />}
         </Suspense>

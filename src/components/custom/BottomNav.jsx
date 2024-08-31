@@ -1,5 +1,15 @@
-import { Home, Message, Work } from "@mui/icons-material";
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import {
+  Home,
+  MailRounded,
+  OndemandVideoRounded,
+  Work,
+} from "@mui/icons-material";
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Paper,
+  Tooltip,
+} from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
@@ -24,6 +34,10 @@ const BottomNav = () => {
     navigate("/jobs");
   };
 
+  // return learning page
+  const handleLearningContent = () => {
+    return;
+  };
 
   return (
     <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}>
@@ -44,22 +58,38 @@ const BottomNav = () => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction
-          label="Home"
-          icon={<Home />}
-          style={{marginLeft:CustomDeviceTablet() && '30%'}}
-          onClick={handleReturnHome}
-        />
-        <BottomNavigationAction
-          onClick={handleJobContent}
-          label="Jobs"
-          icon={<Work />}
-        />
-        <BottomNavigationAction
-          onClick={handleMessageContent}
-          label="Message"
-          icon={<Message />}
-        />
+        <Tooltip title="home" arrow>
+          <BottomNavigationAction
+            label="Home"
+            icon={<Home />}
+            style={{ marginLeft: CustomDeviceTablet() && "30%" }}
+            onClick={handleReturnHome}
+          />
+        </Tooltip>
+
+        <Tooltip title="jobs" arrow>
+          <BottomNavigationAction
+            onClick={handleJobContent}
+            label="Jobs"
+            icon={<Work />}
+          />
+        </Tooltip>
+
+        <Tooltip title="learning" arrow>
+          <BottomNavigationAction
+            onClick={handleLearningContent}
+            label="Learning"
+            icon={<OndemandVideoRounded />}
+          />
+        </Tooltip>
+
+        <Tooltip title="messages" arrow>
+          <BottomNavigationAction
+            onClick={handleMessageContent}
+            label="Message"
+            icon={<MailRounded />}
+          />
+        </Tooltip>
       </BottomNavigation>
     </Paper>
   );

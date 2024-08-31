@@ -1,16 +1,10 @@
 import {
-    Block,
-    CopyAll,
-    DownloadOutlined,
-    FlagOutlined,
-    PersonAddOutlined
+  CopyAllRounded,
+  DownloadRounded,
+  FlagRounded,
+  PersonAddRounded,
 } from "@mui/icons-material";
-import {
-    Box,
-    ListItemButton,
-    ListItemText,
-    MenuItem
-} from "@mui/material";
+import { Box, ListItemButton, ListItemText, MenuItem } from "@mui/material";
 import React from "react";
 function CardFeedMore() {
   return (
@@ -19,7 +13,7 @@ function CardFeedMore() {
         <MenuItem>
           <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemText>
-              <FlagOutlined className="mx-2" />
+              <FlagRounded color="primary" className="mx-2" />
             </ListItemText>
             <ListItemText primary={<small>report this post</small>} />
           </ListItemButton>
@@ -28,7 +22,7 @@ function CardFeedMore() {
         <MenuItem>
           <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemText>
-              <CopyAll className="mx-2" />
+              <CopyAllRounded color="primary" className="mx-2" />
             </ListItemText>
             <ListItemText primary={<small>copy this link</small>} />
           </ListItemButton>
@@ -37,27 +31,18 @@ function CardFeedMore() {
         <MenuItem>
           <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemText>
-              <DownloadOutlined className="mx-2" />
+              <DownloadRounded color="primary" className="mx-2" />
             </ListItemText>
-            <ListItemText primary={<small>save this post</small>} />
+            <ListItemText primary={<small>download video</small>} />
           </ListItemButton>
         </MenuItem>
 
         <MenuItem>
           <ListItemButton LinkComponent={"a"} href="#home">
             <ListItemText>
-              <PersonAddOutlined className="mx-2" />
+              <PersonAddRounded color="primary" className="mx-2" />
             </ListItemText>
             <ListItemText primary={<small>follow devshim</small>} />
-          </ListItemButton>
-        </MenuItem>
-
-        <MenuItem>
-          <ListItemButton LinkComponent={"a"} href="#home">
-            <ListItemText>
-              <Block className="mx-2" />
-            </ListItemText>
-            <ListItemText primary={<small>block devshim</small>} />
           </ListItemButton>
         </MenuItem>
       </Box>

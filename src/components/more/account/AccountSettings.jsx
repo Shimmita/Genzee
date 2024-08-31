@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { IconButton, Typography } from "@mui/material";
+import { Divider, IconButton, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { handleScrolledDown } from "../../../redux/AppUI";
 import { ArrowBack } from "@mui/icons-material";
@@ -35,11 +35,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     fontWeight: theme.typography.caption,
     fontSize: theme.typography.pxToRem(13),
     padding: theme.typography.pxToRem(0),
-
     color: "gray",
-    "&.Mui-selected": {
-      color: "inherit",
-    },
     "&.Mui-focusVisible": {
       backgroundColor: "rgba(100, 95, 228, 0.32)",
     },
@@ -66,15 +62,18 @@ export default function AccountSettingsTabs() {
   };
   return (
     <Box height={"92vh"} bgcolor={"background.default"} color={"text.primary"}>
+      <Box className='shadow rounded mt-3 p-2'>
       <IconButton onClick={handleHome}>
         <ArrowBack />
       </IconButton>
       <div className="d-flex justify-align-content-between w-100 align-items-center">
         {/* title */}
-        <Typography variant={"body1"} className="w-100  text-center">
+        <Typography gutterBottom variant={"body1"} className="w-100  text-center">
           Account Settings
         </Typography>
       </div>
+      {/* divider */}
+      <Divider component={"div"} />
       {/* tabs */}
       <Box className="d-flex justify-content-center align-items-center">
         <StyledTabs
@@ -110,6 +109,7 @@ export default function AccountSettingsTabs() {
           {value === 0 && <ProfileSettingsTab />}
           {value === 1 && <StreamingSettings />}
         </Suspense>
+      </Box>
       </Box>
     </Box>
   );

@@ -5,17 +5,19 @@ import PremiumData from "../../../data/PremiumData";
 function PremiumFree() {
   return (
     <Box mt={2}>
-      {PremiumData &&
-        PremiumData.Free.map((data, index) => (
-          <Box key={index}>
-            <Box m={2}>
-              <Typography gutterBottom component={"li"} variant="body2">
-                {data}
-              </Typography>
+      <ol>
+        {PremiumData &&
+          PremiumData.Free.map((data, index) => (
+            <Box key={index}>
+              <Box m={2}>
+                <Typography gutterBottom component={"li"} variant="body2">
+                  {data}
+                </Typography>
+              </Box>
+              <Divider component={"div"} variant="fullWidth" />
             </Box>
-            <Divider component={'div'} variant="fullWidth"/>
-          </Box>
-        ))}
+          ))}
+      </ol>
     </Box>
   );
 }

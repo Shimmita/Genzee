@@ -52,6 +52,7 @@ const Sidebar = ({ setMode, mode }) => {
 
   // redux states
   const { isDarkMode } = useSelector((state) => state.appUI);
+  
   const dispatch = useDispatch();
 
   const BoxAvatarContent = styled(Box)({

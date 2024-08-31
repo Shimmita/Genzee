@@ -1,10 +1,12 @@
 import {
-  AddCommentOutlined,
-  Favorite,
-  FavoriteBorder,
+  Add,
+  AddCommentRounded,
+  FavoriteRounded,
   MenuRounded,
   PersonAddRounded,
   VerifiedRounded,
+  WavesOutlined,
+  WavesRounded
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -23,10 +25,13 @@ import {
 import React, { useState } from "react";
 
 import { Image } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import devImage from "../../images/dev.jpeg";
 import PostData from "../data/PostData";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 import CardFeedMore from "./CardFeedMore";
+
 const CardFeed = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMoreVertPost = Boolean(anchorEl);
@@ -68,10 +73,16 @@ const CardFeed = () => {
     navigate("users/profile");
   };
 
+  // redux states
+  // redux states
+  const { isDarkMode } = useSelector((state) => state.appUI);
   return (
     <>
       <Card
-        style={{ backgroundColor: openMoreVertPost && "lightgray" }}
+        style={{
+          backgroundColor: openMoreVertPost && isDarkMode && "#333",
+          opacity: openMoreVertPost && !isDarkMode && "0.8",
+        }}
         elevation={0}
         className="w-100 shadow mb-4 rounded p-1"
       >
@@ -83,7 +94,11 @@ const CardFeed = () => {
           avatar={
             <Tooltip title="profile" arrow>
               <IconButton onClick={handleShowUserProfile}>
-                <Avatar aria-label="avatar">S</Avatar>
+                {devImage ? (
+                  <Avatar src={devImage} alt="image" aria-label="avatar" />
+                ) : (
+                  <Avatar aria-label="avatar">S</Avatar>
+                )}
               </IconButton>
             </Tooltip>
           }
@@ -141,7 +156,7 @@ const CardFeed = () => {
           }
           title={
             <Box display={"flex"} alignItems={"center"} gap={1}>
-              <Typography variant="body2">Shimmita</Typography>
+              <Typography variant="body1">Shimmita</Typography>
               <VerifiedRounded color="primary" sx={{ width: 20, height: 20 }} />
             </Box>
           }
@@ -153,19 +168,22 @@ const CardFeed = () => {
             <>
               <Typography
                 variant="body2"
-                component="div"
                 gutterBottom
-                className="text-center w-100"
+                className="text-center w-100 pb-1"
               >
-                <Divider>
-                  {PostData.category} &gt; &gt; {PostData.county}
+                <Divider >
+                  <span className="d-flex justify-content-center align-items-center align-content-center gap-1">
+                    <span>{PostData.category}</span>
+                      <Add color="primary"
+                        sx={{ width: 17, height: 17, rotate: "270deg" }}
+                      />
+                    <span>{PostData.county}</span>
+                  </span>
                 </Divider>
               </Typography>
             </>
 
-            <Typography color={"text.secondary"} variant="body2">
-              {handleDetailsLength()}
-            </Typography>
+            <Typography variant="body2">{handleDetailsLength()}</Typography>
           </CardContent>
         </CardActionArea>
 
@@ -175,7 +193,7 @@ const CardFeed = () => {
           alt={"image"}
           style={{
             width: "100%",
-            maxHeight: window.screen.availWidth > 600 ? "450px" : "300px",
+            maxHeight: window.screen.availWidth > 600 ? "450px" : "310px",
             objectFit: "fill",
             padding: window.screen.availWidth > 1300 && "5px",
             borderRadius: "10px",
@@ -193,33 +211,51 @@ const CardFeed = () => {
           }}
         >
           <Box display={"flex"} alignItems={"center"}>
-            <Tooltip title="favorite" arrow>
+            <Tooltip title="like" arrow>
               <Checkbox
-                icon={<FavoriteBorder sx={{ width: 23, height: 23 }} />}
+                icon={<FavoriteRounded sx={{ width: 23, height: 23 }} />}
                 checkedIcon={
-                  <Favorite sx={{ width: 23, height: 23, color: "#CF4B3F" }} />
+                  <FavoriteRounded
+                    sx={{ width: 23, height: 23, color: "#CF4B3F" }}
+                  />
                 }
               />
             </Tooltip>
             <span>
               <Typography variant="body2" color={"text.secondary"}>
-                You and 50 others liked
+                500k
               </Typography>
             </span>
           </Box>
 
           <Box display={"flex"} alignItems={"center"}>
-            <Tooltip title={"comment"} arrow>
-              <Checkbox
-                onChange={handleReplyPost}
-                icon={<AddCommentOutlined sx={{ width: 20, height: 20 }} />}
-              />
-            </Tooltip>
-            <span>
-              <Typography variant="body2" color={"text.secondary"}>
-                2k
-              </Typography>
-            </span>
+            <Box display={"flex"} alignItems={"center"}>
+              <Tooltip arrow title="repost">
+                <Checkbox
+                  icon={<WavesOutlined sx={{ width: 20, height: 20 }} />}
+                  checkedIcon={<WavesRounded sx={{ width: 20, height: 20 }} />}
+                />
+              </Tooltip>
+              <span>
+                <Typography variant="body2" color={"text.secondary"}>
+                  50k
+                </Typography>
+              </span>
+            </Box>
+
+            <Box display={"flex"} alignItems={"center"} className="ps-2">
+              <Tooltip title={"comment"} arrow>
+                <Checkbox
+                  onChange={handleReplyPost}
+                  icon={<AddCommentRounded sx={{ width: 20, height: 20 }} />}
+                />
+              </Tooltip>
+              <span>
+                <Typography variant="body2" color={"text.secondary"}>
+                  300
+                </Typography>
+              </span>
+            </Box>
           </Box>
         </Box>
       </Card>
