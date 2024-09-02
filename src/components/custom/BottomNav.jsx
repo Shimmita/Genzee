@@ -1,8 +1,7 @@
 import {
   Home,
-  MailRounded,
-  OndemandVideoRounded,
-  Work,
+  SchoolRounded,
+  Work
 } from "@mui/icons-material";
 import {
   BottomNavigation,
@@ -22,11 +21,6 @@ const BottomNav = () => {
   // return home or default card page
   const handleReturnHome = () => {
     navigate("/");
-  };
-
-  // return message  page
-  const handleMessageContent = () => {
-    navigate("/messages");
   };
 
   // return job page
@@ -61,7 +55,7 @@ const BottomNav = () => {
         <Tooltip title="home" arrow>
           <BottomNavigationAction
             label="Home"
-            icon={<Home />}
+            icon={<Home sx={{ width: 32, height: 32 }} />}
             style={{ marginLeft: CustomDeviceTablet() && "30%" }}
             onClick={handleReturnHome}
           />
@@ -71,23 +65,15 @@ const BottomNav = () => {
           <BottomNavigationAction
             onClick={handleJobContent}
             label="Jobs"
-            icon={<Work />}
+            icon={<Work sx={{ width: 28, height: 28 }}/>}
           />
         </Tooltip>
 
-        <Tooltip title="learning" arrow>
+        <Tooltip title="learn" arrow>
           <BottomNavigationAction
             onClick={handleLearningContent}
-            label="Learning"
-            icon={<OndemandVideoRounded />}
-          />
-        </Tooltip>
-
-        <Tooltip title="messages" arrow>
-          <BottomNavigationAction
-            onClick={handleMessageContent}
-            label="Message"
-            icon={<MailRounded />}
+            label="Learn"
+            icon={<SchoolRounded sx={{ width: 32, height: 32 }} />}
           />
         </Tooltip>
       </BottomNavigation>

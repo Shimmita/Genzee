@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import React, { lazy, Suspense } from "react";
-import BasicSpeedDial from "../custom/SpeedDial";
-import useScrolledDown from "../hooks/useScrolledDown";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import BasicSpeedDial from "../custom/SpeedDial";
+import useScrolledDown from "../hooks/useScrolledDown";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 const UserProfile = lazy(() => import("../profile/UserProfile"));
 const PostDetailsContainer = lazy(() => import("../post/PostDetailsContiner"));
@@ -19,7 +19,6 @@ const HelpFrequentQuiz = lazy(() => import("../more/help/HelpFrequentQuiz"));
 const HelpReportUserTab = lazy(() => import("../more/help/HelpReportUser"));
 const HelpAssistanceEmail = lazy(() => import("../more/help/HelpAssistEmail"));
 const AboutPage = lazy(() => import("../more/about/About"));
-const BottomMessage = lazy(() => import("../more/bottom/BottomMessage"));
 const BottomJobs = lazy(() => import("../more/bottom/BottomJobs"));
 const FeedDefaultContent = lazy(() => import("./FeedDefaultContent"));
 const EventsLive = lazy(() => import("../events/EventsLive"));
@@ -38,9 +37,10 @@ const Feed = () => {
     <Box
       flex={3}
       p={CustomDeviceTablet() ? 2 : 1}
-      bgcolor={"background.default"}
+      // bgcolor={"background.default"}
+      bgcolor={"#F1F1F1"}
       color={"text.primary"}
-      marginRight={window.screen.availWidth > 1200 && "6%"}
+      marginRight={window.screen.availWidth>1250 && '3%'}
     >
       <Suspense
         fallback={
@@ -68,7 +68,6 @@ const Feed = () => {
           <Route path="/help/report" element={<HelpReportUserTab />} />
           <Route path="/help/email" element={<HelpAssistanceEmail />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/messages" element={<BottomMessage />} />
           <Route path="/jobs" element={<BottomJobs />} />
           <Route path="/events/live" element={<EventsLive />} />
           <Route path="/events/add" element={<EventsAdd />} />
@@ -88,7 +87,7 @@ const Feed = () => {
                   position={"fixed"}
                   sx={{
                     left: 0,
-                    right: window.screen.availWidth < 600 ? "38%" : "28%",
+                    right: window.screen.availWidth < 600 ? "40%" : "31%",
                     bottom: 50,
                   }}
                 >

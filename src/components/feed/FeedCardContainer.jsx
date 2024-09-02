@@ -5,7 +5,7 @@ import CardFeed from "../custom/CardFeed";
 
 const FeedCardContainer = () => {
   // for follow/connect people people
-  const items = Array.from({ length: 20 }, (_, i) => i);
+  const items = Array.from({ length: 50 }, (_, i) => i);
 
   return (
     <>

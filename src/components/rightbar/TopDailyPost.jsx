@@ -26,7 +26,7 @@ export default function TopDailyPosts() {
                   variant="body2"
                   color="text.primary"
                 ></Typography>
-                {"I'll be in your neighborhood doing errands this…"}
+                {"I'll be in your neighborhood doing errands thisz…"}
               </React.Fragment>
             }
           />

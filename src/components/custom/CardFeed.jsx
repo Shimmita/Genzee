@@ -1,8 +1,8 @@
 import {
   Add,
   AddCommentRounded,
-  BarChartRounded,
   FavoriteRounded,
+  LeaderboardRounded,
   MenuRounded,
   PersonAddRounded,
   VerifiedRounded,
@@ -197,30 +197,28 @@ const CardFeed = () => {
           alt={"image"}
           style={{
             width: "100%",
-            maxHeight: window.screen.availWidth > 600 ? "450px" : "300px",
+            maxHeight: window.screen.availWidth > 600 ? "400px" : "300px",
             objectFit: "fill",
             padding: window.screen.availWidth > 1300 && "5px",
             borderRadius: "10px",
             filter: openMoreVertPost && "grayscale(100%)",
           }}
         />
-        <Divider component={'div'} className="p-2"/>
+        {/* show divider when darkmode only */}
+        {isDarkMode && <Divider component={"div"} className="p-2" />}
         <Box
           display={"flex "}
           p={1}
-          justifyContent={"space-between"}
+          justifyContent={"space-around"}
           alignItems={"center"}
-          style={{
-            paddingRight: window.screen.availWidth > 600 && "2rem",
-          }}
         >
           <Box display={"flex"} alignItems={"center"}>
             <Tooltip title="like" arrow>
               <Checkbox
-                icon={<FavoriteRounded sx={{ width: 22, height: 22 }} />}
+                icon={<FavoriteRounded sx={{ width: 23, height: 23 }} />}
                 checkedIcon={
                   <FavoriteRounded
-                    sx={{ width: 22, height: 22, color: "#CF4B3F" }}
+                    sx={{ width: 23, height: 23, color: "#CF4B3F" }}
                   />
                 }
               />
@@ -240,9 +238,9 @@ const CardFeed = () => {
             <Box display={"flex"} alignItems={"center"}>
               <Tooltip arrow title="repost">
                 <Checkbox
-                  icon={<BarChartRounded sx={{ width: 22, height: 22 }} />}
+                  icon={<LeaderboardRounded sx={{ width: 21, height: 21 }} />}
                   checkedIcon={
-                    <BarChartRounded sx={{ width: 22, height: 22 }} />
+                    <LeaderboardRounded sx={{ width: 21, height: 21 }} />
                   }
                 />
               </Tooltip>
@@ -261,7 +259,7 @@ const CardFeed = () => {
               <Tooltip title={"comment"} arrow>
                 <Checkbox
                   onChange={handleReplyPost}
-                  icon={<AddCommentRounded sx={{ width: 20, height: 20 }} />}
+                  icon={<AddCommentRounded sx={{ width: 21, height: 21 }} />}
                 />
               </Tooltip>
               <span>
@@ -276,7 +274,6 @@ const CardFeed = () => {
             </Box>
           </Box>
         </Box>
-
       </Card>
     </>
   );

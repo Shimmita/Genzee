@@ -1,4 +1,9 @@
-import { Add, Bookmark, VideoCall } from "@mui/icons-material";
+import {
+  Add,
+  Bookmark,
+  CalendarMonthRounded,
+  VideoCall,
+} from "@mui/icons-material";
 import {
   Backdrop,
   Box,
@@ -23,15 +28,12 @@ const RightbarAll = ({ mode }) => {
   return (
     <Box
       flex={2}
+      marginRight={window.screen.availWidth > 1200 ? "5%" : "0"}
       p={2}
       sx={{ display: { xs: "none", sm: "none", md: "block" } }}
     >
-      <Box
-        position={"fixed"}
-        bgcolor={"background.default"}
-        color={"text.primary"}
-      >
-        <Box className="shadow rounded p-1 me-3">
+      <Box position={"fixed"} color={"text.primary"} className='me-3 p-1'>
+        <Box bgcolor={"background.default"} className="shadow rounded ">
           <Box display={"flex"} justifyContent={"center"}>
             <Typography
               fontWeight={"bold"}
@@ -47,7 +49,7 @@ const RightbarAll = ({ mode }) => {
           </Box>
         </Box>
 
-        <Box className="shadow mt-3 rounded me-3">
+        <Box bgcolor={"background.default"} className="shadow mt-3 rounded">
           <Box display={"flex"} justifyContent={"center"}>
             <Typography
               style={{ color: mode === "light" ? "steelblue" : "white" }}
@@ -70,7 +72,7 @@ const RightbarAll = ({ mode }) => {
               </ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography variant="body2">Ongoing Live Events</Typography>
+                  <Typography variant="body2">Live Events</Typography>
                 }
               />
             </ListItemButton>
@@ -85,11 +87,14 @@ const RightbarAll = ({ mode }) => {
           >
             <ListItemButton LinkComponent={"a"} href="#home">
               <ListItemIcon>
-                <VideoCall color="primary" />
+                <CalendarMonthRounded
+                  sx={{ window: 22, height: 22 }}
+                  color="primary"
+                />
               </ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography variant="body2">Upcoming Live Events</Typography>
+                  <Typography variant="body2">Upcoming Events</Typography>
                 }
               />
             </ListItemButton>
@@ -108,9 +113,7 @@ const RightbarAll = ({ mode }) => {
               </ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography variant="body2">
-                    My Event Viewer Status{" "}
-                  </Typography>
+                  <Typography variant="body2">Event Bookmark </Typography>
                 }
               />
             </ListItemButton>
@@ -129,7 +132,7 @@ const RightbarAll = ({ mode }) => {
               </ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography variant="body2">Add an Upcoming Event</Typography>
+                  <Typography variant="body2">Create Event</Typography>
                 }
               />
             </ListItemButton>

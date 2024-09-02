@@ -113,12 +113,27 @@ const Sidebar = ({ setMode, mode }) => {
     navigate("/about");
   };
 
+  // return the screen width in parcentage for wider screens
+  // to handle correct positioning issues with middle content feed
+
+  const correctWidthInPercentage = () => {
+    const screenWidth = window.screen.availWidth;
+    if (screenWidth > 1200 && screenWidth <= 1400) {
+      return "21%";
+    }
+
+    if (screenWidth > 1400) {
+      return "18%";
+    }
+    return;
+  };
+
   return (
     <Box
       mt={CustomDeviceTablet() && 1}
       flex={CustomDeviceTablet() ? 1 : 2}
       p={CustomDeviceTablet() ? 1 : 2}
-      marginLeft={window.screen.availWidth > 1200 ? "4%" : "0"}
+      marginLeft={window.screen.availWidth > 1200 ? "5%" : "0"}
       sx={{
         display: {
           xs: "none",
@@ -128,8 +143,8 @@ const Sidebar = ({ setMode, mode }) => {
         },
       }}
     >
-      <Box position={"fixed"}>
-        <Box className="shadow rounded mt-1">
+      <Box position={"fixed"} width={correctWidthInPercentage()}>
+        <Box bgcolor={"background.default"} className="shadow rounded mt-1">
           <BoxAvatarContent>
             <Box
               display={"flex"}
@@ -183,7 +198,8 @@ const Sidebar = ({ setMode, mode }) => {
             </Table>
           </Box>
         </Box>
-        <Box className="p-1 shadow rounded mt-3">
+
+        <Box bgcolor={"background.default"} className="p-1 shadow rounded mt-3">
           <Typography
             className=" mt-2"
             fontWeight={"bold"}
@@ -368,7 +384,10 @@ const Sidebar = ({ setMode, mode }) => {
         {/* box for Events displayed for tablets only */}
         {CustomDeviceTablet() && (
           <>
-            <Box className="mt-3 shadow p-1 rounded">
+            <Box
+              bgcolor={"background.default"}
+              className="mt-3 shadow p-1 rounded"
+            >
               <Typography
                 gutterBottom
                 fontWeight={"bold"}

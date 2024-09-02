@@ -174,7 +174,7 @@ const Navbar = ({ setMode, mode }) => {
   const handleHome = () => navigate("/");
 
   return (
-    <AppBar elevation={10} position="sticky">
+    <AppBar position="sticky" elevation={5}>
       <GenzeeToolBar>
         {/* lg screen toolbar */}
         <LogoContent
