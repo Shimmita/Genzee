@@ -3,7 +3,6 @@ import { Box, IconButton, Typography } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import React from "react";
-import Events from "../events/Events";
 import { GetScreenWidth } from "../utilities/GetScreenWidth";
 import ConnectSuggestion from "./ConnectSuggestion";
 import FollowSuggetion from "./FollowSuggestion";
@@ -38,32 +37,30 @@ const PeopleContainer = () => {
             color="primary"
             onChange={handleChange}
           >
-            {/* display only in small devices */}
-            {window.screen.availWidth <= 700 && (
-              <ToggleButton value={0}>
-                <Typography fontWeight={'bold'} fontSize={"smaller"} variant="body2">
-                  Events
-                </Typography>
-              </ToggleButton>
-            )}
             <ToggleButton value={1}>
-              <Typography  fontWeight={'bold'} fontSize={"smaller"} variant="body2">
+              <Typography
+                fontWeight={"bold"}
+                fontSize={"small"}
+                variant="body2"
+              >
                 follow <span className="ps-2">20</span>{" "}
               </Typography>
             </ToggleButton>
             <ToggleButton value={2}>
-              <Typography  fontWeight={'bold'} fontSize={"smaller"} variant="body2">
+              <Typography
+                fontWeight={"bold"}
+                fontSize={"small"}
+                variant="body2"
+              >
                 connect <span className="ps-2">10</span>{" "}
               </Typography>
             </ToggleButton>
-
-           
           </ToggleButtonGroup>
         </Box>
 
         <Box display={"flex"}>
           <IconButton onClick={handleShowingModalMorePeople}>
-            <PersonAdd color="primary" sx={{ width: 20, height: 20 }} />
+            <PersonAdd color="primary" sx={{ width: 22, height: 22 }} />
           </IconButton>
         </Box>
       </Box>
@@ -95,10 +92,6 @@ const PeopleContainer = () => {
               {items.map((item, index) => (
                 <ConnectSuggestion key={index} />
               ))}
-            </>
-          ) : followConnect === 0 ? (
-            <>
-              <Events />
             </>
           ) : null}
         </Box>

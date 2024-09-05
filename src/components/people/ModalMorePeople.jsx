@@ -34,7 +34,7 @@ const ModalMorePeople = ({ openPostModal, setOpenPostModal }) => {
       <Box
         width={400}
         p={1}
-        borderRadius={1}
+        borderRadius={3}
         bgcolor={"background.default"}
         color={"text.primary"}
       >

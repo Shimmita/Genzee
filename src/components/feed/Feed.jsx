@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import BasicSpeedDial from "../custom/SpeedDial";
 import useScrolledDown from "../hooks/useScrolledDown";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import { Oval } from "react-loader-spinner";
 const UserProfile = lazy(() => import("../profile/UserProfile"));
 const PostDetailsContainer = lazy(() => import("../post/PostDetailsContiner"));
 
@@ -28,7 +29,7 @@ const EventsAdd = lazy(() => import("../events/EventsAdd"));
 
 const Feed = () => {
   // backdrop state
-  const { isScrolledDown } = useSelector((state) => state.appUI);
+  const { isScrolledDown, isDarkMode } = useSelector((state) => state.appUI);
 
   // run the listening component hook
   useScrolledDown();
@@ -37,10 +38,9 @@ const Feed = () => {
     <Box
       flex={3}
       p={CustomDeviceTablet() ? 2 : 1}
-      // bgcolor={"background.default"}
-      bgcolor={"#F1F1F1"}
+      bgcolor={isDarkMode ? "background.default" : "#F1F1F1"}
       color={"text.primary"}
-      marginRight={window.screen.availWidth>1250 && '3%'}
+      marginRight={window.screen.availWidth > 1250 && "3%"}
     >
       <Suspense
         fallback={
@@ -54,7 +54,7 @@ const Feed = () => {
               height: "90vh",
             }}
           >
-            Getting...
+            <Oval color="#1876D2" width={30} height={30} />
           </Box>
         }
       >

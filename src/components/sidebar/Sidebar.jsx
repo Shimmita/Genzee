@@ -123,7 +123,7 @@ const Sidebar = ({ setMode, mode }) => {
     }
 
     if (screenWidth > 1400) {
-      return "18%";
+      return "17%";
     }
     return;
   };

@@ -32,7 +32,7 @@ const RightbarAll = ({ mode }) => {
       p={2}
       sx={{ display: { xs: "none", sm: "none", md: "block" } }}
     >
-      <Box position={"fixed"} color={"text.primary"} className='me-3 p-1'>
+      <Box position={"fixed"} color={"text.primary"} className="me-3 p-1">
         <Box bgcolor={"background.default"} className="shadow rounded ">
           <Box display={"flex"} justifyContent={"center"}>
             <Typography
@@ -71,9 +71,7 @@ const RightbarAll = ({ mode }) => {
                 <VideoCall color="primary" />
               </ListItemIcon>
               <ListItemText
-                primary={
-                  <Typography variant="body2">Live Events</Typography>
-                }
+                primary={<Typography variant="body2">Live Events</Typography>}
               />
             </ListItemButton>
             <Typography variant="body2">20</Typography>
@@ -131,9 +129,7 @@ const RightbarAll = ({ mode }) => {
                 <Add color="primary" />
               </ListItemIcon>
               <ListItemText
-                primary={
-                  <Typography variant="body2">Create Event</Typography>
-                }
+                primary={<Typography variant="body2">Create Event</Typography>}
               />
             </ListItemButton>
           </Box>
@@ -154,6 +150,8 @@ const RightbarAll = ({ mode }) => {
           )}
         </Box>
       )}
+
+
     </Box>
   );
 };

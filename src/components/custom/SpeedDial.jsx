@@ -4,27 +4,27 @@ import SpeedDialAction from "@mui/material/SpeedDialAction";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import React from "react";
 
-import { PostAddRounded, Videocam, Work } from "@mui/icons-material";
-import PostModal from "../modal/PostModal";
+import { Add, Videocam, Work } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import PostModal from "../modal/PostModal";
 const actions = [
   {
-    icon: <Work color="primary" sx={{ width: 20, height: 20 }} />,
+    icon: <Work color="primary" sx={{ width: 23, height: 23 }} />,
     name: "Job",
   },
   {
-    icon: <Videocam color="primary" sx={{ width: 20, height: 20 }} />,
-    name: "Live",
+    icon: <Videocam color="primary" sx={{ width: 23, height: 23 }} />,
+    name: "GoLive",
   },
   {
-    icon: <PostAddRounded color="primary" sx={{ width: 20, height: 20 }} />,
+    icon: <Add color="primary" sx={{ width: 24, height: 24 }} />,
     name: "Post",
   },
 ];
 
 export default function BasicSpeedDial() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
+  const handleOpen = (prev) => {
     setOpen(true);
   };
   const handleClose = () => {
@@ -35,11 +35,11 @@ export default function BasicSpeedDial() {
   const [openPostModal, setOpenPostModal] = React.useState(false);
 
   return (
-    <Box  sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
+    <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
       <SpeedDial
         ariaLabel="SpeedDial"
         sx={{ position: "absolute", bottom: 10, right: 10 }}
-        icon={<SpeedDialIcon   />}
+        icon={<SpeedDialIcon />}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
@@ -50,15 +50,22 @@ export default function BasicSpeedDial() {
             icon={action.icon}
             className="shadow border"
             onClick={(e) => {
-              // show modal
+              
               if (action.name.toLowerCase() === "post") {
+                // open posting model
                 setOpenPostModal(true);
               }
             }}
             tooltipTitle={
-              <Typography p={2} className="shadow border rounded"  fontWeight={'bold'} variant="body2">{action.name}</Typography>
+              <Typography
+                p={1}
+                className="shadow rounded"
+                fontWeight={"bold"}
+                variant="body2"
+              >
+                {action.name}
+              </Typography>
             }
-            tooltipOpen
           />
         ))}
       </SpeedDial>

@@ -49,9 +49,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import devImage from "../../images/dev.jpeg";
 import KenyaFlag from "../../images/KE.png";
-import { resetDarkMode } from "../../redux/AppUI";
+import { resetDarkMode, showMessagingDrawer } from "../../redux/AppUI";
 import AccountLevelStep from "../level/AccountLevel";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
+import Messaging from "../messaging/Messaging";
 
 const Navbar = ({ setMode, mode }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -173,6 +174,10 @@ const Navbar = ({ setMode, mode }) => {
   // home page
   const handleHome = () => navigate("/");
 
+  // show the messaing drawer bdy the help of redux toolkit
+  const handleShowMessageDrawer = () => {
+    dispatch(showMessagingDrawer());
+  };
   return (
     <AppBar position="sticky" elevation={5}>
       <GenzeeToolBar>
@@ -309,11 +314,18 @@ const Navbar = ({ setMode, mode }) => {
           {!showMobileSearch && (
             <>
               <Badge badgeContent={1} color="error">
-                <Notifications sx={{ width: 25, height: 25 }} />
+                <IconButton
+                  sx={{ padding: 0 }}
+                  onClick={handleShowMessageDrawer}
+                >
+                  <Notifications
+                    sx={{ width: 25, height: 25, color: "white" }}
+                  />
+                </IconButton>
               </Badge>
               &nbsp;
               <Avatar
-                sx={{ width: 28, height: 28, border: "1px solid gray" }}
+                sx={{ width: 30, height: 30, border: "1px solid gray" }}
                 src={devImage}
                 alt={"user image"}
               />
@@ -565,6 +577,9 @@ const Navbar = ({ setMode, mode }) => {
           </List>
         </Box>
       </Drawer>
+
+      {/* notif and messaging to the left for large screens and right on tabs and top on small devices */}
+      <Messaging />
     </AppBar>
   );
 };

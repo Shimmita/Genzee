@@ -11,6 +11,7 @@ const initialState = {
   isScrolledDown: false,
   isMobileRighBar: false,
   isSearchBar: true,
+  isOpenMessageDrawer: false,
 
   // theme
   isDarkMode: false,
@@ -66,13 +67,20 @@ const appUISliceReducerSlice = createSlice({
       state.isScrolledDown = action.payload;
     },
 
+    // manages right bar
     showMobileRighBar: (state) => {
       return {
         ...state,
         isMobileRighBar: !state.isMobileRighBar,
       };
     },
-   
+    // manage showing message and notification drawer
+    showMessagingDrawer: (state) => {
+      return {
+        ...state,
+        isOpenMessageDrawer: !state.isOpenMessageDrawer,
+      };
+    },
   },
 });
 
@@ -87,6 +95,7 @@ export const {
   showAbout,
   handleScrolledDown,
   showMobileRighBar,
+  showMessagingDrawer,
 } = appUISliceReducerSlice.actions;
 
 // export the appUISliceReducer for universal purposes

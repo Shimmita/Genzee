@@ -2,6 +2,7 @@ import { RefreshRounded } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import React from "react";
 import CardFeed from "../custom/CardFeed";
+import PeopleContainer from "../people/PeopleContainer";
 
 const FeedCardContainer = () => {
   // for follow/connect people people
@@ -13,7 +14,16 @@ const FeedCardContainer = () => {
         items.map((item, index) => {
           return (
             <Box key={index}>
+              {/* show connect/follow people at third index */}
+              {index === 0 && (
+                <Box bgcolor={"background.default"}>
+                  <PeopleContainer />
+                </Box>
+              )}
+
+              {/* feed card containing posts */}
               <CardFeed />
+
               {/* show refresh button when the item is last */}
               {index === items.length - 1 && (
                 <Box display={"flex"} justifyContent={"center"} m={2}>

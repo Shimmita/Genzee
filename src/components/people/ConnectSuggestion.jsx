@@ -1,19 +1,15 @@
-import { Avatar, Box, Button } from "@mui/material";
+import { Avatar, Box, Button, Divider } from "@mui/material";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import devImage from "../../images/dev.jpeg";
 import { Image } from "react-bootstrap";
+import devImage from "../../images/dev.jpeg";
 
 export default function ConnectSuggestion() {
   return (
-    <Box bgcolor={"background.default"} color={"text.primary"}>
-      <Card
-        elevation={0}
-        sx={{ width: 120, height: 125 }}
-        className="border rounded"
-      >
-        <Box className="pt-1">
+    <Box bgcolor={"background.default"} color={"text.primary"} className='rounded'>
+      <Card elevation={0} sx={{ width: 130, height: 125 }}>
+        <Box className="p-1">
           <Box display={"flex"} justifyContent={"center"}>
             <Avatar>
               <Image width={36} src={devImage} />
@@ -23,19 +19,16 @@ export default function ConnectSuggestion() {
             <small>Albert Einstein</small>
           </Typography>
           <Typography
-            className="text-center mb-1"
+            className="text-center"
             variant="body2"
             color="text.secondary"
           >
             <small>@AlbertStar</small>
           </Typography>
         </Box>
+        <Divider component={"div"} className="p-1" />
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small" variant="contained">
-            <small style={{ fontSize: "xx-small", paddingTop: "1px" }}>
-              connect{" "}
-            </small>
-          </Button>
+          <Button size="small">connect</Button>
         </Box>
       </Card>
     </Box>

@@ -1,4 +1,4 @@
-import image from "../../images/mac.png";
+import image from "../../images/dev.jpeg";
 
 const PostData = {
   image,

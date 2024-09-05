@@ -30,6 +30,7 @@ import devImage from "../../images/dev.jpeg";
 import PostData from "../data/PostData";
 import CustomDeviceTablet from "../utilities/CustomDeviceTablet";
 import CardFeedMore from "./CardFeedMore";
+import CustomDeviceScreenSize from "../utilities/CustomDeviceScreenSize";
 
 const CardFeed = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,11 +56,11 @@ const CardFeed = () => {
     const details = PostData && PostData.details;
     // wider screens more content
     if (CustomDeviceTablet() || window.screen.width > 1000)
-      return details.length > 220
-        ? details.substring(0, 220) + " ..."
+      return details.length > 250
+        ? details.substring(0, 250) + " ..."
         : details;
     // smaller screens less content
-    return details.length > 105 ? details.substring(0, 105) + " ..." : details;
+    return details.length > 174 ? details.substring(0, 174) + " ..." : details;
   };
 
   // navigate to the post details page
@@ -83,7 +84,7 @@ const CardFeed = () => {
           opacity: openMoreVertPost && !isDarkMode && "0.8",
         }}
         elevation={0}
-        className="w-100 shadow mb-4 p-2 rounded"
+        className="w-100 shadow mb-3 p-2 rounded"
       >
         <CardHeader
           sx={{
@@ -167,12 +168,12 @@ const CardFeed = () => {
         <CardActionArea onClick={handlePostDetails}>
           <CardContent>
             <>
-              <Typography
-                variant="body2"
-                gutterBottom
-                className="text-center w-100 pb-2"
-              >
-                <Divider>
+              {isDarkMode ? (
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  className="text-center w-100 pb-2"
+                >
                   <span className="d-flex justify-content-center align-items-center align-content-center gap-1">
                     <span>{PostData.category}</span>
                     <Add
@@ -181,31 +182,48 @@ const CardFeed = () => {
                     />
                     <span>{PostData.county}</span>
                   </span>
-                </Divider>
-              </Typography>
+                </Typography>
+              ) : (
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  className="text-center w-100 pb-2 fw-medium"
+                >
+                  <Divider>
+                    <span className="d-flex justify-content-center align-items-center align-content-center gap-1">
+                      <span>{PostData.category}</span>
+                      <Add
+                        color="primary"
+                        sx={{ width: 17, height: 17, rotate: "270deg" }}
+                      />
+                      <span>{PostData.county}</span>
+                    </span>
+                  </Divider>
+                </Typography>
+              )}
             </>
 
-            <Typography color={"text.secondary"} variant="body2">
-              {handleDetailsLength()}
-            </Typography>
+            <Typography variant="body2">{handleDetailsLength()}</Typography>
           </CardContent>
+
+          {/* media */}
+          <Image
+            src={PostData.image}
+            alt={"image"}
+            style={{
+              width: "100%",
+              maxHeight: CustomDeviceScreenSize(),
+              objectFit: "fill",
+              padding: window.screen.availWidth > 1300 && "5px",
+              borderRadius: "10px",
+              filter: openMoreVertPost && "grayscale(100%)",
+            }}
+          />
         </CardActionArea>
 
-        {/* media */}
-        <Image
-          src={PostData.image}
-          alt={"image"}
-          style={{
-            width: "100%",
-            maxHeight: window.screen.availWidth > 600 ? "400px" : "300px",
-            objectFit: "fill",
-            padding: window.screen.availWidth > 1300 && "5px",
-            borderRadius: "10px",
-            filter: openMoreVertPost && "grayscale(100%)",
-          }}
-        />
-        {/* show divider when darkmode only */}
-        {isDarkMode && <Divider component={"div"} className="p-2" />}
+        {/* show divider actions light mode */}
+        {!isDarkMode && <Divider component={"div"} className="p-2" />}
+
         <Box
           display={"flex "}
           p={1}
@@ -235,46 +253,46 @@ const CardFeed = () => {
           </Box>
 
           <Box display={"flex"} alignItems={"center"}>
-            <Box display={"flex"} alignItems={"center"}>
-              <Tooltip arrow title="repost">
-                <Checkbox
-                  icon={<LeaderboardRounded sx={{ width: 21, height: 21 }} />}
-                  checkedIcon={
-                    <LeaderboardRounded sx={{ width: 21, height: 21 }} />
-                  }
-                />
-              </Tooltip>
-              <span>
-                <Typography
-                  fontWeight={"bold"}
-                  variant="body2"
-                  color={"text.secondary"}
-                >
-                  50k
-                </Typography>
-              </span>
-            </Box>
+            <Tooltip arrow title="repost">
+              <Checkbox
+                icon={<LeaderboardRounded sx={{ width: 21, height: 21 }} />}
+                checkedIcon={
+                  <LeaderboardRounded sx={{ width: 21, height: 21 }} />
+                }
+              />
+            </Tooltip>
+            <span>
+              <Typography
+                fontWeight={"bold"}
+                variant="body2"
+                color={"text.secondary"}
+              >
+                50k
+              </Typography>
+            </span>
+          </Box>
 
-            <Box display={"flex"} alignItems={"center"} className="ps-3">
-              <Tooltip title={"comment"} arrow>
-                <Checkbox
-                  onChange={handleReplyPost}
-                  icon={<AddCommentRounded sx={{ width: 21, height: 21 }} />}
-                />
-              </Tooltip>
-              <span>
-                <Typography
-                  variant="body2"
-                  fontWeight={"bold"}
-                  color={"text.secondary"}
-                >
-                  300
-                </Typography>
-              </span>
-            </Box>
+          <Box display={"flex"} alignItems={"center"} className="ps-3">
+            <Tooltip title={"comment"} arrow>
+              <Checkbox
+                onChange={handleReplyPost}
+                icon={<AddCommentRounded sx={{ width: 21, height: 21 }} />}
+              />
+            </Tooltip>
+            <span>
+              <Typography
+                variant="body2"
+                fontWeight={"bold"}
+                color={"text.secondary"}
+              >
+                300
+              </Typography>
+            </span>
           </Box>
         </Box>
       </Card>
+      {/* show divider */}
+      {isDarkMode && <Divider component={"div"} className="mb-4" />}
     </>
   );
 };

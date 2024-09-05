@@ -22,8 +22,10 @@ function Homepage() {
   const { isScrolledDown } = useSelector((state) => state.appUI);
   return (
     <ThemeProvider theme={darkTheme}>
-      {/* <Box bgcolor={"background.default"} color={"text.primary"}> */}
-      <Box bgcolor={"#F1F1F1"} color={"text.primary"}>
+      <Box
+        bgcolor={mode === "dark" ? "background.default" : "#F1F1F1"}
+        color={"text.primary"}
+      >
         <Stack direction={"column"}>
           {/* nav+content */}
           <Stack direction={"column"}>

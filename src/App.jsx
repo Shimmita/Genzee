@@ -39,12 +39,12 @@ const App = () => {
               justifyContent={"center"}
             >
               <Avatar
-                sx={{ width: 35, height: 35 }}
+                sx={{ width: 40, height: 40 }}
                 src={KenyaFlag}
                 alt="KENYA"
               />
               <Typography
-                variant="body2"
+                variant="body1"
                 fontWeight={"bold"}
                 color={"text.secondary"}
               >

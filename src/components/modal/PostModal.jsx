@@ -20,7 +20,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import devImage from "../../images/dev.jpeg";
 import KenyaFlag from "../../images/KE.png";
 import CountiesInKenya from "../data/Counties";
 import PostAbout from "../data/PostAbout";
@@ -61,15 +60,16 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
 
   return (
     <StyledModalPost
+      keepMounted
       open={openPostModal}
-      onClose={(e) => setOpenPostModal(false)}
+      // onClose={(e) => setOpenPostModal(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box
-        width={window.screen.availWidth < 600 ? "100%" : 550}
+        width={window.screen.availWidth < 600 ? "100%" : 560}
         p={1}
-        borderRadius={2}
+        borderRadius={3}
         bgcolor={"background.default"}
         color={"text.primary"}
       >
@@ -80,32 +80,25 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
           alignItems={"center"}
           marginLeft={1}
         >
-          <Avatar
-            alt="user image"
-            src={devImage}
-            sx={{ width: 40, height: 40 }}
-          />
-
-          {/*  button for posting */}
-          <Tooltip title={"post"}>
-            <Button
-              startIcon={<Add />}
-              sx={{ borderRadius: 5 }}
-              disableElevation
-              className="ms-5 w-25"
-              variant="contained"
-              size="small"
-            >
-              Post
-            </Button>
-          </Tooltip>
-
           {/* preview  */}
 
           <Tooltip title={"preview"}>
             <IconButton onClick={handleClickShowPreview}>
               {showPreview ? <VisibilityOff /> : <Visibility />}
             </IconButton>
+          </Tooltip>
+
+          {/*  button for posting */}
+          <Tooltip title={"post"}>
+            <Button
+              startIcon={<Add />}
+              disableElevation
+              className="w-25 rounded"
+              variant="contained"
+              size="small"
+            >
+              Post
+            </Button>
           </Tooltip>
 
           {/*close icon */}
@@ -177,18 +170,23 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                   onChange={(e) => setPrivacyView(e.target.value)}
                 >
                   {PostPrivacy &&
-                    PostPrivacy.map((privacy, index) => (
-                      <MenuItem key={index} value={privacy}>
-                        <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-                          {index === 0 && <Visibility color="primary" />}
-                          {index === 1 && <People color="primary" />}
-                          {index === 2 && <LockRounded color="primary" />}
-                          {index === 3 && <Visibility color="primary" />}
-                          {index === 4 && <LockRounded color="primary" />}
-                          <small style={{ fontSize: "small" }}>{privacy}</small>
-                        </Box>
-                      </MenuItem>
-                    ))}
+                    PostPrivacy.filter((privacy) => privacy !== "None").map(
+                      (privacy, index) => (
+                        <MenuItem key={index} value={privacy}>
+                          <Box
+                            display={"flex"}
+                            alignItems={"center"}
+                            gap={"5px"}
+                          >
+                            {index === 0 && <Visibility color="primary" />}
+                            {index === 1 && <People color="primary" />}
+                            <small style={{ fontSize: "small" }}>
+                              {privacy}
+                            </small>
+                          </Box>
+                        </MenuItem>
+                      )
+                    )}
                 </TextField>
               </Box>
 
@@ -291,7 +289,7 @@ const PostModal = ({ openPostModal, setOpenPostModal }) => {
                   <Box>
                     <input
                       type="file"
-                      accept="image/*"
+                      accept="image/*, video/*"
                       className="form-control"
                       onChange={handleFile}
                     />
